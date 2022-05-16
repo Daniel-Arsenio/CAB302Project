@@ -1,7 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="" />
+    <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/db.props" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/MazeGUI/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAB302MainProject.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeCLandingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeCLandingWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/PublisherWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/PublisherWindow.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -22,6 +38,36 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/MazeGUI" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\danie\OneDrive\Documentos\GitHub\CAB302Project\src\MazeGUI" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\danie\OneDrive\Documentos\GitHub\CAB302Project\src\MazeGUI" />
+      <recent name="C:\Users\danie\OneDrive\Documentos\GitHub\CAB302Project" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="MainGUI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="MazeGUI.MainGUI" />
+      <module name="CAB302Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="MazeGUI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.MainGUI" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -33,5 +79,16 @@
       <updated>1652072017614</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
   </component>
 </project>

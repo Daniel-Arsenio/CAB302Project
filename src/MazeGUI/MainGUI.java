@@ -1,16 +1,18 @@
 package MazeGUI;
 
 import javax.swing.*;
+import java.sql.SQLException;
 
 public class MainGUI extends JFrame implements Runnable {
-    static DatabaseLibrary DataBase = new DatabaseLibrary();
     static LoginWindow mainLoginWindow = new LoginWindow();
     static AdminWindow mainAdminWindow = new AdminWindow();
     static PublisherWindow mainPublisherWindow = new PublisherWindow();
     static MazeCLandingWindow mainMazeCLandingWindow = new MazeCLandingWindow();
     static MazeEditorWindow mainMazeEditorWindow = new MazeEditorWindow(20,15);
+    static DatabaseLibrary database;
 
-    public MainGUI(String args) {
+    public MainGUI(String args) throws SQLException {
+        database = new DatabaseLibrary();
     }
 
     /**
@@ -69,7 +71,8 @@ public class MainGUI extends JFrame implements Runnable {
 
     @Override
     public void run() {
-        openLogin();}
+        openLogin();
+        }
 
-    public static void main(String[] args) {SwingUtilities.invokeLater(new MainGUI("Maze Creator"));}
+    public static void main(String[] args) throws SQLException {SwingUtilities.invokeLater(new MainGUI("Maze Creator"));}
 }
