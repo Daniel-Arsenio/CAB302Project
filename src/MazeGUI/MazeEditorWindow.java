@@ -3,7 +3,7 @@
  * Developed for CAB 302 project
  * QUT student 2022
  */
-package MazeGUI;
+package src.MazeGUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

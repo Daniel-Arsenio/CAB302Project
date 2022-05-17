@@ -1,4 +1,4 @@
-package MazeGUI;
+package src.MazeGUI;
 
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
@@ -9,7 +9,7 @@ import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.util.HashMap;
 
-import static MazeGUI.GUIFunc.addToPanel;
+import static src.MazeGUI.GUIFunc.addToPanel;
 
 class AdminWindow extends JFrame{
     final JFrame AdminFrame = new JFrame("User Creation");

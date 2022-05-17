@@ -1,4 +1,4 @@
-package MazeGUI;
+package src.MazeGUI;
 
 import javax.swing.*;
 import java.awt.*;

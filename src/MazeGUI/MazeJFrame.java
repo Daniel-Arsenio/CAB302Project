@@ -3,11 +3,9 @@
  * Developed for CAB 302 project
  * QUT student 2022
  */
-package MazeGUI;
+package src.MazeGUI;
 
-import MazeGUI.MainGUI;
 import MazeGUI.MazeCreatorComponents.JComponentLibrary;
-import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;

@@ -1,10 +1,10 @@
-package MazeGUI;
+package src.MazeGUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
-import static MazeGUI.GUIFunc.addToPanel;
+import static src.MazeGUI.GUIFunc.addToPanel;
 
 
 class LoginWindow extends JFrame {

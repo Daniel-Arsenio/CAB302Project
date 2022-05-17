@@ -1,8 +1,8 @@
-package MazeGUI;
+package src.MazeGUI;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
-import java.util.HashMap;
+import java.util.*;
 
 class DatabaseLibrary {
 
@@ -13,6 +13,7 @@ class DatabaseLibrary {
     private final PreparedStatement checkUser = connect.prepareStatement("SELECT * FROM userdata WHERE username = ? AND password = ?;");
     private final PreparedStatement alterUser = connect.prepareStatement("UPDATE userdata SET username = ?, password = ?, permission = ? WHERE username = ? AND password = ?;");
     private final Statement getData = connect.createStatement();
+    private final LinkedList<Integer> idsAvailable = new LinkedList<>();
     private int userCount = 4;
 
     DatabaseLibrary() throws SQLException {
@@ -28,9 +29,22 @@ class DatabaseLibrary {
 
     void addUser(HashMap<String, String> user){
         try{
+            ResultSet rs = st.executeQuery("Select * FROM userdata;");
+            int oldid = 0;
+            while (rs.next()){
+                if (rs.getInt("userid") != oldid + 1){
+                    for (int i = oldid + 1; i < rs.getInt("userid"); i++){
+                        idsAvailable.add(i);
+                    }
+                }
+                oldid = rs.getInt("userid");
+            }
             if (userExists(user.get("Username"), user.get("Password")).next()) return;
             addUser.clearParameters();
-            addUser.setInt(1, userCount);
+            if (idsAvailable.isEmpty()){addUser.setInt(1, userCount);}
+            else{
+                addUser.setInt(1, idsAvailable.pop());
+            }
             addUser.setString(2, user.get("Username"));
             addUser.setString(3, user.get("Password"));
             addUser.setString(4, user.get("Permission"));
@@ -43,10 +57,7 @@ class DatabaseLibrary {
         removeUser.clearParameters();
         removeUser.setString(1, user.get("Username"));
         removeUser.setString(2, user.get("Password"));
-        st.getResultSet();
         removeUser.execute();
-        //for (int i = user.; i < userCount; i++){initDatabase.execute("UPDATE userdata SET userid = "+  +" WHERE userid = ");}
-
     }
 
     String getPermission(String username, String password){

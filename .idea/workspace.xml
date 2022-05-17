@@ -5,17 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/db.props" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/MazeGUI/DBConnection.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAB302MainProject.iml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/DBConnection.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/GUIFunc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/GUIFunc.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeCLandingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeCLandingWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeEditorWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeEditorWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeJFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeJFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/PublisherWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/PublisherWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -37,6 +38,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="jdk.selected.JAVA_MODULE" value="1.8" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/MazeGUI" />
   </component>

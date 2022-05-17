@@ -1,4 +1,4 @@
-package MazeGUI;
+package src.MazeGUI;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;

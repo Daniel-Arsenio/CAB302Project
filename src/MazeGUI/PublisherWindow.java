@@ -1,4 +1,4 @@
-package MazeGUI;
+package src.MazeGUI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
