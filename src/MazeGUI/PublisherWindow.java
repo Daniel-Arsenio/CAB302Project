@@ -100,10 +100,10 @@ class PublisherWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 selected_user = MazeListTable.getSelectedRow();
                 if (selected_user == -1){
-                    JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze Export Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze export error", JOptionPane.ERROR_MESSAGE);
                 }
                 else {
-                    JOptionPane.showMessageDialog(null, "Maze Export Successful");
+                    JOptionPane.showMessageDialog(null, "Maze export successful");
                 }
             }
         });
@@ -113,10 +113,10 @@ class PublisherWindow extends JFrame{
             public void actionPerformed(ActionEvent e) {
                 selected_user = MazeListTable.getSelectedRow();
                 if (selected_user == -1){
-                    JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze Export Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze export error", JOptionPane.ERROR_MESSAGE);
                 }
                 else {
-                    JOptionPane.showMessageDialog(null, "Solution Export Successful");
+                    JOptionPane.showMessageDialog(null, "Solution export successful");
                 }
             }
         });

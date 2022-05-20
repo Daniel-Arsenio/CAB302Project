@@ -9,21 +9,21 @@ class DatabaseLibrary {
     private final Connection connect = DBConnection.getInstance();
     private final Statement st = connect.createStatement();
     private final PreparedStatement addUser = connect.prepareStatement("INSERT INTO userdata VALUES( ?, ?, ?, ?);");
-    private final PreparedStatement removeUser = connect.prepareStatement("DELETE FROM userdata WHERE username = ? AND password = ?;");
+    private final PreparedStatement removeUser = connect.prepareStatement("DELETE FROM userdata WHERE userid = ?;");
     private final PreparedStatement checkUser = connect.prepareStatement("SELECT * FROM userdata WHERE username = ? AND password = ?;");
-    private final PreparedStatement alterUser = connect.prepareStatement("UPDATE userdata SET username = ?, password = ?, permission = ? WHERE username = ? AND password = ?;");
+    private final PreparedStatement alterUser = connect.prepareStatement("UPDATE userdata SET username = ?, password = ?, permission = ? WHERE userid = ?;");
     private final Statement getData = connect.createStatement();
     private final LinkedList<Integer> idsAvailable = new LinkedList<>();
-    private int userCount = 4;
+    private int userCount = 1;
 
     DatabaseLibrary() throws SQLException {
-        final Statement statement = connect.createStatement();
         //init database
-        statement.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
-        statement.execute("USE mazeco;");
-        statement.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
-        statement.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, creatorid INT REFERENCES userdata(userid));");
-        statement.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
+        st.execute("DROP DATABASE IF EXISTS mazeco;");
+        st.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
+        st.execute("USE mazeco;");
+        st.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
+        st.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, creatorid INT);");// REFERENCES mazeco(userdata))
+        st.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
         connect.commit();
     }
     // User data functions
@@ -54,11 +54,13 @@ class DatabaseLibrary {
         } catch(SQLException e){ e.printStackTrace();}
     }
 
-    void removeUser(HashMap<String, String> user) throws SQLException{
-        removeUser.clearParameters();
-        removeUser.setString(1, user.get("Username"));
-        removeUser.setString(2, user.get("Password"));
-        removeUser.execute();
+    void removeUser(HashMap<String, String> user){
+        try {
+            removeUser.clearParameters();
+            removeUser.setInt(1, Integer.parseInt(user.get("ID")));
+            removeUser.execute();
+            System.out.println("deleted " + Integer.parseInt(user.get("ID")));
+        }catch(SQLException e){ e.printStackTrace();}
     }
 
     String getPermission(String username, String password){
@@ -66,7 +68,10 @@ class DatabaseLibrary {
             checkUser.clearParameters();
             checkUser.setString(1, username);
             checkUser.setString(2, password);
-            return checkUser.executeQuery().getString(4);
+            ResultSet rs = checkUser.executeQuery();
+            rs.next();
+            if (rs.getString(4) == null) return null;
+            else return rs.getString(4);
         }catch(SQLException e){ e.printStackTrace();}
         return null;
     }
@@ -87,8 +92,7 @@ class DatabaseLibrary {
             alterUser.setString(1, newUser.get("Username"));
             alterUser.setString(2, newUser.get("Password"));
             alterUser.setString(3, newUser.get("Permission"));
-            alterUser.setString(4, user.get("Username"));
-            alterUser.setString(5, user.get("Password"));
+            alterUser.setInt(4, Integer.parseInt(user.get("ID")));
             alterUser.execute();
         }catch(SQLException e){e.printStackTrace();}
     }
@@ -102,6 +106,10 @@ class DatabaseLibrary {
                 return false;
             }
         };
+        tm.addColumn("userID");
+        tm.addColumn("username");
+        tm.addColumn("password");
+        tm.addColumn("permission");
         tm.setRowCount(0);
         try {
             rs = getData.executeQuery("SELECT * FROM userdata;");

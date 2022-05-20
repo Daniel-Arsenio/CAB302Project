@@ -29,7 +29,7 @@ class LoginWindow extends JFrame {
         loginButton.setText("Login");
         loginButton.addActionListener(e -> {
             if (MainGUI.database.getPermission(usernameField.getText(), String.valueOf(passwordField.getPassword())) == null)
-                JOptionPane.showMessageDialog(loginWindow,"Username or Password are Incorrect, please try again.", "Login Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(loginWindow,"Username or password are incorrect, please try again.", "Login error", JOptionPane.ERROR_MESSAGE);
 
             else if (MainGUI.database.getPermission(usernameField.getText(), String.valueOf(passwordField.getPassword())).equals("Admin")) {
                 MainGUI.closeLogin();
