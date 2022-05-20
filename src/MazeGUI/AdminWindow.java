@@ -14,7 +14,7 @@ import static src.MazeGUI.GUIFunc.addToPanel;
 class AdminWindow extends JFrame{
     final JFrame AdminFrame = new JFrame("User Creation");
     private final JPanel adminPanel = new JPanel();
-    private final DefaultTableModel tableModel = MainGUI.database.getTableModel();
+    private final DefaultTableModel tableModel = MainGUI.database.getUserTableModel();
     private final JTable adminUserDisplay = new JTable(tableModel);
     private final JScrollPane adminUserScrollPane = new JScrollPane(adminUserDisplay);
     private final JButton adminEditButton = new JButton();
@@ -54,7 +54,7 @@ class AdminWindow extends JFrame{
                                 newUser.replace("Username", newUsername.getText());
 
                                 MainGUI.database.alterUser(user, newUser);
-                                adminUserDisplay.setModel(MainGUI.database.getTableModel());
+                                adminUserDisplay.setModel(MainGUI.database.getUserTableModel());
                                 newUsername.setText("");
                             }
                         }
@@ -65,7 +65,7 @@ class AdminWindow extends JFrame{
                                 newUser.replace("Password", String.valueOf(newUserPassword));
 
                                 MainGUI.database.alterUser(user, newUser);
-                                adminUserDisplay.setModel(MainGUI.database.getTableModel());
+                                adminUserDisplay.setModel(MainGUI.database.getUserTableModel());
                                 newUserPassword.setText("");
                             }
                         }
@@ -75,7 +75,7 @@ class AdminWindow extends JFrame{
                             newUser.replace("Permission", z);
 
                             MainGUI.database.alterUser(user, newUser);
-                            adminUserDisplay.setModel(MainGUI.database.getTableModel());
+                            adminUserDisplay.setModel(MainGUI.database.getUserTableModel());
                             newUsername.setText("");
                         }
                     }
@@ -101,7 +101,7 @@ class AdminWindow extends JFrame{
 
                         MainGUI.database.addUser(newUser);
 
-                        adminUserDisplay.setModel(MainGUI.database.getTableModel());
+                        adminUserDisplay.setModel(MainGUI.database.getUserTableModel());
                         newUsername.setText("");
                         newUserPassword.setText("");
                     }

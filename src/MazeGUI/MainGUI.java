@@ -4,15 +4,22 @@ import javax.swing.*;
 import java.sql.SQLException;
 
 public class MainGUI extends JFrame implements Runnable {
+    static DatabaseLibrary database;
+    static {
+        try {
+            database = new DatabaseLibrary();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     static LoginWindow mainLoginWindow = new LoginWindow();
     static AdminWindow mainAdminWindow = new AdminWindow();
     static PublisherWindow mainPublisherWindow = new PublisherWindow();
     static MazeCLandingWindow mainMazeCLandingWindow = new MazeCLandingWindow();
     static MazeEditorWindow mainMazeEditorWindow = new MazeEditorWindow(20,15);
-    static DatabaseLibrary database;
+
 
     public MainGUI(String args) throws SQLException {
-        database = new DatabaseLibrary();
     }
 
     /**

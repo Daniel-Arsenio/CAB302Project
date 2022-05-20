@@ -19,13 +19,14 @@ class DatabaseLibrary {
     DatabaseLibrary() throws SQLException {
         final Statement statement = connect.createStatement();
         //init database
-        statement.execute("DROP DATABASE IF EXISTS mazeco;");
         statement.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
         statement.execute("USE mazeco;");
         statement.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
+        statement.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, creatorid INT REFERENCES userdata(userid));");
         statement.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
         connect.commit();
     }
+    // User data functions
 
     void addUser(HashMap<String, String> user){
         try{
@@ -92,7 +93,7 @@ class DatabaseLibrary {
         }catch(SQLException e){e.printStackTrace();}
     }
 
-    DefaultTableModel getTableModel(){
+    DefaultTableModel getUserTableModel(){
         ResultSet rs;
         DefaultTableModel tm = new DefaultTableModel(){
             @Override
@@ -111,8 +112,40 @@ class DatabaseLibrary {
         }
         catch (SQLException e) {e.printStackTrace();}
         return tm;
+    }
+
+    // Maze data functions
+    void addMaze(){
 
     }
 
+    void removeMaze(){
+
+    }
+
+    Byte[][] getMaze(int mazeid){
+        return null;
+    }
+
+    DefaultTableModel getMazeTableModel(){
+        ResultSet rs;
+        DefaultTableModel tm = new DefaultTableModel(){
+            @Override
+            public boolean isCellEditable(int row, int column) {
+                //all cells false
+                return false;
+            }
+        };
+        tm.setRowCount(0);
+        try {
+            rs = getData.executeQuery("SELECT * FROM mazedata;");
+            while(rs.next()){
+                Object[] o = {rs.getInt("mazeid"), rs.getInt("creatorid")};
+                tm.addRow(o);
+            }
+        }
+        catch (SQLException e) {e.printStackTrace();}
+        return tm;
+    }
 }
 

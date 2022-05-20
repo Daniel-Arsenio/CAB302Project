@@ -63,7 +63,7 @@ class PublisherWindow extends JFrame{
 
         JLabel lbl = new JLabel();
         MazeDisplayPanel.add(lbl);
-
+/**
         view_maze_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -94,7 +94,7 @@ class PublisherWindow extends JFrame{
                 }
             }
         });
-
+**/
         export_maze_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -138,7 +138,7 @@ class PublisherWindow extends JFrame{
 
 
     private void setPublisherLayout() {
-        DefaultTableModel tableModel = new DefaultTableModel(MainGUI.database.getMazeDataAsArray(),MainGUI.database.getMazeColumnNames()) {
+        DefaultTableModel tableModel = new DefaultTableModel(){//MainGUI.database.getMazeDataAsArray(),MainGUI.database.getMazeColumnNames()) {
 
             @Override
             public boolean isCellEditable(int row, int column) {

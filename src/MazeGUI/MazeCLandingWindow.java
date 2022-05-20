@@ -67,21 +67,21 @@ class MazeCLandingWindow extends JFrame{
                 if (selected_user == -1){
                     JOptionPane.showMessageDialog(MazeCFrame,"Please select a maze.", "Maze Viewer Error", JOptionPane.ERROR_MESSAGE);
                 }
-                else if (MainGUI.database.getMazeData().get(selected_user)[0].equals("1")) {
+                else if (1 == 2){//MainGUI.database.getMazeData().get(selected_user)[0].equals("1")''') {
                     ImageIcon Maze = new ImageIcon("Maze1.JPG");
                     Image image = Maze.getImage();
                     Image newimg = image.getScaledInstance(980, 530,  Image.SCALE_SMOOTH); // scale it the smooth way
                     Maze = new ImageIcon(newimg);
                     lbl.setIcon(Maze);
                 }
-                else if (MainGUI.database.getMazeData().get(selected_user)[0].equals("2")) {
+                else if (1 == 1){//MainGUI.database.getMazeData().get(selected_user)[0].equals("2")) {
                     ImageIcon Maze = new ImageIcon("Maze2.JPG");
                     Image image = Maze.getImage();
                     Image newimg = image.getScaledInstance(980, 530,  Image.SCALE_SMOOTH); // scale it the smooth way
                     Maze = new ImageIcon(newimg);
                     lbl.setIcon(Maze);
                 }
-                else if (MainGUI.database.getMazeData().get(selected_user)[0].equals("3")) {
+                else if (selected_user == 1){//MainGUI.database.getMazeData().get(selected_user)[0].equals("3")) {
                     ImageIcon Maze = new ImageIcon("Maze3.JPG");
                     Image image = Maze.getImage();
                     Image newimg = image.getScaledInstance(980, 530,  Image.SCALE_SMOOTH); // scale it the smooth way
@@ -124,7 +124,7 @@ class MazeCLandingWindow extends JFrame{
 
 
     private void setMazeCLayout() {
-        DefaultTableModel tableModel = new DefaultTableModel(MainGUI.database.getMazeDataAsArray(),MainGUI.database.getMazeColumnNames()) {
+        DefaultTableModel tableModel = new DefaultTableModel(){//MainGUI.database.getMazeDataAsArray(),MainGUI.database.getMazeColumnNames()) {
 
             @Override
             public boolean isCellEditable(int row, int column) {
