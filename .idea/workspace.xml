@@ -5,28 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mariadb-java-client-3.0.4.jar" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/CAB302Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CAB302Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/CAB302Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/CAB302Project.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/AdminWindow$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/AdminWindow$2.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/AdminWindow$3.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/AdminWindow$4.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/AdminWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/Cell.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/DBConnection.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/DatabaseLibrary$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/DatabaseLibrary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/GUIFunc.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/LoginWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/MazeGUI/MainGUI.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/PublisherWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/PublisherWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

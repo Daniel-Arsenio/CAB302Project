@@ -43,7 +43,7 @@ class AdminWindow extends JFrame{
                 user.put("Username", String.valueOf(adminUserDisplay.getValueAt(admin_selected_user, 1)));
                 user.put("Password", String.valueOf(adminUserDisplay.getValueAt(admin_selected_user, 2)));
                 user.put("Permission", String.valueOf(adminUserDisplay.getValueAt(admin_selected_user, 3)));
-                HashMap<String, String> newUser = user;
+                HashMap<String, String> newUser = new HashMap<>(user);
                 String s  = (String)JOptionPane.showInputDialog(adminPanel,"What would you like to edit?"
                     ,"Edit User",JOptionPane.PLAIN_MESSAGE,null,new String[]{"Username","Password","Permission"},"Username");
 
