@@ -2,6 +2,7 @@ package src.MazeGUI;
 
 import javax.swing.*;
 import java.sql.SQLException;
+import java.util.HashMap;
 
 public class MainGUI extends JFrame implements Runnable {
     static DatabaseLibrary database;
@@ -17,6 +18,7 @@ public class MainGUI extends JFrame implements Runnable {
     static PublisherWindow mainPublisherWindow = new PublisherWindow();
     static MazeCLandingWindow mainMazeCLandingWindow = new MazeCLandingWindow();
     static MazeEditorWindow mainMazeEditorWindow = new MazeEditorWindow(20,15);
+    static final HashMap<String, String> currentUser = new HashMap<>();
 
 
     public MainGUI(String args) throws SQLException {

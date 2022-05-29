@@ -1,5 +1,7 @@
 package src.MazeGUI;
 
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
@@ -15,7 +17,6 @@ class LoginWindow extends JFrame {
     private final JButton loginButton = new JButton();
     final JTextField usernameField = new JTextField(15);
     final JPasswordField passwordField = new JPasswordField(15);
-    final HashMap<String, String> currentUser = new HashMap<>();
 
     public LoginWindow(){
         LoginWindowFrame.setSize(1000, 800);
@@ -32,16 +33,22 @@ class LoginWindow extends JFrame {
                 JOptionPane.showMessageDialog(loginWindow,"Username or password are incorrect, please try again.", "Login error", JOptionPane.ERROR_MESSAGE);
 
             else if (MainGUI.database.getPermission(usernameField.getText(), String.valueOf(passwordField.getPassword())).equals("Admin")) {
+                MainGUI.currentUser.put("Username", usernameField.getText());
+                MainGUI.currentUser.put("Password", String.valueOf(passwordField.getPassword()));
                 MainGUI.closeLogin();
                 MainGUI.openAdmin();
             }
 
             else if (MainGUI.database.getPermission(usernameField.getText(), String.valueOf(passwordField.getPassword())).equals("Creator")){
+                MainGUI.currentUser.put("Username", usernameField.getText());
+                MainGUI.currentUser.put("Password", String.valueOf(passwordField.getPassword()));
                 MainGUI.closeLogin();
                 MainGUI.openPublish();
             }
 
             else if(MainGUI.database.getPermission(usernameField.getText(), String.valueOf(passwordField.getPassword())).equals("Publisher")){
+                MainGUI.currentUser.put("Username", usernameField.getText());
+                MainGUI.currentUser.put("Password", String.valueOf(passwordField.getPassword()));
                 MainGUI.closeLogin();
                 MainGUI.openMazeC();
             }

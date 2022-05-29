@@ -98,7 +98,7 @@ class AdminWindow extends JFrame{
                     newUser.put("Password", String.valueOf(newUserPassword.getPassword()));
                     newUser.put("Permission", s);
 
-                    MainGUI.database.addUser(newUser);
+                    if (!MainGUI.database.addUser(newUser)) JOptionPane.showMessageDialog(AdminFrame,"User already exists.", "Creation error", JOptionPane.ERROR_MESSAGE);;
 
                     adminUserDisplay.setModel(MainGUI.database.getUserTableModel());
                     newUsername.setText("");

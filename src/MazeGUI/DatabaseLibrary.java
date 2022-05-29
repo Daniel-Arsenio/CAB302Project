@@ -12,39 +12,42 @@ class DatabaseLibrary {
     private final PreparedStatement removeUser = connect.prepareStatement("DELETE FROM userdata WHERE userid = ?;");
     private final PreparedStatement checkUser = connect.prepareStatement("SELECT * FROM userdata WHERE username = ? AND password = ?;");
     private final PreparedStatement alterUser = connect.prepareStatement("UPDATE userdata SET username = ?, password = ?, permission = ? WHERE userid = ?;");
+    private final PreparedStatement addMaze = connect.prepareStatement("INSERT INTO mazedata VALUES(?, ?)");
     private final Statement getData = connect.createStatement();
-    private final LinkedList<Integer> idsAvailable = new LinkedList<>();
+    private final LinkedHashSet<Integer> userIdsAvailable = new LinkedHashSet<>();
+    private final LinkedHashSet<Integer> mazeIdsAvailable = new LinkedHashSet<>();
     private int userCount = 1;
+    private int mazeCount = 0;
 
     DatabaseLibrary() throws SQLException {
         //init database
         st.execute("DROP DATABASE IF EXISTS mazeco;");
         st.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
         st.execute("USE mazeco;");
-        st.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
-        st.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, creatorid INT);");// REFERENCES mazeco(userdata))
+        st.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT NOT NULL PRIMARY KEY, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
+        st.execute("CREATE TABLE IF NOT EXISTS mazedata(mazeid INT, creatorid INT NOT NULL, FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
         st.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
         connect.commit();
     }
     // User data functions
 
-    void addUser(HashMap<String, String> user){
+    boolean addUser(HashMap<String, String> user){
         try{
             ResultSet rs = st.executeQuery("Select * FROM userdata;");
             int oldid = 0;
             while (rs.next()){
                 if (rs.getInt("userid") != oldid + 1){
                     for (int i = oldid + 1; i < rs.getInt("userid"); i++){
-                        idsAvailable.add(i);
+                        userIdsAvailable.add(i);
                     }
                 }
                 oldid = rs.getInt("userid");
             }
-            if (userExists(user.get("Username"), user.get("Password")).next()) return;
+            if (userExists(user.get("Username"), user.get("Password")).next()) return false;
             addUser.clearParameters();
-            if (idsAvailable.isEmpty()){addUser.setInt(1, userCount);}
+            if (userIdsAvailable.isEmpty()){addUser.setInt(1, userCount);}
             else{
-                addUser.setInt(1, idsAvailable.pop());
+                addUser.setInt(1, userIdsAvailable.pop());
             }
             addUser.setString(2, user.get("Username"));
             addUser.setString(3, user.get("Password"));
@@ -52,6 +55,7 @@ class DatabaseLibrary {
             addUser.execute();
             this.userCount++;
         } catch(SQLException e){ e.printStackTrace();}
+        return true;
     }
 
     void removeUser(HashMap<String, String> user){
@@ -69,8 +73,7 @@ class DatabaseLibrary {
             checkUser.setString(1, username);
             checkUser.setString(2, password);
             ResultSet rs = checkUser.executeQuery();
-            rs.next();
-            if (rs.getString(4) == null) return null;
+            if (!rs.next()) return null;
             else return rs.getString(4);
         }catch(SQLException e){ e.printStackTrace();}
         return null;
@@ -123,8 +126,22 @@ class DatabaseLibrary {
     }
 
     // Maze data functions
-    void addMaze(){
-
+    boolean addMaze(byte[][] maze){
+        try{
+            ResultSet rs = st.executeQuery("Select * FROM mazedata;");
+            int oldid = 0;
+            while (rs.next()){
+                if (rs.getInt("mazeid") != oldid + 1){
+                    for (int i = oldid + 1; i < rs.getInt("mazeid"); i++){
+                        mazeIdsAvailable.add(i);
+                    }
+                }
+                oldid = rs.getInt("userid");
+            }
+            this.mazeCount++;
+        } catch(SQLException e){ e.printStackTrace();}
+        return true;
+    }
     }
 
     void removeMaze(){

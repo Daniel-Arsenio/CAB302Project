@@ -6,7 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/AdminWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/AdminWindow.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/DatabaseLibrary.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/DatabaseLibrary.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
