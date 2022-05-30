@@ -1,5 +1,7 @@
+import MazeGUI.MazeJFrame;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello World");
+        MazeJFrame mazeJFrame = new MazeJFrame(50,50);
     }
 }
