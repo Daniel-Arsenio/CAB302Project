@@ -23,6 +23,7 @@ public class MazeJFrame extends JFrame {
     private int X_MazeSize;
     private int Y_MazeSize;
     private int CellSize = 10;
+    private Maze maze;
     /**
      * Constructor
      *
@@ -66,7 +67,13 @@ public class MazeJFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 GenerateNewMaze();
+            }
+        });
 
+        btnLeft.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                maze.GenerateSolution();
             }
         });
     }
@@ -78,7 +85,7 @@ public class MazeJFrame extends JFrame {
     private void GenerateNewMaze() {
         this.MazePanel.removeAll();
         this.repaint();
-        Maze maze = new Maze(X_MazeSize,Y_MazeSize);
+        maze = new Maze(X_MazeSize,Y_MazeSize);
         maze.GenerateMaze(this);
         this.repaint();
     }

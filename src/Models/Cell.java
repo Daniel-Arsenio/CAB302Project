@@ -31,8 +31,17 @@ public class Cell {
         jCell.repaint();
     }
 
+    public boolean IsReachable(String target){
+        return jCell.CheckWall(target);
+    }
+
     public void markTracedBack(){
         jCell.setBackground(null);
+        jCell.repaint();
+    }
+
+    public void markTraveled(){
+        jCell.setBackground(Color.GREEN);
         jCell.repaint();
     }
 

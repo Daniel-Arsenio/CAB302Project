@@ -35,7 +35,11 @@ public class JCell extends JPanel implements EventListener {
         repaint();
     }
 
-
+    /**
+     * Break the wall in the targeted direction
+     *
+     * @param target
+     */
     public void BreakWall(String target){
         if (target == "top")
         {
@@ -61,5 +65,51 @@ public class JCell extends JPanel implements EventListener {
             this.setBorder(new MatteBorder(topEdge,leftEdge,bottomEdge,rightEdge,Color.BLACK));
             this.repaint();
         }
+    }
+
+    /**
+     * Check if there is a wall in that direction
+     * @param target
+     * @return true if there is a wall and false if there is no wall
+     */
+    public boolean CheckWall(String target){
+        boolean reachable = false;
+        if (target == "top")
+        {
+            if(topEdge>0){
+                reachable=false;
+            }
+            else {
+                reachable=true;
+            }
+        }
+        if (target == "left")
+        {
+            if(leftEdge>0){
+                reachable=false;
+            }
+            else {
+                reachable=true;
+            }
+        }
+        if (target == "bottom")
+        {
+            if(bottomEdge>0){
+                reachable=false;
+            }
+            else {
+                reachable=true;
+            }
+        }
+        if (target == "right")
+        {
+            if(rightEdge>0){
+                reachable=false;
+            }
+            else {
+                reachable=true;
+            }
+        }
+        return  reachable;
     }
 }
