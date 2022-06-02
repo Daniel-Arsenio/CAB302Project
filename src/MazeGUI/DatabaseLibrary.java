@@ -1,5 +1,7 @@
 package src.MazeGUI;
 
+import com.sun.tools.javac.Main;
+
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.*;
@@ -12,10 +14,10 @@ class DatabaseLibrary {
     private final PreparedStatement removeUser = connect.prepareStatement("DELETE FROM userdata WHERE userid = ?;");
     private final PreparedStatement checkUser = connect.prepareStatement("SELECT * FROM userdata WHERE username = ? AND password = ?;");
     private final PreparedStatement alterUser = connect.prepareStatement("UPDATE userdata SET username = ?, password = ?, permission = ? WHERE userid = ?;");
-    private final PreparedStatement addMaze = connect.prepareStatement("INSERT INTO mazedata VALUES(?, ?)");
+    private final PreparedStatement addMaze = connect.prepareStatement("INSERT INTO mazedata VALUES(?, ?, ?)");
     private final Statement getData = connect.createStatement();
-    private final LinkedHashSet<Integer> userIdsAvailable = new LinkedHashSet<>();
-    private final LinkedHashSet<Integer> mazeIdsAvailable = new LinkedHashSet<>();
+    private final LinkedList<Integer> userIdsAvailable = new LinkedList<>();
+    private final LinkedList<Integer> mazeIdsAvailable = new LinkedList<>();
     private int userCount = 1;
     private int mazeCount = 0;
 
@@ -25,7 +27,7 @@ class DatabaseLibrary {
         st.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
         st.execute("USE mazeco;");
         st.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT NOT NULL PRIMARY KEY, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
-        st.execute("CREATE TABLE IF NOT EXISTS mazedata(mazeid INT, creatorid INT NOT NULL, FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
+        st.execute("CREATE TABLE IF NOT EXISTS mazedata(mazeid INT, mazename VARCHAR(100), creatorid INT NOT NULL, FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
         st.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
         connect.commit();
     }
@@ -38,7 +40,7 @@ class DatabaseLibrary {
             while (rs.next()){
                 if (rs.getInt("userid") != oldid + 1){
                     for (int i = oldid + 1; i < rs.getInt("userid"); i++){
-                        userIdsAvailable.add(i);
+                        if(!userIdsAvailable.contains(i)) userIdsAvailable.add(i);
                     }
                 }
                 oldid = rs.getInt("userid");
@@ -125,23 +127,44 @@ class DatabaseLibrary {
         return tm;
     }
 
+
     // Maze data functions
-    boolean addMaze(byte[][] maze){
+    boolean addMaze(byte[][] maze, String mazeName){
         try{
+            int user = userExists(MainGUI.currentUser.get("Username"), MainGUI.currentUser.get("Password")).getInt(1);
+            int id;
+            addMaze.setInt(3, user);
+            addMaze.setString(2, mazeName);
             ResultSet rs = st.executeQuery("Select * FROM mazedata;");
             int oldid = 0;
             while (rs.next()){
                 if (rs.getInt("mazeid") != oldid + 1){
                     for (int i = oldid + 1; i < rs.getInt("mazeid"); i++){
-                        mazeIdsAvailable.add(i);
+                        if(!mazeIdsAvailable.contains(i)) mazeIdsAvailable.add(i);
                     }
                 }
-                oldid = rs.getInt("userid");
+                oldid = rs.getInt("mazeid");
             }
+            if (mazeIdsAvailable.isEmpty()){id = mazeCount;}
+            else{
+                 id = mazeIdsAvailable.pop();
+            }
+            addMaze.setInt(1, id);
             this.mazeCount++;
+            st.execute("CREATE TABLE IF NOT EXISTS "+ id +"(0 binary(8));");
+            for (int i = 0; i < maze[0].length - 1; i++) st.execute("ALTER TABLE "+ id +" ADD COLUMN ("+ i +" INT;");
+            PreparedStatement addCell = connect.prepareStatement("UPDATE "+ id +" SET ? = ?;");
+            for (int i = 0; i < maze.length; i++){
+                st.execute("INSERT INTO " + id + "(0) VALUES("+maze[i][0]+");");
+                for(int j = 0; i < maze[0].length - 1; j++){
+                    addCell.setInt(1, j);
+                    addCell.setByte(2, maze[i][j]);
+                    addCell.execute();
+                    addCell.clearParameters();
+                }
+            }
         } catch(SQLException e){ e.printStackTrace();}
         return true;
-    }
     }
 
     void removeMaze(){
