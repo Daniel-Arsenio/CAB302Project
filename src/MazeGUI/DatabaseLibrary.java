@@ -127,13 +127,14 @@ class DatabaseLibrary {
         return tm;
     }
 
-
+    
     // Maze data functions
-    boolean addMaze(byte[][] maze, String mazeName){
+    boolean addMaze(String[][] maze, String mazeName){
         try{
-            int user = userExists(MainGUI.currentUser.get("Username"), MainGUI.currentUser.get("Password")).getInt(1);
+            ResultSet user = userExists(MainGUI.currentUser.get("Username"), MainGUI.currentUser.get("Password"));
+            System.out.println(user.next());
             int id;
-            addMaze.setInt(3, user);
+            addMaze.setInt(3, user.getInt("userid"));
             addMaze.setString(2, mazeName);
             ResultSet rs = st.executeQuery("Select * FROM mazedata;");
             int oldid = 0;
@@ -147,21 +148,21 @@ class DatabaseLibrary {
             }
             if (mazeIdsAvailable.isEmpty()){id = mazeCount;}
             else{
-                 id = mazeIdsAvailable.pop();
+                id = mazeIdsAvailable.pop();
             }
             addMaze.setInt(1, id);
+            addMaze.execute();
             this.mazeCount++;
-            st.execute("CREATE TABLE IF NOT EXISTS "+ id +"(0 binary(8));");
-            for (int i = 0; i < maze[0].length - 1; i++) st.execute("ALTER TABLE "+ id +" ADD COLUMN ("+ i +" INT;");
-            PreparedStatement addCell = connect.prepareStatement("UPDATE "+ id +" SET ? = ?;");
-            for (int i = 0; i < maze.length; i++){
-                st.execute("INSERT INTO " + id + "(0) VALUES("+maze[i][0]+");");
-                for(int j = 0; i < maze[0].length - 1; j++){
-                    addCell.setInt(1, j);
-                    addCell.setByte(2, maze[i][j]);
-                    addCell.execute();
-                    addCell.clearParameters();
+            PreparedStatement newMaze = connect.prepareStatement("CREATE TABLE IF NOT EXISTS t"+ id +"(c0 VARCHAR(5))");
+            newMaze.execute();
+            for (int i = 1; i < maze[0].length; i++) st.execute("ALTER TABLE t"+ id +" ADD COLUMN(c"+ i +" VARCHAR(5));");
+            for (String[] strings : maze) {
+                String currentLine = "";
+                for (int j = 0; j < maze[0].length; j++) {
+                    if (j == maze[0].length-1) currentLine += "'"+strings[j]+"'";
+                    else currentLine += "'"+strings[j]+"', ";
                 }
+                st.execute("INSERT INTO t"+ id +" VALUES("+currentLine+");");
             }
         } catch(SQLException e){ e.printStackTrace();}
         return true;
