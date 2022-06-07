@@ -3,7 +3,7 @@
  * Developed for CAB302 project
  * QUT student 2022
  */
-package src.MazeGUI.MazeCreatorComponents;
+package MazeGUI.MazeCreatorComponents;
 
 import javax.swing.*;
 import java.awt.*;
@@ -71,16 +71,18 @@ public final class JComponentLibrary {
      * @param Y_Position      Y Position of the button
      * @param Width           Width of the button
      * @param Height          Height of button
+     * @param backgroundColor background color of the button
+     * @param textColor       text color of the button
      * @param text            text displayed on the button
      * @param Visible         visibility of the button
      * @return Generic JButton from given parameters
      */
-    public static JButton CreateButton(JPanel panel, int X_Position, int Y_Position, int Width, int Height, String text, Boolean Visible) {
+    public static JButton CreateButton(JPanel panel, int X_Position, int Y_Position, int Width, int Height, Color backgroundColor, Color textColor, String text, Boolean Visible) {
         JButton jbutton = new JButton(text);
 
         jbutton.setBounds(X_Position, Y_Position, Width, Height);
-        //jbutton.setBackground(backgroundColor);
-        //jbutton.setForeground(textColor);
+        jbutton.setBackground(backgroundColor);
+        jbutton.setForeground(textColor);
         jbutton.setVisible(Visible);
 
         panel.add(jbutton);
