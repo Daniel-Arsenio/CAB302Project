@@ -22,7 +22,7 @@ public class MazeJFrame extends JFrame {
     private int X_MazeSize;
     private int Y_MazeSize;
     private int CellSize = 10;
-    private Maze maze;
+    Maze maze;
     /**
      * Constructor
      *
