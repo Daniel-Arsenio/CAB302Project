@@ -27,7 +27,7 @@ class DatabaseLibrary {
         st.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
         st.execute("USE mazeco;");
         st.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT NOT NULL PRIMARY KEY, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
-        st.execute("CREATE TABLE IF NOT EXISTS mazedata(mazeid INT, mazename VARCHAR(100), creatorid INT NOT NULL, FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
+        st.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, mazename VARCHAR(100), creatorid INT NOT NULL, FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
         st.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
         connect.commit();
     }
@@ -127,7 +127,7 @@ class DatabaseLibrary {
         return tm;
     }
 
-    
+
     // Maze data functions
     boolean addMaze(String[][] maze, String mazeName){
         try{

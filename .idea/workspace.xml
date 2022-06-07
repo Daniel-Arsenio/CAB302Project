@@ -43,7 +43,7 @@
       <recent name="C:\Users\danie\OneDrive\Documentos\GitHub\CAB302Project" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Application.MainGUI (1)">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="CAB302Project" />
@@ -83,8 +83,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
         <item itemvalue="Application.MainGUI (1)" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="JAR Application.mariadb-java-client-3.0.4.jar" />
         <item itemvalue="Application.MainGUI" />
       </list>
