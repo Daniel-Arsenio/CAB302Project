@@ -1,7 +1,7 @@
 /**
  * Author: Marcus Nguyen
  */
-package Models;
+package src.Models;
 
 import MazeGUI.MazeCreatorComponents.JCell;
 

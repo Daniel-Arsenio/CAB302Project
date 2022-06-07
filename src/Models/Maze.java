@@ -1,9 +1,9 @@
 /**
  * Author Marcus Nguyen
  */
-package Models;
+package src.Models;
 
-import MazeGUI.MazeJFrame;
+import src.MazeGUI.MazeJFrame;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -18,7 +18,7 @@ public class Maze {
     /**
      * Variable Declaration
      */
-    private Cell[][] cells;
+    private Models.Cell[][] cells;
     //private MazeJFrame mazeFrame;
     private int cellsGenerated_counter = 0;
     ArrayList<String> MazeGenerate_history = new ArrayList<String>();
@@ -44,14 +44,14 @@ public class Maze {
     public Maze(int X_size, int Y_size) {
         this.X_Size = X_size;
         this.Y_Size = Y_size;
-        cells = new Cell[X_Size][Y_Size];
+        cells = new Models.Cell[X_Size][Y_Size];
         //mazeFrame.setVisible(true);
         //GenerateMaze();
     }
     public Maze(int X_size, int Y_size, MazeJFrame frm){
         this.X_Size = X_size;
         this.Y_Size = Y_size;
-        cells = new Cell[X_Size][Y_Size];
+        cells = new Models.Cell[X_Size][Y_Size];
     }
 
     /**
@@ -60,7 +60,7 @@ public class Maze {
     public void GenerateMaze(MazeJFrame mazeFrame) {
         for (int x = 0; x < X_Size; x++) {
             for (int y = 0; y < Y_Size; y++) {
-                cells[x][y] = new Cell(x * EdgeSize, y * EdgeSize, EdgeSize, EdgeSize, 0, 0, 0, 0);
+                cells[x][y] = new Models.Cell(x * EdgeSize, y * EdgeSize, EdgeSize, EdgeSize, 0, 0, 0, 0);
                 mazeFrame.MazePanel.add(cells[x][y].getjcell());
             }
         }

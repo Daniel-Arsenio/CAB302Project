@@ -6,7 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeEditorWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeEditorWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Models/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Maze.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

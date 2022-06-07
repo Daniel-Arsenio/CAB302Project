@@ -32,18 +32,24 @@ class MazeEditorWindow {
     private final int EdgeSize = 50;
 
 
+
+    public String[][] cellToString(){
+
+    }
     /**
      * Constructor
      *
      * @param X_size X size of the Maze
      * @param Y_size Y size of the Maze
      */
+
     public MazeEditorWindow(int X_size, int Y_size) {
         this.X_Size = X_size;
         this.Y_Size = Y_size;
         cells = new Cell[X_Size][Y_Size];
         mazeFrame = new MazeJFrame(X_size, Y_size);
         GenerateMaze();
+
         createImage(mazeFrame.MazePanel,X_Size,Y_Size);
     }
 
