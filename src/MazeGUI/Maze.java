@@ -1,9 +1,4 @@
-/**
- * Author Marcus Nguyen
- */
-package src.Models;
-
-import src.MazeGUI.MazeJFrame;
+package src.MazeGUI;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -21,7 +16,7 @@ public class Maze {
     private Cell[][] cells;
     //private MazeJFrame mazeFrame;
     private int cellsGenerated_counter = 0;
-    ArrayList<String> MazeGenerate_history = new ArrayList<String>();
+    ArrayList<String> TraceBack_List = new ArrayList<String>();
 
     private long delay = 0;
 
@@ -32,7 +27,7 @@ public class Maze {
     private int X_Size;
     private int Y_Size;
 
-    private int EdgeSize =10;
+    private int EdgeSize = 10;
 
 
     /**
@@ -48,14 +43,11 @@ public class Maze {
         //mazeFrame.setVisible(true);
         //GenerateMaze();
     }
-    public Maze(int X_size, int Y_size, MazeJFrame frm){
-        this.X_Size = X_size;
-        this.Y_Size = Y_size;
-        cells = new Cell[X_Size][Y_Size];
-    }
 
     /**
      * Generate the Maze
+     *
+     * @param mazeFrame The mazeFrame that this Maze will be displayed to
      */
     public void GenerateMaze(MazeJFrame mazeFrame) {
         for (int x = 0; x < X_Size; x++) {
@@ -65,28 +57,29 @@ public class Maze {
             }
         }
         mazeFrame.repaint();
+
+        X_currentLocation = 0;
+        Y_currentLocation = 0;
+
+        TraceBack_List = new ArrayList<String>();
+
         int totalUnvisitedCells = X_Size * Y_Size;
         String Next_UnVisitedCell;
-        while (!(totalUnvisitedCells == 0))
-        {
+        while (!(totalUnvisitedCells == 0)) {
             Next_UnVisitedCell = getNext_unVisitedCell();
 
             if ((Next_UnVisitedCell == "")) {
-                try {
-                    Thread.sleep(delay);
-                } catch (InterruptedException e) {
-                }
-                if (MazeGenerate_history.size() == 0) {
+                if (TraceBack_List.size() == 0) {
                     cells[0][0].markTracedBack();
                     totalUnvisitedCells--;
                 } else {
-                    String history = MazeGenerate_history.get(cellsGenerated_counter - 1);
+                    String history = TraceBack_List.get(cellsGenerated_counter - 1);
                     if (history == "top") {
                         cells[X_currentLocation][Y_currentLocation].markTracedBack();
                         cells[X_currentLocation][Y_currentLocation].Visited = true;
                         mazeFrame.repaint();
                         moveDown();
-                        MazeGenerate_history.remove(cellsGenerated_counter - 1);
+                        TraceBack_List.remove(cellsGenerated_counter - 1);
                         cellsGenerated_counter--;
                     }
                     if (history == "bottom") {
@@ -94,7 +87,7 @@ public class Maze {
                         cells[X_currentLocation][Y_currentLocation].Visited = true;
                         mazeFrame.repaint();
                         moveUp();
-                        MazeGenerate_history.remove(cellsGenerated_counter - 1);
+                        TraceBack_List.remove(cellsGenerated_counter - 1);
                         cellsGenerated_counter--;
                     }
                     if (history == "left") {
@@ -102,7 +95,7 @@ public class Maze {
                         cells[X_currentLocation][Y_currentLocation].Visited = true;
                         mazeFrame.repaint();
                         moveRight();
-                        MazeGenerate_history.remove(cellsGenerated_counter - 1);
+                        TraceBack_List.remove(cellsGenerated_counter - 1);
                         cellsGenerated_counter--;
                     }
                     if (history == "right") {
@@ -110,7 +103,7 @@ public class Maze {
                         cells[X_currentLocation][Y_currentLocation].Visited = true;
                         mazeFrame.repaint();
                         moveLeft();
-                        MazeGenerate_history.remove(cellsGenerated_counter - 1);
+                        TraceBack_List.remove(cellsGenerated_counter - 1);
                         cellsGenerated_counter--;
                     }
                 }
@@ -120,12 +113,6 @@ public class Maze {
                 cellsGenerated_counter++;
 
                 BreakCellsWall(Next_UnVisitedCell);
-
-                try {
-                    Thread.sleep(delay);
-                } catch (InterruptedException e) {
-
-                }
 
                 if (Next_UnVisitedCell == "top") {
                     moveUp();
@@ -145,25 +132,27 @@ public class Maze {
 
     /**
      * Add the cell movement to the ArrayList for future trace-back
+     *
      * @param direction The direction of move
      */
     private void addtoHistory(String direction) {
         if (direction == "top") {
-            MazeGenerate_history.add("top");
+            TraceBack_List.add("top");
         }
         if (direction == "left") {
-            MazeGenerate_history.add("left");
+            TraceBack_List.add("left");
         }
         if (direction == "right") {
-            MazeGenerate_history.add("right");
+            TraceBack_List.add("right");
         }
         if (direction == "bottom") {
-            MazeGenerate_history.add("bottom");
+            TraceBack_List.add("bottom");
         }
     }
 
     /**
      * This method will return the next RANDOM cell that is not visited. If there is no un-visited cell, it will return ""
+     *
      * @return Return the next unvisited cell
      */
     private String getNext_unVisitedCell() {
@@ -208,6 +197,7 @@ public class Maze {
 
     /**
      * This method will break the wall of 2 cells
+     *
      * @param target The target wall to be break
      */
     private void BreakCellsWall(String target) {
@@ -226,6 +216,143 @@ public class Maze {
         if (target == "right") {
             cells[X_currentLocation][Y_currentLocation].BreakCellWall("right");
             cells[X_currentLocation + 1][Y_currentLocation].BreakCellWall("left");
+        }
+    }
+
+    /**
+     * Generate Solution for a Maze as long as there is a valid solution for the Maze (not a closed Maze)
+     */
+    public void GenerateSolution() {
+        setAllCells_unVisisted();
+        X_currentLocation=0;Y_currentLocation=0;
+        TraceBack_List = new ArrayList<String>();
+        String Next_unVisitedCell;
+        int cellsTraveledcounter = 0;
+        int totalUnvisitedCells = X_Size * Y_Size;
+        while (!((X_currentLocation==X_Size-1) && (Y_currentLocation ==Y_Size-1))) {
+            //while(!(totalUnvisitedCells==0)){
+            Next_unVisitedCell = getNext_Reachable_unvisitedCell();
+
+            if ((Next_unVisitedCell == "")) {
+
+                String history = TraceBack_List.get(cellsTraveledcounter - 1);
+                if (history == "top") {
+                    cells[X_currentLocation][Y_currentLocation].Visited = true;
+                    moveDown();
+                    TraceBack_List.remove(cellsTraveledcounter - 1);
+                    cellsTraveledcounter--;
+                }
+                if (history == "bottom") {
+                    cells[X_currentLocation][Y_currentLocation].Visited = true;
+                    moveUp();
+                    TraceBack_List.remove(cellsTraveledcounter - 1);
+                    cellsTraveledcounter--;
+                }
+                if (history == "left") {
+                    cells[X_currentLocation][Y_currentLocation].Visited = true;
+                    moveRight();
+                    TraceBack_List.remove(cellsTraveledcounter - 1);
+                    cellsTraveledcounter--;
+                }
+                if (history == "right") {
+                    cells[X_currentLocation][Y_currentLocation].Visited = true;
+                    moveLeft();
+                    TraceBack_List.remove(cellsTraveledcounter - 1);
+                    cellsTraveledcounter--;
+                }
+
+            } else {
+                cells[X_currentLocation][Y_currentLocation].Visited = true;
+                cellsTraveledcounter++;
+
+                if (Next_unVisitedCell == "top") {
+                    moveUp();
+                }
+                if (Next_unVisitedCell == "bottom") {
+                    moveDown();
+                }
+                if (Next_unVisitedCell == "left") {
+                    moveLeft();
+                }
+                if (Next_unVisitedCell == "right") {
+                    moveRight();
+                }
+            }
+        }
+        X_currentLocation=0;Y_currentLocation=0;
+        for (int i=0; i<TraceBack_List.size();i++){
+            if (TraceBack_List.get(i) == "top") {
+                cells[X_currentLocation][Y_currentLocation].markTraveled();
+                moveUp();
+            }
+            if (TraceBack_List.get(i) == "bottom") {
+                cells[X_currentLocation][Y_currentLocation].markTraveled();
+                moveDown();
+            }
+            if (TraceBack_List.get(i) == "left") {
+                cells[X_currentLocation][Y_currentLocation].markTraveled();
+                moveLeft();
+            }
+            if (TraceBack_List.get(i) == "right") {
+                cells[X_currentLocation][Y_currentLocation].markTraveled();
+                moveRight();
+            }
+        }
+        cells[X_Size-1][Y_Size-1].markTraveled();
+    }
+
+    /**
+     * Get the next Reachable Unvisited Cell
+     *
+     * @return direction of next Reachable Unvisited Cell
+     */
+    private String getNext_Reachable_unvisitedCell() {
+        ArrayList<String> targetList = new ArrayList<String>();
+        //Check left Cell
+        if (!(X_currentLocation == 0)) {
+            if (!cells[X_currentLocation - 1][Y_currentLocation].Visited && cells[X_currentLocation][Y_currentLocation].IsReachable("left")) {
+                targetList.add("left");
+            }
+        }
+        //Check right Cell
+        if (!(X_currentLocation == X_Size - 1)) {
+            if (!cells[X_currentLocation + 1][Y_currentLocation].Visited && cells[X_currentLocation][Y_currentLocation].IsReachable("right")) {
+                targetList.add("right");
+            }
+        }
+        //Check top Cell
+        if (!(Y_currentLocation == 0)) {
+            if (!cells[X_currentLocation][Y_currentLocation - 1].Visited && cells[X_currentLocation][Y_currentLocation].IsReachable("top")) {
+                targetList.add("top");
+            }
+        }
+        //Check bottom Cell
+        if (!(Y_currentLocation == Y_Size - 1)) {
+            if (!cells[X_currentLocation][Y_currentLocation + 1].Visited && cells[X_currentLocation][Y_currentLocation].IsReachable("bottom")) {
+                targetList.add("bottom");
+            }
+        }
+
+        Random r = new Random();
+
+        if (targetList.size() == 0) {
+            return "";
+        } else {
+            int randomitem = r.nextInt(targetList.size());
+            String target = targetList.get(randomitem);
+            addtoHistory(target);
+            return target;
+        }
+    }
+
+    /**
+     * return all cells Visited state back to false
+     */
+    private void setAllCells_unVisisted() {
+        for (int x = 0; x < X_Size; x++) {
+            for (int y = 0; y < Y_Size; y++) {
+                cells[x][y].Visited = false;
+            }
         }
     }
 
@@ -257,6 +384,14 @@ public class Maze {
         Y_currentLocation++;
     }
 
+
+    /**
+     * This method will create from a jpanel
+     *
+     * @param panel the jpanel we want to turn into img
+     * @param Width the width of the panel also the width of the img
+     * @param Height the height of the panel also the height of the img
+     */
     public void createImage(JPanel panel, int Width, int Height) {
 
         BufferedImage bi = new BufferedImage(Width * 50, Height * 50, BufferedImage.TYPE_INT_RGB);
@@ -271,3 +406,4 @@ public class Maze {
         }
     }
 }
+

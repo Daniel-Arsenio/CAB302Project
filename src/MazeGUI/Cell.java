@@ -1,13 +1,13 @@
 /**
  * Author: Marcus Nguyen
- * Developed for CAB 302 project
- * QUT student 2022
  */
 package src.MazeGUI;
 
 import MazeGUI.MazeCreatorComponents.JCell;
+
 import javax.swing.border.MatteBorder;
 import java.awt.*;
+
 public class Cell {
      private int CellId;
      private int X_pos;
@@ -32,7 +32,21 @@ public class Cell {
 
      public void BreakCellWall(String target){
           jCell.BreakWall(target);
-          jCell.setBackground(Color.BLUE);
+          jCell.setBackground(null);
+          jCell.repaint();
+     }
+
+     public boolean IsReachable(String target){
+          return jCell.CheckWall(target);
+     }
+
+     public void markTracedBack(){
+          jCell.setBackground(null);
+          jCell.repaint();
+     }
+
+     public void markTraveled(){
+          jCell.setBackground(Color.GREEN);
           jCell.repaint();
      }
 
