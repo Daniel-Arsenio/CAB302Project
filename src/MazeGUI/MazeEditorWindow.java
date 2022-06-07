@@ -31,11 +31,6 @@ class MazeEditorWindow {
 
     private final int EdgeSize = 50;
 
-
-
-    public String[][] cellToString(){
-
-    }
     /**
      * Constructor
      *
@@ -49,7 +44,6 @@ class MazeEditorWindow {
         cells = new Cell[X_Size][Y_Size];
         mazeFrame = new MazeJFrame(X_size, Y_size);
         GenerateMaze();
-
         createImage(mazeFrame.MazePanel,X_Size,Y_Size);
     }
 
@@ -61,6 +55,16 @@ class MazeEditorWindow {
             }
         }
         mazeFrame.repaint();
+    }
+
+    public String[][] cellToString(){
+        String[][] maze = new String[this.cells.length][this.cells[0].length];
+        for (int i = 0; i < this.cells.length; i++) {
+            for (int x = 0; x < this.cells[0].length; x++) {
+                maze[i][x] = String.valueOf(this.cells[i][x].right) + String.valueOf(this.cells[i][x].left) + String.valueOf(this.cells[i][x].bottom) + String.valueOf(this.cells[i][x].top);
+            }
+        }
+        return maze;
     }
 
     public void createImage(JPanel panel, int Width, int Height) {

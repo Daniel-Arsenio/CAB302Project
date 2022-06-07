@@ -43,14 +43,14 @@ class LoginWindow extends JFrame {
                 MainGUI.currentUser.put("Username", usernameField.getText());
                 MainGUI.currentUser.put("Password", String.valueOf(passwordField.getPassword()));
                 MainGUI.closeLogin();
-                MainGUI.openPublish();
+                MainGUI.openMazeC();
             }
 
             else if(MainGUI.database.getPermission(usernameField.getText(), String.valueOf(passwordField.getPassword())).equals("Publisher")){
                 MainGUI.currentUser.put("Username", usernameField.getText());
                 MainGUI.currentUser.put("Password", String.valueOf(passwordField.getPassword()));
                 MainGUI.closeLogin();
-                MainGUI.openMazeC();
+                MainGUI.openPublish();
             }
         });
         loginComponentsLayout();

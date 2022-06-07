@@ -13,12 +13,17 @@ public class Cell {
      private int X_pos;
      private int Y_Pos;
      private JCell jCell;
+     int right, left, bottom, top;
 
      public boolean Visited=false;
 
      public Cell(int X_position, int Y_position, int Width, int Height, int top, int left, int bottom, int right)
      {
           jCell = new JCell(X_position, Y_position, Width, Height, top, left, bottom, right);
+          this.right = right;
+          this.left = left;
+          this.bottom = bottom;
+          this.top = top;
      }
 
      public JCell getjcell() {
