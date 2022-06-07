@@ -14,7 +14,7 @@ class DatabaseLibrary {
     private final PreparedStatement removeUser = connect.prepareStatement("DELETE FROM userdata WHERE userid = ?;");
     private final PreparedStatement checkUser = connect.prepareStatement("SELECT * FROM userdata WHERE username = ? AND password = ?;");
     private final PreparedStatement alterUser = connect.prepareStatement("UPDATE userdata SET username = ?, password = ?, permission = ? WHERE userid = ?;");
-    private final PreparedStatement addMaze = connect.prepareStatement("INSERT INTO mazedata VALUES(?, ?, ?)");
+    private final PreparedStatement addMaze = connect.prepareStatement("INSERT INTO mazedata VALUES(?, ?, ?, ?)");
     private final Statement getData = connect.createStatement();
     private final LinkedList<Integer> userIdsAvailable = new LinkedList<>();
     private final LinkedList<Integer> mazeIdsAvailable = new LinkedList<>();
@@ -27,7 +27,7 @@ class DatabaseLibrary {
         st.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
         st.execute("USE mazeco;");
         st.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT NOT NULL PRIMARY KEY, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
-        st.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, mazename VARCHAR(100), creatorid INT NOT NULL, FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
+        st.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, mazename VARCHAR(100), creatorname VARCHAR(100), creatorid INT NOT NULL, FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
         st.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
         connect.commit();
     }
@@ -134,7 +134,8 @@ class DatabaseLibrary {
             ResultSet user = userExists(MainGUI.currentUser.get("Username"), MainGUI.currentUser.get("Password"));
             System.out.println(user.next());
             int id;
-            addMaze.setInt(3, user.getInt("userid"));
+            addMaze.setInt(4, user.getInt("userid"));
+            addMaze.setString(3, user.getString("username"));
             addMaze.setString(2, mazeName);
             ResultSet rs = st.executeQuery("Select * FROM mazedata;");
             int oldid = 0;
@@ -185,11 +186,15 @@ class DatabaseLibrary {
                 return false;
             }
         };
+        tm.addColumn("mazeid");
+        tm.addColumn("mazename");
+        tm.addColumn("creatorname");
+        tm.addColumn("creatorid");
         tm.setRowCount(0);
         try {
             rs = getData.executeQuery("SELECT * FROM mazedata;");
             while(rs.next()){
-                Object[] o = {rs.getInt("mazeid"), rs.getInt("creatorid")};
+                Object[] o = {rs.getInt("mazeid"), rs.getString("mazename"), rs.getString("creatorname"), rs.getInt("creatorid")};
                 tm.addRow(o);
             }
         }
