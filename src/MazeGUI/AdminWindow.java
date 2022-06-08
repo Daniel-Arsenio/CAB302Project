@@ -28,7 +28,6 @@ class AdminWindow extends JFrame{
     private int admin_selected_user;
 
     public AdminWindow(){
-        System.out.println(admin_selected_user);
         AdminFrame.setSize(600,800);
         adminPanel.setSize(600,800);
         adminPanel.setBackground(Color.LIGHT_GRAY);

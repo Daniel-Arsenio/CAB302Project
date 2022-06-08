@@ -13,7 +13,7 @@ public class Maze {
     /**
      * Variable Declaration
      */
-    private Cell[][] cells;
+    Cell[][] cells;
     //private MazeJFrame mazeFrame;
     private int cellsGenerated_counter = 0;
     ArrayList<String> TraceBack_List = new ArrayList<String>();
@@ -40,8 +40,6 @@ public class Maze {
         this.X_Size = X_size;
         this.Y_Size = Y_size;
         cells = new Cell[X_Size][Y_Size];
-        //mazeFrame.setVisible(true);
-        //GenerateMaze();
     }
     /**
      * Return the maze as an array of strings.
@@ -49,11 +47,14 @@ public class Maze {
      * @return Returns a list of strings representing cells in the form "0101", where 0 is no wall, and 1 is wall. In the form
      * "Right Left Top Bottom"
      * */
-    public String[][] asStringList(){
+    public String[][] asStringList(Cell[][] cells, JPanel mazeFrame){
         String[][] maze = new String[cells.length][cells[0].length];
-        for (int i = 0; i < cells.length; i++) {
-            for (int x = 0; x < cells[0].length; x++) {
-                maze[i][x] = String.valueOf(cells[i][x].Walls[0]) + String.valueOf(cells[i][x].Walls[1]) + String.valueOf(cells[i][x].Walls[2]) + String.valueOf(cells[i][x].Walls[3]);
+        for (int i = 0; i < cells[0].length; i++) {
+            for (int x = 0; x < cells.length; x++) {
+                maze[i][x] = String.valueOf(cells[i][x].getjcell().getBorder().getBorderInsets(mazeFrame).right) +
+                        String.valueOf(cells[i][x].getjcell().getBorder().getBorderInsets(mazeFrame).left) +
+                        String.valueOf(cells[i][x].getjcell().getBorder().getBorderInsets(mazeFrame).top) +
+                        String.valueOf(cells[i][x].getjcell().getBorder().getBorderInsets(mazeFrame).bottom);
             }
         }
         return maze;

@@ -12,7 +12,7 @@ class MazeCLandingWindow extends JFrame{
     final JFrame MazeCFrame = new JFrame("User Creation");
     private final JLabel mazeViewerLabel = new JLabel();
     private final JPanel mazeDisplayPanel = new JPanel();
-    private final JTable mazeListTable = new JTable();
+    static final JTable mazeListTable = new JTable(MainGUI.database.getMazeTableModel());
     private final JScrollPane mazeListScrollPane = new JScrollPane(mazeListTable);
     private final JButton newMazeButton = new JButton();
     private final JButton mazeEditButton = new JButton();

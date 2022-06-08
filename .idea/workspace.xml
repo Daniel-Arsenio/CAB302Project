@@ -7,8 +7,13 @@
     <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/img.png" beforeDir="false" afterPath="$PROJECT_DIR$/img.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/Maze.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeCLandingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeCLandingWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeCreatorComponents/JCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeCreatorComponents/JCell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeEditorWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeEditorWindow.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeJFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeJFrame.java" afterDir="false" />
     </list>

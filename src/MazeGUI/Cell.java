@@ -3,7 +3,7 @@
  */
 package src.MazeGUI;
 
-import MazeGUI.MazeCreatorComponents.JCell;
+import src.MazeGUI.MazeCreatorComponents.JCell;
 
 import javax.swing.border.MatteBorder;
 import java.awt.*;
@@ -13,7 +13,6 @@ public class Cell {
      private int X_pos;
      private int Y_Pos;
      private JCell jCell;
-     char[] Walls = {'1','1','1','1'};
 
      public boolean Visited=false;
 
@@ -27,12 +26,6 @@ public class Cell {
      }
 
      public void BreakCellWall(String target){
-          switch (target) {
-               case ("left") -> this.Walls[0] = '0';
-               case ("right") -> this.Walls[1] = '0';
-               case ("top") -> this.Walls[2] = '0';
-               case ("bottom") -> this.Walls[3] = '0';
-          }
           jCell.BreakWall(target);
           jCell.setBackground(null);
           jCell.repaint();

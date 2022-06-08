@@ -132,8 +132,8 @@ class DatabaseLibrary {
     boolean addMaze(String[][] maze, String mazeName){
         try{
             ResultSet user = userExists(MainGUI.currentUser.get("Username"), MainGUI.currentUser.get("Password"));
-            System.out.println(user.next());
             int id;
+            user.next();
             addMaze.setInt(4, user.getInt("userid"));
             addMaze.setString(3, user.getString("username"));
             addMaze.setString(2, mazeName);
@@ -160,10 +160,10 @@ class DatabaseLibrary {
             for (String[] strings : maze) {
                 String currentLine = "";
                 for (int j = 0; j < maze[0].length; j++) {
-                    if (j == maze[0].length-1) currentLine += "'"+strings[j]+"'";
-                    else currentLine += "'"+strings[j]+"', ";
+                    if (j == maze[0].length - 1) currentLine += "'" + strings[j] + "'";
+                    else currentLine += "'" + strings[j] + "', ";
                 }
-                st.execute("INSERT INTO t"+ id +" VALUES("+currentLine+");");
+                st.execute("INSERT INTO t" + id + " VALUES(" + currentLine + ");");
             }
         } catch(SQLException e){ e.printStackTrace();}
         return true;

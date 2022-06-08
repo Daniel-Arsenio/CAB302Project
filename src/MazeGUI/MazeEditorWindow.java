@@ -5,6 +5,8 @@
  */
 package src.MazeGUI;
 
+import com.sun.tools.javac.Main;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -44,6 +46,7 @@ class MazeEditorWindow {
         cells = new Cell[X_Size][Y_Size];
         mazeFrame = new MazeJFrame(X_size, Y_size);
         mazeFrame.setVisible(false);
+        mazeFrame.dispose();
         GenerateMaze();
         createImage(mazeFrame.MazePanel,X_Size,Y_Size);
     }

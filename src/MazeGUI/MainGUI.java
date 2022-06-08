@@ -17,7 +17,7 @@ public class MainGUI extends JFrame implements Runnable {
     static AdminWindow mainAdminWindow = new AdminWindow();
     static PublisherWindow mainPublisherWindow = new PublisherWindow();
     static MazeCLandingWindow mainMazeCLandingWindow = new MazeCLandingWindow();
-    static MazeEditorWindow mainMazeEditorWindow = new MazeEditorWindow(20,15);
+    static MazeEditorWindow mainMazeEditorWindow = new MazeEditorWindow(6,6);
     static final HashMap<String, String> currentUser = new HashMap<>();
 
 
