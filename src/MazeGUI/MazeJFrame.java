@@ -24,7 +24,7 @@ public class MazeJFrame extends JFrame {
     private Maze maze;
     private int X_currentLocation = 0;
     private int Y_currentLocation = 0;
-    private boolean editCheck;
+    private int editCheck = 0;
     /**
      * Constructor
      *
@@ -75,15 +75,15 @@ public class MazeJFrame extends JFrame {
 
         btnAdd.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                editCheck = true;
-                System.out.println(editCheck);
+                editCheck = 1;//add wall
+
 
             }
         });
         btnBreak.addActionListener(new ActionListener(){
             public void actionPerformed(ActionEvent e) {
-                editCheck = false;
-                System.out.println(editCheck);
+                editCheck = 2;//break
+
 
             }
         });
@@ -92,6 +92,7 @@ public class MazeJFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 breakWallCondition= "bottom";
+                movePoint(breakWallCondition);
                 EditMaze(breakWallCondition,editCheck);
 
             }
@@ -100,6 +101,7 @@ public class MazeJFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 breakWallCondition= "top";
+                movePoint(breakWallCondition);
                 EditMaze(breakWallCondition,editCheck);
 
             }
@@ -108,6 +110,7 @@ public class MazeJFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 breakWallCondition= "left";
+                movePoint(breakWallCondition);
                 EditMaze(breakWallCondition,editCheck);
                 System.out.println(editCheck);
 
@@ -119,6 +122,7 @@ public class MazeJFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 breakWallCondition= "right";
+                movePoint(breakWallCondition);
                 EditMaze(breakWallCondition,editCheck);
 
             }
@@ -137,75 +141,100 @@ public class MazeJFrame extends JFrame {
         this.X_currentLocation = 0;
         this.Y_currentLocation = 0;
         maze.getCells();
+        updateLabel();
         this.repaint();
     }
 
+    private void movePoint(String target){
+        if(target == "top"){
+                Y_currentLocation--;//increment up
+            }
+        if(target == "bottom"){
+                Y_currentLocation++;//increment up
+            }
+        if(target == "left"){
+                X_currentLocation--;//increment left
+            }
+        if(target == "right"){
+                X_currentLocation++;//increment up
+        }
+        if(X_currentLocation >= X_MazeSize - 1 || X_currentLocation == -1){
+            X_currentLocation = 0;
+            Y_currentLocation = 0;
+
+        }//reset to 0,0
+
+        if(Y_currentLocation >= Y_MazeSize || Y_currentLocation == -1){
+            Y_currentLocation = 0;
+            X_currentLocation = 0;
+        }//reset to 0,0
+
+        updateLabel();
 
 
-    private void EditMaze(String target,Boolean check){
+    }
+
+    private void EditMaze(String target,int check){
         Models.Cell[][] editcells = this.maze.getCells();
-        System.out.println(X_MazeSize);
-        System.out.println(Y_MazeSize);
-        System.out.println(X_currentLocation);
-        System.out.println(Y_currentLocation);
         try{
-            if(target == "top" && check == true){
+            if(target == "top" && check == 1){
+
                 editcells[X_currentLocation][Y_currentLocation].AddCellWall("top");
                 editcells[X_currentLocation][Y_currentLocation -1].AddCellWall("bottom");
                 this.MazePanel.repaint();
-                Y_currentLocation--;//increment left
+//                Y_currentLocation--;//increment up
 
             }
-            if (target == "top" && check == false) {
+            if (target == "top" && check == 2) {
 
                 editcells[X_currentLocation][Y_currentLocation].BreakCellWall("top");
                 editcells[X_currentLocation][Y_currentLocation - 1].BreakCellWall("bottom");
                 this.MazePanel.repaint();
-                Y_currentLocation--;// increment up
+//                Y_currentLocation--;// increment up
 
 
             }
-            if(target == "left" && check == true){
+            if(target == "left" && check == 1){
                 editcells[X_currentLocation][Y_currentLocation].AddCellWall("left");
                 editcells[X_currentLocation - 1][Y_currentLocation].AddCellWall("right");
                 this.MazePanel.repaint();
-                X_currentLocation--;//increment left
+//                X_currentLocation--;//increment left
 
             }
-            if (target == "left" && check == false) {
+            if (target == "left" && check == 2) {
                 editcells[X_currentLocation][Y_currentLocation].BreakCellWall("left");
                 editcells[X_currentLocation - 1][Y_currentLocation].BreakCellWall("right");
                 this.MazePanel.repaint();
-                X_currentLocation--;//increment left
+//                X_currentLocation--;//increment left
 
 
             }
-            if(target == "bottom" && check == true){
+            if(target == "bottom" && check == 1){
                 editcells[X_currentLocation][Y_currentLocation].AddCellWall("bottom");
                 editcells[X_currentLocation ][Y_currentLocation + 1].AddCellWall("top");
                 this.MazePanel.repaint();
-                Y_currentLocation++;//increment left
+//                Y_currentLocation++;//increment left
 
             }
-            if (target == "bottom" && check == false) {
+            if (target == "bottom" && check == 2) {
                 editcells[X_currentLocation][Y_currentLocation].BreakCellWall("bottom");
                 editcells[X_currentLocation][Y_currentLocation + 1].BreakCellWall("top");
                 this.MazePanel.repaint();
-                Y_currentLocation++;//increment bottom
+//                Y_currentLocation++;//increment bottom
 
             }
-            if(target == "right" && check == true){
+            if(target == "right" && check == 1){
                 editcells[X_currentLocation][Y_currentLocation].AddCellWall("right");
                 editcells[X_currentLocation + 1][Y_currentLocation].AddCellWall("left");
                 this.MazePanel.repaint();
-                X_currentLocation++;//increment left
+//                X_currentLocation++;//increment left
 
             }
-            if (target == "right" && check == false) {
+            if (target == "right" && check == 2) {
                 editcells[X_currentLocation][Y_currentLocation].BreakCellWall("right");
                 editcells[X_currentLocation + 1][Y_currentLocation].BreakCellWall("left");
                 this.MazePanel.repaint();
-                X_currentLocation++;// increment right
+//                X_currentLocation++;// increment right
 
 
             }
@@ -227,6 +256,7 @@ public class MazeJFrame extends JFrame {
         lblFocused_Y.setText(updateY);
 
     }
+
 
 
 
