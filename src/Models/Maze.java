@@ -133,6 +133,9 @@ public class Maze {
                 }
             }
         }
+        cells[0][0].getjcell().BreakWall("left");
+        cells[X_Size-1][Y_Size-1].getjcell().BreakWall("right");
+        mazeFrame.repaint();
     }
 
     /**
@@ -226,8 +229,10 @@ public class Maze {
 
     /**
      * Generate Solution for a Maze as long as there is a valid solution for the Maze (not a closed Maze)
+     *
+     * @param mazeFrame The frame that this Maze will be displayed on
      */
-    public void GenerateSolution() {
+    public void GenerateSolution(MazeJFrame mazeFrame) {
         setAllCells_unVisisted();
         X_currentLocation=0;Y_currentLocation=0;
         TraceBack_List = new ArrayList<String>();
