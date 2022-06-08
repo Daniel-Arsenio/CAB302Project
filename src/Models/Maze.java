@@ -270,4 +270,8 @@ public class Maze {
             e.printStackTrace();
         }
     }
+
+    public Cell[][] getCells(){
+        return this.cells;
+    }
 }

@@ -1,7 +1,5 @@
-/**
- * Author: Marcus Nguyen
- */
 package MazeGUI;
+
 
 import MazeGUI.MazeCreatorComponents.JComponentLibrary;
 import Models.Maze;
@@ -10,7 +8,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.EventListener;
 
 public class MazeJFrame extends JFrame {
 
@@ -18,11 +15,16 @@ public class MazeJFrame extends JFrame {
      * Variable Declaration
      */
     public JPanel MazePanel, ControllerPanel;
-    public JButton btnLeft,btnRight,btnTop,btnBottom,btnClose,btnGenerateMaze;
+    public JButton btnLeft,btnRight,btnTop,btnBottom,btnClose,btnGenerateMaze,btnBreak,btnAdd;
     public JLabel lblFocused_X,lblFocused_Y;
     private int X_MazeSize;
     private int Y_MazeSize;
-    private int CellSize = 10;
+    private int CellSize = 30;
+    private String breakWallCondition;
+    private Maze maze;
+    private int X_currentLocation = 0;
+    private int Y_currentLocation = 0;
+    private boolean editCheck = false;
     /**
      * Constructor
      *
@@ -49,10 +51,11 @@ public class MazeJFrame extends JFrame {
         btnRight = JComponentLibrary.CreateButton(ControllerPanel,150,50,50,100,"R",true);
         btnBottom = JComponentLibrary.CreateButton(ControllerPanel,50,150,100,50,"B",true);
         btnClose = JComponentLibrary.CreateButton(ControllerPanel, 0, ControllerPanel.getHeight()-50,200,50,"Close",true);
-        btnGenerateMaze = JComponentLibrary.CreateButton(ControllerPanel,0,300,200,50,"Generate Maze",true);
-
-        lblFocused_X=JComponentLibrary.CreateJLabel(ControllerPanel,55,75,"Focused X:",95,15,Color.BLACK,true);
-        lblFocused_Y=JComponentLibrary.CreateJLabel(ControllerPanel,55,105,"Focused Y:",95,15,Color.BLACK,true);
+        btnBreak = JComponentLibrary.CreateButton(ControllerPanel,0,300,100,50,"Add",true);
+        btnAdd = JComponentLibrary.CreateButton(ControllerPanel,100,300,100,50,"Break",true);
+        btnGenerateMaze = JComponentLibrary.CreateButton(ControllerPanel,0,400,200,50,"Generate Maze",true);
+        lblFocused_X=JComponentLibrary.CreateJLabel(ControllerPanel,55,75,"X Location: ",95,15,Color.BLACK,true);
+        lblFocused_Y=JComponentLibrary.CreateJLabel(ControllerPanel,55,105,"Y Location: ",95,15,Color.BLACK,true);
         this.repaint();
 
         btnClose.addActionListener(new ActionListener() {
@@ -69,6 +72,54 @@ public class MazeJFrame extends JFrame {
 
             }
         });
+
+        btnAdd.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                editCheck = true;
+
+            }
+        });
+        btnBreak.addActionListener(new ActionListener(){
+            public void actionPerformed(ActionEvent e) {
+                editCheck = false;
+
+            }
+        });
+
+        btnBottom.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                breakWallCondition= "bottom";
+                EditMaze(breakWallCondition);
+
+            }
+        });
+        btnTop.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                breakWallCondition= "top";
+                EditMaze(breakWallCondition);
+
+            }
+        });
+        btnLeft.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                breakWallCondition= "left";
+                EditMaze(breakWallCondition);
+
+            }
+        });
+        btnRight.addActionListener(new ActionListener() {
+
+
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                breakWallCondition= "right";
+                EditMaze(breakWallCondition);
+
+            }
+        });
     }
 
     private void CloseFrame(){
@@ -78,8 +129,71 @@ public class MazeJFrame extends JFrame {
     private void GenerateNewMaze() {
         this.MazePanel.removeAll();
         this.repaint();
-        Maze maze = new Maze(X_MazeSize,Y_MazeSize);
+        maze = new Maze(X_MazeSize,Y_MazeSize);
         maze.GenerateMaze(this);
+        this.X_currentLocation = 0;
+        this.Y_currentLocation = 0;
+        maze.getCells();
         this.repaint();
     }
+
+
+
+    private void EditMaze(String target){
+//        this.maze.getCells();
+//        this.maze.editMaze(this,breakWallCondition);
+//        this.MazePanel.repaint();
+//        this.maze.getCells() = new Cell[][];
+        Models.Cell[][] editcells = this.maze.getCells();
+        if (target == "top") {
+
+            editcells[X_currentLocation][Y_currentLocation].BreakCellWall("top");
+            editcells[X_currentLocation][Y_currentLocation - 1].BreakCellWall("bottom");
+            this.MazePanel.repaint();
+
+            Y_currentLocation--;// increment up
+
+
+        }
+        if (target == "left") {
+            editcells[X_currentLocation][Y_currentLocation].BreakCellWall("left");
+            editcells[X_currentLocation - 1][Y_currentLocation].BreakCellWall("right");
+            this.MazePanel.repaint();
+            X_currentLocation--;//increment left
+
+
+        }
+        if (target == "bottom") {
+            editcells[X_currentLocation][Y_currentLocation].BreakCellWall("bottom");
+            editcells[X_currentLocation][Y_currentLocation + 1].BreakCellWall("top");
+            this.MazePanel.repaint();
+            Y_currentLocation++;//increment bottom
+
+        }
+        if (target == "right") {
+            editcells[X_currentLocation][Y_currentLocation].BreakCellWall("right");
+            editcells[X_currentLocation + 1][Y_currentLocation].BreakCellWall("left");
+            this.MazePanel.repaint();
+            X_currentLocation++;// increment right
+
+
+        }
+        updateLabel();//updates label to coordinates
+
+
+    }
+
+    private void updateLabel(){
+        String updateX = String.format("X Location:%s",String.valueOf(X_currentLocation));
+        lblFocused_X.setText(updateX);
+        String updateY = String.format("Y Location:%s",String.valueOf(Y_currentLocation));
+        lblFocused_Y.setText(updateY);
+
+    }
+
+
+
+
+
+
 }
