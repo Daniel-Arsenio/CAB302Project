@@ -17,8 +17,9 @@ public class MazeJFrame extends JFrame {
      * Variable Declaration
      */
     public JPanel MazePanel, ControllerPanel;
-    public JButton btnLeft,btnRight,btnTop,btnBottom,btnClose,btnGenerateMaze;
+    public JButton btnLeft,btnRight,btnTop,btnBottom,btnClose,btnGenerateMaze,btnSaveMaze;
     public JLabel lblFocused_X,lblFocused_Y;
+    private final JTextField mazeName = new JTextField();
     private int X_MazeSize;
     private int Y_MazeSize;
     private int CellSize = 10;
@@ -50,6 +51,7 @@ public class MazeJFrame extends JFrame {
         btnBottom = JComponentLibrary.CreateButton(ControllerPanel,50,150,100,50,"B",true);
         btnClose = JComponentLibrary.CreateButton(ControllerPanel, 0, ControllerPanel.getHeight()-50,200,50,"Close",true);
         btnGenerateMaze = JComponentLibrary.CreateButton(ControllerPanel,0,300,200,50,"Generate Maze",true);
+        btnSaveMaze = JComponentLibrary.CreateButton(ControllerPanel,0,360,200,50,"Save Maze",true);
 
         lblFocused_X=JComponentLibrary.CreateJLabel(ControllerPanel,55,75,"Focused X:",95,15,Color.BLACK,true);
         lblFocused_Y=JComponentLibrary.CreateJLabel(ControllerPanel,55,105,"Focused Y:",95,15,Color.BLACK,true);
@@ -73,6 +75,15 @@ public class MazeJFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 maze.GenerateSolution();
+            }
+        });
+
+        btnSaveMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                int choice = JOptionPane.showOptionDialog(MazePanel,new Object[]{"Insert Maze Name:",mazeName},"Save Maze"
+                        ,JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);;
+                MainGUI.database.addMaze(maze.asStringList(), mazeName.getText());
             }
         });
     }

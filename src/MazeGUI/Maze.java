@@ -43,6 +43,21 @@ public class Maze {
         //mazeFrame.setVisible(true);
         //GenerateMaze();
     }
+    /**
+     * Return the maze as an array of strings.
+     *
+     * @return Returns a list of strings representing cells in the form "0101", where 0 is no wall, and 1 is wall. In the form
+     * "Right Left Top Bottom"
+     * */
+    public String[][] asStringList(){
+        String[][] maze = new String[cells.length][cells[0].length];
+        for (int i = 0; i < cells.length; i++) {
+            for (int x = 0; x < cells[0].length; x++) {
+                maze[i][x] = String.valueOf(cells[i][x].Walls[0]) + String.valueOf(cells[i][x].Walls[1]) + String.valueOf(cells[i][x].Walls[2]) + String.valueOf(cells[i][x].Walls[3]);
+            }
+        }
+        return maze;
+    }
 
     /**
      * Generate the Maze

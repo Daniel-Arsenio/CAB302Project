@@ -13,17 +13,13 @@ public class Cell {
      private int X_pos;
      private int Y_Pos;
      private JCell jCell;
-     int right, left, bottom, top;
+     char[] Walls = {'1','1','1','1'};
 
      public boolean Visited=false;
 
      public Cell(int X_position, int Y_position, int Width, int Height, int top, int left, int bottom, int right)
      {
           jCell = new JCell(X_position, Y_position, Width, Height, top, left, bottom, right);
-          this.right = right;
-          this.left = left;
-          this.bottom = bottom;
-          this.top = top;
      }
 
      public JCell getjcell() {
@@ -31,6 +27,12 @@ public class Cell {
      }
 
      public void BreakCellWall(String target){
+          switch (target) {
+               case ("left") -> this.Walls[0] = '0';
+               case ("right") -> this.Walls[1] = '0';
+               case ("top") -> this.Walls[2] = '0';
+               case ("bottom") -> this.Walls[3] = '0';
+          }
           jCell.BreakWall(target);
           jCell.setBackground(null);
           jCell.repaint();
