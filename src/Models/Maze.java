@@ -32,7 +32,7 @@ public class Maze {
     private int X_Size;
     private int Y_Size;
 
-    private int EdgeSize = 10;
+    private int EdgeSize = 20;
 
 
     /**
@@ -45,6 +45,17 @@ public class Maze {
         this.X_Size = X_size;
         this.Y_Size = Y_size;
         cells = new Cell[X_Size][Y_Size];
+        if(X_Size>40 && Y_Size>40){
+            EdgeSize = 15;
+        }
+
+        if(X_Size>60 && Y_Size>60){
+            EdgeSize = 10;
+        }
+
+        if(X_Size>80 && Y_Size>80){
+            EdgeSize = 7;
+        }
         //mazeFrame.setVisible(true);
         //GenerateMaze();
     }
@@ -136,6 +147,7 @@ public class Maze {
         cells[0][0].getjcell().BreakWall("left");
         cells[X_Size-1][Y_Size-1].getjcell().BreakWall("right");
         mazeFrame.repaint();
+        createImage(mazeFrame.MazePanel,X_Size,Y_Size);
     }
 
     /**
@@ -233,39 +245,48 @@ public class Maze {
      * @param mazeFrame The frame that this Maze will be displayed on
      */
     public void GenerateSolution(MazeJFrame mazeFrame) {
-        setAllCells_unVisisted();
+        setAllCells_unVisited();
         X_currentLocation=0;Y_currentLocation=0;
         TraceBack_List = new ArrayList<String>();
         String Next_unVisitedCell;
+        boolean noSolution = false;
         int cellsTraveledcounter = 0;
         int totalUnvisitedCells = X_Size * Y_Size;
-        while (!((X_currentLocation==X_Size-1) && (Y_currentLocation ==Y_Size-1))) {
+
+        while (!((X_currentLocation==X_Size-1) && (Y_currentLocation ==Y_Size-1))|| noSolution) {
         //while(!(totalUnvisitedCells==0)){
             Next_unVisitedCell = getNext_Reachable_unvisitedCell();
-
+            if (X_currentLocation==0&&Y_currentLocation==0&&Next_unVisitedCell==""){
+                noSolution=true;
+                JOptionPane.showMessageDialog(mazeFrame,"No solution found");
+            }
             if ((Next_unVisitedCell == "")) {
 
                 String history = TraceBack_List.get(cellsTraveledcounter - 1);
                 if (history == "top") {
                     cells[X_currentLocation][Y_currentLocation].Visited = true;
+                    cells[X_currentLocation][Y_currentLocation].markTraveled();
                     moveDown();
                     TraceBack_List.remove(cellsTraveledcounter - 1);
                     cellsTraveledcounter--;
                 }
                 if (history == "bottom") {
                     cells[X_currentLocation][Y_currentLocation].Visited = true;
+                    cells[X_currentLocation][Y_currentLocation].markTraveled();
                     moveUp();
                     TraceBack_List.remove(cellsTraveledcounter - 1);
                     cellsTraveledcounter--;
                 }
                 if (history == "left") {
                     cells[X_currentLocation][Y_currentLocation].Visited = true;
+                    cells[X_currentLocation][Y_currentLocation].markTraveled();
                     moveRight();
                     TraceBack_List.remove(cellsTraveledcounter - 1);
                     cellsTraveledcounter--;
                 }
                 if (history == "right") {
                     cells[X_currentLocation][Y_currentLocation].Visited = true;
+                    cells[X_currentLocation][Y_currentLocation].markTraveled();
                     moveLeft();
                     TraceBack_List.remove(cellsTraveledcounter - 1);
                     cellsTraveledcounter--;
@@ -289,26 +310,31 @@ public class Maze {
                 }
             }
         }
-        X_currentLocation=0;Y_currentLocation=0;
-        for (int i=0; i<TraceBack_List.size();i++){
-            if (TraceBack_List.get(i) == "top") {
-                cells[X_currentLocation][Y_currentLocation].markTraveled();
-                moveUp();
+
+        if (!noSolution){
+            removeAllMark();
+            X_currentLocation=0;Y_currentLocation=0;
+            for (int i=0; i<TraceBack_List.size();i++){
+                if (TraceBack_List.get(i) == "top") {
+                    cells[X_currentLocation][Y_currentLocation].markTraveled();
+                    moveUp();
+                }
+                if (TraceBack_List.get(i) == "bottom") {
+                    cells[X_currentLocation][Y_currentLocation].markTraveled();
+                    moveDown();
+                }
+                if (TraceBack_List.get(i) == "left") {
+                    cells[X_currentLocation][Y_currentLocation].markTraveled();
+                    moveLeft();
+                }
+                if (TraceBack_List.get(i) == "right") {
+                    cells[X_currentLocation][Y_currentLocation].markTraveled();
+                    moveRight();
+                }
             }
-            if (TraceBack_List.get(i) == "bottom") {
-                cells[X_currentLocation][Y_currentLocation].markTraveled();
-                moveDown();
-            }
-            if (TraceBack_List.get(i) == "left") {
-                cells[X_currentLocation][Y_currentLocation].markTraveled();
-                moveLeft();
-            }
-            if (TraceBack_List.get(i) == "right") {
-                cells[X_currentLocation][Y_currentLocation].markTraveled();
-                moveRight();
-            }
+            cells[X_Size-1][Y_Size-1].markTraveled();
         }
-        cells[X_Size-1][Y_Size-1].markTraveled();
+
     }
 
     /**
@@ -358,7 +384,7 @@ public class Maze {
     /**
      * return all cells Visited state back to false
      */
-    private void setAllCells_unVisisted() {
+    private void setAllCells_unVisited() {
         for (int x = 0; x < X_Size; x++) {
             for (int y = 0; y < Y_Size; y++) {
                 cells[x][y].Visited = false;
@@ -394,6 +420,16 @@ public class Maze {
         Y_currentLocation++;
     }
 
+    /**
+     * Remove marked color for all cells
+     */
+    public void removeAllMark(){
+        for (int x = 0; x < X_Size; x++) {
+            for (int y = 0; y < Y_Size; y++) {
+                cells[x][y].removeMark();
+            }
+        }
+    }
 
     /**
      * This method will create from a jpanel
@@ -403,8 +439,7 @@ public class Maze {
      * @param Height the height of the panel also the height of the img
      */
     public void createImage(JPanel panel, int Width, int Height) {
-
-        BufferedImage bi = new BufferedImage(Width * 50, Height * 50, BufferedImage.TYPE_INT_RGB);
+        BufferedImage bi = new BufferedImage(Width * EdgeSize+10, Height * EdgeSize+10, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = bi.createGraphics();
         panel.paintAll(g);
         g.dispose();

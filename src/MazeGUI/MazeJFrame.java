@@ -21,8 +21,9 @@ public class MazeJFrame extends JFrame {
     public JLabel lblFocused_X,lblFocused_Y;
     private int X_MazeSize;
     private int Y_MazeSize;
-    private int EdgeSize = 10;
+    private int EdgeSize = 20;
     private Maze maze;
+    private boolean solution = false;
     /**
      * Constructor
      *
@@ -30,8 +31,16 @@ public class MazeJFrame extends JFrame {
      * @param Y_MazeSize The Y_MazeSize of the frame
      */
     public MazeJFrame(int X_MazeSize, int Y_MazeSize) {
-        if(X_MazeSize<30 && Y_MazeSize< 30){
-            EdgeSize = 20;
+        if(X_MazeSize>40 && Y_MazeSize>40){
+            EdgeSize = 15;
+        }
+
+        if(X_MazeSize>60 && Y_MazeSize>60){
+            EdgeSize = 10;
+        }
+
+        if(X_MazeSize>80 && Y_MazeSize>80){
+            EdgeSize = 7;
         }
         this.X_MazeSize=X_MazeSize;
         this.Y_MazeSize=Y_MazeSize;
@@ -42,8 +51,6 @@ public class MazeJFrame extends JFrame {
         this.setBounds(50, 50, (X_MazeSize+2) * EdgeSize + (X_MazeSize*2) + 250 , (Y_MazeSize+2) * EdgeSize + (Y_MazeSize*2));
         this.setMinimumSize(new Dimension(1000,800));
         this.getContentPane().setLayout(null);
-
-
 
 
         MazePanel = JComponentLibrary.CreateJPanel(this,50,50,(X_MazeSize) * EdgeSize +4,(Y_MazeSize) * EdgeSize +4,null,true);
@@ -77,13 +84,20 @@ public class MazeJFrame extends JFrame {
 
         btnLeft.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {GenerateSolution();}
+            public void actionPerformed(ActionEvent e) {}
         });
 
         btnGenerateSolution.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                GenerateSolution();
+                if (!solution){
+                    GenerateSolution();
+                    solution=true;
+                }else {
+                    maze.removeAllMark();
+                    MazePanel.repaint();
+                    solution=false;
+                }
             }
         });
     }

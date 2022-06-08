@@ -55,6 +55,11 @@ public class Cell {
         jCell.repaint();
     }
 
+    public void removeMark(){
+        jCell.setBackground(null);
+        jCell.repaint();
+    }
+
     public JCell setBorder(int top, int left, int bottom, int right){
         MatteBorder border = new MatteBorder(top,left,bottom,right,Color.BLACK);
         jCell.setBorder(border);
