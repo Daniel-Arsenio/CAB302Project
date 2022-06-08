@@ -62,4 +62,27 @@ public class JCell extends JPanel implements EventListener {
             this.repaint();
         }
     }
+
+    public void Addwall(String target){
+        if(target == "left"){
+            leftEdge = 2;
+            this.setBorder(new MatteBorder(topEdge,leftEdge,bottomEdge,rightEdge,Color.BLACK));
+            this.repaint();
+        }
+        if(target == "right"){
+            rightEdge = 2;
+            this.setBorder(new MatteBorder(topEdge,leftEdge,bottomEdge,rightEdge,Color.BLACK));
+            this.repaint();
+        }
+        if(target == "top"){
+            topEdge = 2;
+            this.setBorder(new MatteBorder(topEdge,leftEdge,bottomEdge,rightEdge,Color.BLACK));
+            this.repaint();
+        }
+        if(target == "bottom"){
+            bottomEdge = 2;
+            this.setBorder(new MatteBorder(topEdge,leftEdge,bottomEdge,rightEdge,Color.BLACK));
+            this.repaint();
+        }
+    }
 }

@@ -42,4 +42,12 @@ public class Cell {
         jCell.repaint();
         return jCell;
     }
+
+    public JCell AddCellWall(String target){
+        jCell.Addwall(target);
+        jCell.setBackground(null);
+        jCell.repaint();
+        return jCell;
+
+    }
 }

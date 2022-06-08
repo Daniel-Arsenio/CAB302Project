@@ -32,7 +32,7 @@ public class Maze {
     private int X_Size;
     private int Y_Size;
 
-    private int EdgeSize =10;
+    private int EdgeSize =30;
 
 
     /**
