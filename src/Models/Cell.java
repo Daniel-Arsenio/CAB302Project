@@ -27,7 +27,6 @@ public class Cell {
 
     public void BreakCellWall(String target){
         jCell.BreakWall(target);
-        jCell.setBackground(null);
         jCell.repaint();
     }
 
@@ -45,9 +44,16 @@ public class Cell {
 
     public JCell AddCellWall(String target){
         jCell.Addwall(target);
-        jCell.setBackground(null);
         jCell.repaint();
         return jCell;
 
+    }
+
+    public void SetColour(){
+        jCell.setBackground(Color.GREEN);
+    }
+
+    public void ResetColour(){
+        jCell.setBackground(null);
     }
 }
