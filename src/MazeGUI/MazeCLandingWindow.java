@@ -150,15 +150,6 @@ class MazeCLandingWindow extends JFrame{
         addToFrame(MazeCFrame, mazeViewerLabel, constraints, 1, 1, 0,0,5,5,5,5);
 
     }
-    private void addToPanel(JPanel jp,Component c, GridBagConstraints
-            constraints, int width, int height, int x, int y,int top, int bot,int right,int left) {
-        constraints.gridx = x;
-        constraints.gridy = y;
-        constraints.gridwidth = width;
-        constraints.gridheight = height;
-        constraints.insets = new Insets(top,left,bot,right);
-        jp.add(c, constraints);
-    }
 
     private void addToFrame(JFrame jf,Component c, GridBagConstraints
             constraints, int width, int height, int x, int y,int top, int bot,int right,int left) {

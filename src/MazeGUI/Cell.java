@@ -9,16 +9,26 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 
 public class Cell {
-     private int CellId;
+     private int CellId = 0;
      private int X_pos;
-     private int Y_Pos;
+     private int Y_pos;
      private JCell jCell;
+     private int topEdge;
+     private int rightEdge;
+     private int bottomEdge;
+     private int leftEdge;
 
      public boolean Visited=false;
 
      public Cell(int X_position, int Y_position, int Width, int Height, int top, int left, int bottom, int right)
      {
           jCell = new JCell(X_position, Y_position, Width, Height, top, left, bottom, right);
+          X_pos = X_position;
+          Y_pos = Y_position;
+          topEdge = top;
+          leftEdge = left;
+          rightEdge = right;
+          bottomEdge = bottom;
      }
 
      public JCell getjcell() {
@@ -42,6 +52,11 @@ public class Cell {
 
      public void markTraveled(){
           jCell.setBackground(Color.GREEN);
+          jCell.repaint();
+     }
+
+     public void removeMark(){
+          jCell.setBackground(null);
           jCell.repaint();
      }
 
