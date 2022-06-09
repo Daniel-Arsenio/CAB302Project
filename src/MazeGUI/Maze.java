@@ -49,9 +49,9 @@ public class Maze {
      * */
     public String[][] asStringList(Cell[][] cells, JPanel mazeFrame){
         String[][] maze = new String[cells.length][cells[0].length];
-        for (int i = 0; i < cells[0].length; i++) {
-            for (int x = 0; x < cells.length; x++) {
-                maze[i][x] = String.valueOf(cells[i][x].getjcell().getBorder().getBorderInsets(mazeFrame).right) +
+        for (int i = 0; i < cells.length; i++) {
+            for (int x = 0; x < cells[0].length; x++) {
+                maze[x][i] = String.valueOf(cells[i][x].getjcell().getBorder().getBorderInsets(mazeFrame).right) +
                         String.valueOf(cells[i][x].getjcell().getBorder().getBorderInsets(mazeFrame).left) +
                         String.valueOf(cells[i][x].getjcell().getBorder().getBorderInsets(mazeFrame).top) +
                         String.valueOf(cells[i][x].getjcell().getBorder().getBorderInsets(mazeFrame).bottom);

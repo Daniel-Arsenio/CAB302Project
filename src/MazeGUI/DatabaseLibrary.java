@@ -154,16 +154,16 @@ class DatabaseLibrary {
             addMaze.setInt(1, id);
             addMaze.execute();
             this.mazeCount++;
-            PreparedStatement newMaze = connect.prepareStatement("CREATE TABLE IF NOT EXISTS t"+ id +"(c0 VARCHAR(5))");
+            PreparedStatement newMaze = connect.prepareStatement("CREATE TABLE IF NOT EXISTS m"+ id +"(c0 VARCHAR(5))");
             newMaze.execute();
-            for (int i = 1; i < maze[0].length; i++) st.execute("ALTER TABLE t"+ id +" ADD COLUMN(c"+ i +" VARCHAR(5));");
+            for (int i = 1; i < maze[0].length; i++) st.execute("ALTER TABLE m"+ id +" ADD COLUMN(c"+ i +" VARCHAR(5));");
             for (String[] strings : maze) {
                 String currentLine = "";
                 for (int j = 0; j < maze[0].length; j++) {
                     if (j == maze[0].length - 1) currentLine += "'" + strings[j] + "'";
                     else currentLine += "'" + strings[j] + "', ";
                 }
-                st.execute("INSERT INTO t" + id + " VALUES(" + currentLine + ");");
+                st.execute("INSERT INTO m" + id + " VALUES(" + currentLine + ");");
             }
         } catch(SQLException e){ e.printStackTrace();}
         return true;
