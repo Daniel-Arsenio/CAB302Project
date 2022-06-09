@@ -174,8 +174,7 @@ public class MazeJFrame extends JFrame {
     }
 
     private void movePoint(String target){
-//        Models.Cell[][] index = maze.getCells();
-//        index[X_currentLocation][Y_currentLocation].SetColour();
+
         if(target == "top"){
             Y_currentLocation--;//increment up
         }
@@ -188,7 +187,7 @@ public class MazeJFrame extends JFrame {
         if(target == "right"){
             X_currentLocation++;
         }
-        if(X_currentLocation >= X_MazeSize - 1 || X_currentLocation == -1){
+        if(X_currentLocation >= X_MazeSize || X_currentLocation == -1){
             X_currentLocation = 0;
             Y_currentLocation = 0;
 
@@ -214,7 +213,6 @@ public class MazeJFrame extends JFrame {
             pauseMove = false;
             index[X_currentLocation][Y_currentLocation].ResetColour();
         }
-        System.out.println(pauseMove);
 
     }
 
