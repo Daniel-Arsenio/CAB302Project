@@ -129,7 +129,7 @@ class DatabaseLibrary {
 
 
     // Maze data functions
-    boolean addMaze(String[][] maze, String mazeName){
+    void addMaze(String[][] maze, String mazeName){
         try{
             ResultSet user = userExists(MainGUI.currentUser.get("Username"), MainGUI.currentUser.get("Password"));
             int id;
@@ -166,15 +166,30 @@ class DatabaseLibrary {
                 st.execute("INSERT INTO m" + id + " VALUES(" + currentLine + ");");
             }
         } catch(SQLException e){ e.printStackTrace();}
-        return true;
+    }
+
+    Cell[][] getMazeCells(int mazeid, int Xsize, int Ysize){
+        try {
+            ResultSet rs = st.executeQuery("SELECT * FROM m" + mazeid + ";");
+            String[][] mazestr = new String[Ysize][Xsize];
+            for (int i = 0; i < Ysize; i++){
+                rs.next();
+                for (int j = 0; j < Xsize; j++){
+                    mazestr[i][j] = rs.getString(j);
+                }
+            }
+            Cell[][] resultCells = new Cell[Ysize][Xsize];
+
+
+
+
+
+
+        }catch(SQLException e){e.printStackTrace();}
     }
 
     void removeMaze(){
 
-    }
-
-    Byte[][] getMaze(int mazeid){
-        return null;
     }
 
     DefaultTableModel getMazeTableModel(){
