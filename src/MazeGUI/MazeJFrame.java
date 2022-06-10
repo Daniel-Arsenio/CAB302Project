@@ -23,7 +23,7 @@ public class MazeJFrame extends JFrame {
      * Variable Declaration
      */
     public JPanel MazePanel, ControllerPanel;
-    public JButton btnLeft,btnRight,btnTop,btnBottom,btnClose,btnGenerateMaze,btnGenerateSolution,btnAddImage, btnSave, btnLoad;
+    public JButton btnLeft,btnRight,btnTop,btnBottom,btnClose,btnGenerateMaze,btnGenerateSolution,btnAddImage, btnSave, btnLoad,btnExportMaze;
     public JLabel lblFocused_X,lblFocused_Y,lblImageSize;
     public JTextField tfImageSize;
     private int X_MazeSize;
@@ -70,8 +70,9 @@ public class MazeJFrame extends JFrame {
         btnRight = JComponentLibrary.CreateButton(ControllerPanel,150,50,50,100,"R",true);
         btnBottom = JComponentLibrary.CreateButton(ControllerPanel,50,150,100,50,"B",true);
         btnClose = JComponentLibrary.CreateButton(ControllerPanel, 0, ControllerPanel.getHeight()-50,200,50,"Close",true);
-        btnGenerateMaze = JComponentLibrary.CreateButton(ControllerPanel,0,300,200,50,"Generate Maze",true);
-        btnGenerateSolution = JComponentLibrary.CreateButton(ControllerPanel,0,350,200,50,"Generate Solution",false);
+        btnGenerateMaze = JComponentLibrary.CreateButton(ControllerPanel,0,250,200,50,"Generate Maze",true);
+        btnGenerateSolution = JComponentLibrary.CreateButton(ControllerPanel,0,300,200,50,"Generate Solution",false);
+        btnExportMaze = JComponentLibrary.CreateButton(ControllerPanel,0,350,200,50,"Export Maze to image",false);
         btnAddImage = JComponentLibrary.CreateButton(ControllerPanel,0,400,200,50,"Add Image",false);
         btnSave = JComponentLibrary.CreateButton(ControllerPanel,0,550,200,50,"Save Maze",false);
         btnLoad = JComponentLibrary.CreateButton(ControllerPanel,0,600,200,50,"Load Maze",false);
@@ -85,24 +86,51 @@ public class MazeJFrame extends JFrame {
         btnAddImage.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                try {
+                    JFileChooser jFileChooser = new JFileChooser();
+                    FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images","png","jpg");
+                    jFileChooser.addChoosableFileFilter(filter);
+                    JPanel imagePanel = new JPanel();
+                    imagePanel.setLayout(null);
+                    int res = jFileChooser.showSaveDialog(null);
+
+                    JLabel image = new JLabel();
+
+                    imagePanel.add(image);
+                    imagePanel.setBounds(EdgeSize*focused_X,EdgeSize*focused_Y,EdgeSize*Integer.parseInt(tfImageSize.getText()),EdgeSize*Integer.parseInt(tfImageSize.getText()));
+                    if(res == JFileChooser.APPROVE_OPTION){
+                        File selFile = jFileChooser.getSelectedFile();
+                        String path = selFile.getAbsolutePath();
+                        image.setIcon(resize(path));
+                    }
+
+                    image.setBounds(0,0,EdgeSize*Integer.parseInt(tfImageSize.getText()),EdgeSize*Integer.parseInt(tfImageSize.getText()));
+                    maze.Wrap_around_image(focused_X,focused_Y,Integer.parseInt(tfImageSize.getText()));
+                    MazePanel.add(imagePanel);
+                    MazePanel.repaint();
+                }
+                catch (Exception exception){
+                    JOptionPane.showMessageDialog(null,"Size of the image is required and must be a number");
+                }
+
+            }
+        });
+
+        btnExportMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 JFileChooser jFileChooser = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter("*.Images","png","jpg");
-                jFileChooser.addChoosableFileFilter(filter);
+                jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
 
                 int res = jFileChooser.showSaveDialog(null);
 
-                JLabel image = new JLabel();
-
-                MazePanel.add(image);
                 if(res == JFileChooser.APPROVE_OPTION){
                     File selFile = jFileChooser.getSelectedFile();
                     String path = selFile.getAbsolutePath();
-                    image.setIcon(resize(path));
+                    maze.createImage(MazePanel,X_MazeSize,Y_MazeSize,path);
                 }
 
-                image.setBounds(focused_X*EdgeSize,focused_Y*EdgeSize,EdgeSize*Integer.parseInt(tfImageSize.getText()),EdgeSize*Integer.parseInt(tfImageSize.getText()));
 
-                MazePanel.repaint();
             }
         });
 
@@ -189,6 +217,7 @@ public class MazeJFrame extends JFrame {
                 }
             }
         });
+
     }
 
     private void CloseFrame(){
@@ -203,6 +232,7 @@ public class MazeJFrame extends JFrame {
         btnGenerateSolution.setVisible(true);
         btnLoad.setVisible(true);
         btnAddImage.setVisible(true);
+        btnExportMaze.setVisible(true);
         btnSave.setVisible(true);
         tfImageSize.setVisible(true);
         lblImageSize.setVisible(true);

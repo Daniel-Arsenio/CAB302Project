@@ -508,19 +508,38 @@ public class Maze {
      * This method will create from a jpanel
      *
      * @param panel the jpanel we want to turn into img
-     * @param Width the width of the panel also the width of the img
-     * @param Height the height of the panel also the height of the img
+     * @param Width the width of the maze also the width of the img
+     * @param Height the height of the maze also the height of the img
      */
-    public void createImage(JPanel panel, int Width, int Height) {
+    public void createImage(JPanel panel, int Width, int Height, String pathname) {
         BufferedImage bi = new BufferedImage(Width * EdgeSize+10, Height * EdgeSize+10, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = bi.createGraphics();
         panel.paintAll(g);
         g.dispose();
-
+        String currentTime = Long.toString(System.currentTimeMillis());
         try {
-            ImageIO.write(bi, "png", new File("C:\\Users\\kimlo\\IdeaProjects\\MazeGeneratorSolution\\img.png"));
+            ImageIO.write(bi, "png", new File(pathname+"\\"+currentTime+".png"));
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Wrap the maze around the image
+     *
+     * @param X_pos focused X
+     * @param Y_pos focused Y
+     * @param imageSize The size of image
+     */
+    public void Wrap_around_image(int X_pos,int Y_pos, int imageSize){
+        for (int x = X_pos;x <(X_pos+imageSize);x++){
+            for (int y = Y_pos;y <(Y_pos+imageSize);y++){
+                AddCellsWall("top",x,y);
+                AddCellsWall("left",x,y);
+                AddCellsWall("right",x,y);
+                AddCellsWall("bottom",x,y);
+                cells[x][y].getjcell().setVisible(false);
+            }
         }
     }
 }
