@@ -25,6 +25,7 @@ class MazeCLandingWindow extends JFrame{
         MazeCFrame.setResizable(false);
         mazeDisplayPanel.setPreferredSize(new Dimension(1000,550));
         mazeListScrollPane.setPreferredSize(new Dimension(1000,200));
+        mazeListTable.setAutoCreateRowSorter(true);
 
         Border blackline = BorderFactory.createLineBorder(Color.black);
         mazeDisplayPanel.setBackground(Color.WHITE);

@@ -12,7 +12,7 @@ class PublisherWindow extends JFrame{
     final JFrame PublisherFrame = new JFrame("User Creation");
     private final JLabel MazeViewerLabel = new JLabel();
     private final JPanel MazeDisplayPanel = new JPanel();
-    private final JTable MazeListTable = new JTable();
+    static final JTable MazeListTable = new JTable(MainGUI.database.getMazeTableModel());
     private final JScrollPane MazeListScrollPane = new JScrollPane(MazeListTable);
     private final JButton export_maze_button = new JButton();
     private final JButton export_solution_button = new JButton();
@@ -26,6 +26,7 @@ class PublisherWindow extends JFrame{
         PublisherFrame.setResizable(false);
         MazeDisplayPanel.setPreferredSize(new Dimension(1000,550));
         MazeListScrollPane.setPreferredSize(new Dimension(1000,200));
+        MazeListTable.setAutoCreateRowSorter(true);
 
         Border blackline = BorderFactory.createLineBorder(Color.black);
         MazeDisplayPanel.setBackground(Color.WHITE);

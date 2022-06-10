@@ -42,6 +42,7 @@ public class MainGUI extends JFrame implements Runnable {
 
     static void openPublish(){
         mainPublisherWindow.PublisherFrame.repaint();
+        PublisherWindow.MazeListTable.setModel(MainGUI.database.getMazeTableModel());
         mainPublisherWindow.PublisherFrame.setVisible(true);
     }
     static void closePublish(){
@@ -60,6 +61,7 @@ public class MainGUI extends JFrame implements Runnable {
 
     static void openMazeC(){
         mainMazeCLandingWindow.MazeCFrame.repaint();
+        MazeCLandingWindow.mazeListTable.setModel(MainGUI.database.getMazeTableModel());
         mainMazeCLandingWindow.MazeCFrame.setVisible(true);
     }
     public static void closeMazeC(){

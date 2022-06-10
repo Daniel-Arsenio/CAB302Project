@@ -92,6 +92,7 @@ public class MazeJFrame extends JFrame {
                         ,JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
 
                 MainGUI.database.addMaze(maze.asStringList(maze.cells, ControllerPanel), mazeName.getText());
+                mazeName.setText("");
             }
         });
 
