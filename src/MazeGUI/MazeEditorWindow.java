@@ -48,7 +48,7 @@ class MazeEditorWindow {
         mazeFrame.setVisible(false);
         mazeFrame.dispose();
         GenerateMaze();
-        createImage(mazeFrame.MazePanel,X_Size,Y_Size);
+        //createImage(mazeFrame.MazePanel,X_Size,Y_Size);
     }
 
     private void GenerateMaze() {
@@ -61,7 +61,7 @@ class MazeEditorWindow {
         mazeFrame.repaint();
     }
 
-    public void createImage(JPanel panel, int Width, int Height) {
+    public void createImage(JPanel panel, int Width, int Height, String pathname) {
 
         BufferedImage bi = new BufferedImage(Width*50, Height*50, BufferedImage.TYPE_INT_RGB);
         Graphics2D g = bi.createGraphics();
@@ -70,7 +70,7 @@ class MazeEditorWindow {
 
         try
         {
-            ImageIO.write(bi, "png", new File("img.png"));
+            ImageIO.write(bi, "png", new File(pathname));
         }
         catch ( IOException e)
         {

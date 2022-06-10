@@ -333,23 +333,30 @@ public class Maze {
             for (int i=0; i<TraceBack_List.size();i++){
                 if (TraceBack_List.get(i) == "top") {
                     cells[X_currentLocation][Y_currentLocation].markTraveled();
+                    mazeFrame.repaint();
                     moveUp();
                 }
                 if (TraceBack_List.get(i) == "bottom") {
                     cells[X_currentLocation][Y_currentLocation].markTraveled();
+                    mazeFrame.repaint();
                     moveDown();
                 }
                 if (TraceBack_List.get(i) == "left") {
                     cells[X_currentLocation][Y_currentLocation].markTraveled();
+                    mazeFrame.repaint();
                     moveLeft();
                 }
                 if (TraceBack_List.get(i) == "right") {
                     cells[X_currentLocation][Y_currentLocation].markTraveled();
+                    mazeFrame.repaint();
                     moveRight();
                 }
             }
             cells[X_Size-1][Y_Size-1].markTraveled();
+            mazeFrame.repaint();
+            createImage2(mazeFrame.MazePanel,X_Size,Y_Size);
         }
+
 
     }
 
@@ -462,6 +469,19 @@ public class Maze {
 
         try {
             ImageIO.write(bi, "png", new File("C:\\Users\\dungd\\Desktop\\src\\img.png"));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void createImage2(JPanel panel, int Width, int Height) {
+        BufferedImage bi = new BufferedImage(Width * EdgeSize+10, Height * EdgeSize+10, BufferedImage.TYPE_INT_RGB);
+        Graphics2D g = bi.createGraphics();
+        panel.paintAll(g);
+        g.dispose();
+
+        try {
+            ImageIO.write(bi, "png", new File("C:\\Users\\dungd\\Desktop\\src\\img2.png"));
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -5,6 +5,8 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.JFileChooser;
+import java.io.File;
 
 class PublisherWindow extends JFrame{
 
@@ -99,13 +101,23 @@ class PublisherWindow extends JFrame{
         export_maze_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                selected_user = MazeListTable.getSelectedRow();
-                if (selected_user == -1){
-                    JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze export error", JOptionPane.ERROR_MESSAGE);
-                }
-                else {
+                //selected_user = MazeListTable.getSelectedRow();
+                //if (selected_user == -1){
+                    //JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze export error", JOptionPane.ERROR_MESSAGE);
+               // }
+               // else {
+                    JFileChooser fileChooser = new JFileChooser();
+                    fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                    int response = fileChooser.showOpenDialog(PublisherFrame);
+                    if(response == JFileChooser.APPROVE_OPTION){
+                        String fileName = fileChooser.getSelectedFile().toString();
+                        JOptionPane.showMessageDialog(PublisherFrame,fileName, "Maze Export Notification", JOptionPane.ERROR_MESSAGE);
+
+                    }else{
+                        JOptionPane.showMessageDialog(PublisherFrame,"Folder open operation was cancelled", "Maze export error", JOptionPane.ERROR_MESSAGE);
+                    }
                     JOptionPane.showMessageDialog(null, "Maze export successful");
-                }
+               // }
             }
         });
 

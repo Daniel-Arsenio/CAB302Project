@@ -189,10 +189,6 @@ class DatabaseLibrary {
         return null;
     }
 
-    void removeMaze(){
-
-    }
-
     DefaultTableModel getMazeTableModel(){
         ResultSet rs;
         DefaultTableModel tm = new DefaultTableModel(){
