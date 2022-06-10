@@ -4,6 +4,7 @@
 package Models;
 
 import MazeGUI.MazeCreatorComponents.JCell;
+import MazeGUI.MazeJFrame;
 
 import javax.swing.border.MatteBorder;
 import java.awt.*;
@@ -20,9 +21,9 @@ public class Cell {
 
     public boolean Visited=false;
 
-    public Cell(int X_position, int Y_position, int Width, int Height, int top, int left, int bottom, int right)
+    public Cell(int X_position, int Y_position, int Width, int Height, int EdgeSize ,int top, int left, int bottom, int right, MazeJFrame mazeJFrame)
     {
-        jCell = new JCell(X_position, Y_position, Width, Height, top, left, bottom, right);
+        jCell = new JCell(X_position*EdgeSize, Y_position*EdgeSize, Width, Height, top, left, bottom, right , mazeJFrame , this);
         X_pos = X_position;
         Y_pos = Y_position;
         topEdge = top;
@@ -35,9 +36,21 @@ public class Cell {
         return jCell;
     }
 
+    public int getX_pos(){
+        return X_pos;
+    }
+
+    public int getY_pos(){
+        return  Y_pos;
+    }
+
     public void BreakCellWall(String target){
         jCell.BreakWall(target);
-        jCell.setBackground(null);
+        jCell.repaint();
+    }
+
+    public void AddCellWall(String target){
+        jCell.AddWall(target);
         jCell.repaint();
     }
 
@@ -65,5 +78,15 @@ public class Cell {
         jCell.setBorder(border);
         jCell.repaint();
         return jCell;
+    }
+
+    public void dropCellFocus(){
+        jCell.setBackground(null);
+        jCell.repaint();
+    }
+
+    public void gainCellFocus(){
+        jCell.setBackground(Color.GREEN);
+        jCell.repaint();
     }
 }

@@ -16,7 +16,7 @@ class MazeEditorWindow {
     /**
      * Variable Declaration
      */
-    private Cell[][] cells;
+    //private Cell[][] cells;
     MazeJFrame mazeFrame;
     private int[] X_CellHistory;
     private int[] Y_CellHistory;
@@ -41,7 +41,7 @@ class MazeEditorWindow {
     public MazeEditorWindow(int X_size, int Y_size) {
         this.X_Size = X_size;
         this.Y_Size = Y_size;
-        cells = new Cell[X_Size][Y_Size];
+        //cells = new Cell[X_Size][Y_Size];
         mazeFrame = new MazeJFrame(X_size, Y_size);
         GenerateMaze();
         createImage(mazeFrame.MazePanel,X_Size,Y_Size);
@@ -50,8 +50,8 @@ class MazeEditorWindow {
     private void GenerateMaze() {
         for (int x = 0; x < X_Size; x++) {
             for (int y = 0; y < Y_Size; y++) {
-                cells[x][y] = new Cell(x * EdgeSize, y * EdgeSize, EdgeSize, EdgeSize, 2, 2, 2, 2);
-                mazeFrame.MazePanel.add(cells[x][y].getjcell());
+                //cells[x][y] = new Cell(x * EdgeSize, y * EdgeSize, EdgeSize, EdgeSize, 2, 2, 2, 2);
+                //mazeFrame.MazePanel.add(cells[x][y].getjcell());
             }
         }
         mazeFrame.repaint();

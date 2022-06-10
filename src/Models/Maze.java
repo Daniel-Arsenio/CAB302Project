@@ -45,15 +45,15 @@ public class Maze {
         this.X_Size = X_size;
         this.Y_Size = Y_size;
         cells = new Cell[X_Size][Y_Size];
-        if(X_Size>40 && Y_Size>40){
+        if(X_Size>=40 && Y_Size>=40){
             EdgeSize = 15;
         }
 
-        if(X_Size>60 && Y_Size>60){
-            EdgeSize = 10;
+        if(X_Size>=60 && Y_Size>=60){
+            EdgeSize = 12;
         }
 
-        if(X_Size>80 && Y_Size>80){
+        if(X_Size>=80 && Y_Size>=80){
             EdgeSize = 7;
         }
         //mazeFrame.setVisible(true);
@@ -68,7 +68,7 @@ public class Maze {
     public void GenerateMaze(MazeJFrame mazeFrame) {
         for (int x = 0; x < X_Size; x++) {
             for (int y = 0; y < Y_Size; y++) {
-                cells[x][y] = new Cell(x * EdgeSize, y * EdgeSize, EdgeSize, EdgeSize, 0, 0, 0, 0);
+                cells[x][y] = new Cell(x, y, EdgeSize, EdgeSize,EdgeSize, 0, 0, 0, 0 , mazeFrame);
                 mazeFrame.MazePanel.add(cells[x][y].getjcell());
             }
         }
@@ -147,7 +147,6 @@ public class Maze {
         cells[0][0].getjcell().BreakWall("left");
         cells[X_Size-1][Y_Size-1].getjcell().BreakWall("right");
         mazeFrame.repaint();
-        createImage(mazeFrame.MazePanel,X_Size,Y_Size);
     }
 
     /**
@@ -240,6 +239,54 @@ public class Maze {
     }
 
     /**
+     * This method will break the wall of 2 cells
+     *
+     * @param target The target wall to be break
+     */
+    public void BreakCellsWall(String target,int X_Pos, int Y_Pos) {
+        if (target == "top") {
+            cells[X_Pos][Y_Pos].BreakCellWall("top");
+            cells[X_Pos][Y_Pos - 1].BreakCellWall("bottom");
+        }
+        if (target == "left") {
+            cells[X_Pos][Y_Pos].BreakCellWall("left");
+            cells[X_Pos - 1][Y_Pos].BreakCellWall("right");
+        }
+        if (target == "bottom") {
+            cells[X_Pos][Y_Pos].BreakCellWall("bottom");
+            cells[X_Pos][Y_Pos + 1].BreakCellWall("top");
+        }
+        if (target == "right") {
+            cells[X_Pos][Y_Pos].BreakCellWall("right");
+            cells[X_Pos + 1][Y_Pos].BreakCellWall("left");
+        }
+    }
+
+    /**
+     * This method will add the wall of 2 cells
+     *
+     * @param target The target wall to be break
+     */
+    public void AddCellsWall(String target,int X_Pos, int Y_Pos) {
+        if (target == "top") {
+            cells[X_Pos][Y_Pos].AddCellWall("top");
+            cells[X_Pos][Y_Pos - 1].AddCellWall("bottom");
+        }
+        if (target == "left") {
+            cells[X_Pos][Y_Pos].AddCellWall("left");
+            cells[X_Pos - 1][Y_Pos].AddCellWall("right");
+        }
+        if (target == "bottom") {
+            cells[X_Pos][Y_Pos].AddCellWall("bottom");
+            cells[X_Pos][Y_Pos + 1].AddCellWall("top");
+        }
+        if (target == "right") {
+            cells[X_Pos][Y_Pos].AddCellWall("right");
+            cells[X_Pos + 1][Y_Pos].AddCellWall("left");
+        }
+    }
+
+    /**
      * Generate Solution for a Maze as long as there is a valid solution for the Maze (not a closed Maze)
      *
      * @param mazeFrame The frame that this Maze will be displayed on
@@ -251,14 +298,15 @@ public class Maze {
         String Next_unVisitedCell;
         boolean noSolution = false;
         int cellsTraveledcounter = 0;
-        int totalUnvisitedCells = X_Size * Y_Size;
+        int totalCells = X_Size * Y_Size;
+        int totalCellTraveled=0;
 
         while (!((X_currentLocation==X_Size-1) && (Y_currentLocation ==Y_Size-1))|| noSolution) {
-        //while(!(totalUnvisitedCells==0)){
             Next_unVisitedCell = getNext_Reachable_unvisitedCell();
             if (X_currentLocation==0&&Y_currentLocation==0&&Next_unVisitedCell==""){
                 noSolution=true;
-                JOptionPane.showMessageDialog(mazeFrame,"No solution found");
+                JOptionPane.showMessageDialog(mazeFrame,"No solution found, "+String.format("%.2f",Double.valueOf(Integer.toString(totalCellTraveled))/Double.valueOf(Integer.toString(totalCells))*100)+"% Reachable");
+                break;
             }
             if ((Next_unVisitedCell == "")) {
 
@@ -295,6 +343,7 @@ public class Maze {
             } else {
                 cells[X_currentLocation][Y_currentLocation].Visited = true;
                 cellsTraveledcounter++;
+                totalCellTraveled++;
 
                 if (Next_unVisitedCell == "top") {
                     moveUp();
@@ -392,6 +441,10 @@ public class Maze {
         }
     }
 
+    public boolean checkWall(int X_pos,int Y_pos,String target){
+        return cells[X_pos][Y_pos].getjcell().CheckWall(target);
+    }
+
     /**
      * Move current cell left 1 cell
      */
@@ -429,6 +482,26 @@ public class Maze {
                 cells[x][y].removeMark();
             }
         }
+    }
+
+    /**
+     * Drop focus on selected cell
+     *
+     * @param X_Position
+     * @param Y_Position
+     */
+    public void dropCellFocus(int X_Position, int Y_Position){
+        cells[X_Position][Y_Position].dropCellFocus();
+    }
+
+    /**
+     * Gain focus on selected cell
+     *
+     * @param X_Position
+     * @param Y_Position
+     */
+    public void gainCellFocus(int X_Position, int Y_Position){
+        cells[X_Position][Y_Position].gainCellFocus();
     }
 
     /**
