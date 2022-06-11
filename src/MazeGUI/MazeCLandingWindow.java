@@ -93,7 +93,27 @@ class MazeCLandingWindow extends JFrame{
                 }
                 else {
                     int maze_id =  (int) mazeListTable.getValueAt(selectedMaze, 0);
-                    MazeJFrame mazeFrame = new MazeJFrame(30,  30, maze_id);
+
+                    switch ((String) mazeListTable.getValueAt(selectedMaze, 0)) {
+                        case "Kids" -> {
+                            x_size = 10;
+                            y_size = 10;
+                        }
+                        case "Easy" -> {
+                            x_size = 20;
+                            y_size = 20;
+                        }
+                        case "Medium" -> {
+                            x_size = 30;
+                            y_size = 30;
+                        }
+                        case "Hard" -> {
+                            x_size = 40;
+                            y_size = 40;
+                        }
+                    }
+
+                    MazeJFrame mazeFrame = new MazeJFrame(x_size, y_size, maze_id);
                 }
             }
         });

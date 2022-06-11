@@ -67,7 +67,6 @@ class DatabaseLibrary {
             removeUser.clearParameters();
             removeUser.setInt(1, Integer.parseInt(user.get("ID")));
             removeUser.execute();
-            System.out.println("deleted " + Integer.parseInt(user.get("ID")));
         }catch(SQLException e){ e.printStackTrace();}
     }
 
@@ -191,10 +190,10 @@ class DatabaseLibrary {
             }
             ResultSet rs = st.executeQuery("SELECT * FROM m" + mazeid + ";");
             String[][] mazestr = new String[Ysize][Xsize];
-            for (int i = 0; i < Ysize; i++){
+            for (int y = 0; y < Ysize; y++){
                 rs.next();
-                for (int j = 0; j < Xsize; j++){
-                    mazestr[i][j] = rs.getString(j+1);
+                for (int x = 0; x < Xsize; x++){
+                    mazestr[y][x] = rs.getString(x+1);
                 }
             }
             return mazestr;

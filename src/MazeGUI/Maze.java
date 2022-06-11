@@ -575,8 +575,8 @@ public class Maze {
         MainGUI.database.addMaze(asStringList(cells, mazeframe.ControllerPanel), mazeName, X_Size, Y_Size);
     }
 
-    public void loadMaze(int mazeid, MazeJFrame frame) {
-        String[][] mazestr = MainGUI.database.getMazeCells(mazeid, X_Size, Y_Size);
+    public void loadMaze(int mazeid, MazeJFrame frame, int xsize, int ysize) {
+        String[][] mazestr = MainGUI.database.getMazeCells(mazeid, xsize, ysize);
         for (int y = 0; y< Y_Size; y++){
             for(int x = 0; x< X_Size; x++){
                 cells[x][y] = new Cell(x, y, EdgeSize, EdgeSize, EdgeSize,

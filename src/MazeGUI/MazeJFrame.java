@@ -423,7 +423,7 @@ public class MazeJFrame extends JFrame {
                 }
             }
         });
-        loadMaze(mazeID);
+        loadMaze(mazeID, X_MazeSize, Y_MazeSize);
     }
 
     private void CloseFrame(){
@@ -484,8 +484,8 @@ public class MazeJFrame extends JFrame {
         maze.saveMaze(this, mazeName.getText());
     }
 
-    private void loadMaze(int mazeID) {
-        maze = new Maze(X_MazeSize,Y_MazeSize);
-        maze.loadMaze(mazeID, this);
+    private void loadMaze(int mazeID, int xsize, int ysize) {
+        maze = new Maze(xsize, ysize);
+        maze.loadMaze(mazeID, this, xsize,ysize);
     }
 }
