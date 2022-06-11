@@ -76,6 +76,8 @@ public class MazeJFrame extends JFrame {
         btnSaveMaze = JComponentLibrary.CreateButton(ControllerPanel,0,430,200,50,"Save Maze",true);
         tfImageSize=JComponentLibrary.CreateTextField(ControllerPanel,100,400,100,25,null,false);
 
+        btnExportMaze = JComponentLibrary.CreateButton(ControllerPanel,0,530,200,50,"Export Maze to image",false);
+
         btnAddImage = JComponentLibrary.CreateButton(ControllerPanel,0,350,200,50,"Add Image",false);
         btnLoad = JComponentLibrary.CreateButton(ControllerPanel,0,480,200,50,"Load Maze",false);
 
@@ -83,6 +85,20 @@ public class MazeJFrame extends JFrame {
         lblFocused_Y=JComponentLibrary.CreateJLabel(ControllerPanel,55,105,"Focused Y:",95,15,Color.BLACK,true);
         lblImageSize=JComponentLibrary.CreateJLabel(ControllerPanel,0,400,"Image Size:",95,15,Color.BLACK,false);
         this.repaint();
+
+        btnExportMaze.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JFileChooser jFileChooser = new JFileChooser();
+                jFileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                int res = jFileChooser.showSaveDialog(null);
+                if(res == JFileChooser.APPROVE_OPTION){
+                    File selFile = jFileChooser.getSelectedFile();
+                    String path = selFile.getAbsolutePath();
+                    maze.createImage(MazePanel,X_MazeSize,Y_MazeSize,path);
+                }
+            }
+        });
 
         btnLeft.addActionListener(new ActionListener() {
             @Override
@@ -226,7 +242,7 @@ public class MazeJFrame extends JFrame {
         btnGenerateSolution.setVisible(true);
         btnLoad.setVisible(true);
         btnAddImage.setVisible(true);
-        //btnExportMaze.setVisible(true);
+        btnExportMaze.setVisible(true);
         //btnSave.setVisible(true);
         tfImageSize.setVisible(true);
         lblImageSize.setVisible(true);
