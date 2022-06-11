@@ -3,7 +3,10 @@
  * Developed for CAB 302 project
  * QUT student 2022
  */
-package MazeGUI.MazeCreatorComponents;
+package src.MazeGUI.MazeCreatorComponents;
+
+import src.MazeGUI.mazeJFrame;
+import src.MazeGUI.Cell;
 
 import src.MazeGUI.mazeJFrame;
 import src.MazeGUI.Cell;

@@ -1,16 +1,27 @@
-package MazeGUI;
+package src.MazeGUI;
 
 import javax.swing.*;
+import java.sql.SQLException;
+import java.util.HashMap;
 
 public class MainGUI extends JFrame implements Runnable {
-    static DatabaseLibrary DataBase = new DatabaseLibrary();
+    static DatabaseLibrary database;
+    static {
+        try {
+            database = new DatabaseLibrary();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
     static LoginWindow mainLoginWindow = new LoginWindow();
     static AdminWindow mainAdminWindow = new AdminWindow();
     static PublisherWindow mainPublisherWindow = new PublisherWindow();
     static MazeCLandingWindow mainMazeCLandingWindow = new MazeCLandingWindow();
-    static MazeEditorWindow mainMazeEditorWindow = new MazeEditorWindow(20,15);
+    static mazeJFrame mainMazeEditorWindow;
+    static final HashMap<String, String> currentUser = new HashMap<>();
 
-    public MainGUI(String args) {
+
+    public MainGUI(String args) throws SQLException {
     }
 
     /**
@@ -31,6 +42,7 @@ public class MainGUI extends JFrame implements Runnable {
 
     static void openPublish(){
         mainPublisherWindow.PublisherFrame.repaint();
+        PublisherWindow.MazeListTable.setModel(MainGUI.database.getMazeTableModel());
         mainPublisherWindow.PublisherFrame.setVisible(true);
     }
     static void closePublish(){
@@ -49,6 +61,7 @@ public class MainGUI extends JFrame implements Runnable {
 
     static void openMazeC(){
         mainMazeCLandingWindow.MazeCFrame.repaint();
+        MazeCLandingWindow.mazeListTable.setModel(MainGUI.database.getMazeTableModel());
         mainMazeCLandingWindow.MazeCFrame.setVisible(true);
     }
     public static void closeMazeC(){
@@ -56,20 +69,16 @@ public class MainGUI extends JFrame implements Runnable {
         mainMazeCLandingWindow.MazeCFrame.dispose();
     }
 
-    static void openMazeEdit(){
-        mainMazeEditorWindow.mazeFrame.repaint();
-        mainMazeEditorWindow.mazeFrame.setVisible(true);
-    }
-    public static void closeMazeEdit(){
-        mainMazeEditorWindow.mazeFrame.setVisible(false);
-        mainMazeEditorWindow.mazeFrame.dispose();
+    static void openMazeEdit(int X_MazeSize, int Y_MazeSize){
+        mainMazeEditorWindow = new mazeJFrame(X_MazeSize, Y_MazeSize);
     }
 
 
 
     @Override
     public void run() {
-        openLogin();}
+        openLogin();
+        }
 
-    public static void main(String[] args) {SwingUtilities.invokeLater(new MainGUI("Maze Creator"));}
+    public static void main(String[] args) throws SQLException {SwingUtilities.invokeLater(new MainGUI("Maze Creator"));}
 }
