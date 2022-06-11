@@ -3,8 +3,6 @@
  */
 package Models;
 
-import MazeGUI.MazeCreatorComponents.JCell;
-
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 

@@ -5,7 +5,6 @@
  */
 package MazeGUI;
 
-import MazeGUI.MazeCreatorComponents.JCell;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
 public class Cell {
