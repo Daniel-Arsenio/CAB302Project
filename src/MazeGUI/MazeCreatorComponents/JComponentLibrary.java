@@ -86,4 +86,13 @@ public final class JComponentLibrary {
         panel.add(jbutton);
         return jbutton;
     }
+
+    public static JTextField CreateTextField(JPanel panel, int X_Position, int Y_Position, int Width, int Height, String text, Boolean Visible){
+        JTextField jTextField = new JTextField(text);
+        jTextField.setBounds(X_Position, Y_Position, Width, Height);
+        jTextField.setVisible(Visible);
+
+        panel.add(jTextField);
+        return jTextField;
+    }
 }

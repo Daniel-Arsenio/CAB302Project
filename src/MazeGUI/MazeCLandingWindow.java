@@ -5,6 +5,7 @@ import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.HashMap;
 
 class MazeCLandingWindow extends JFrame{
 
@@ -96,7 +97,32 @@ class MazeCLandingWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainGUI.closeMazeC();
-                MainGUI.openMazeEdit();
+                int x_size=0;
+                int y_size=0;
+
+                String s  = (String)JOptionPane.showInputDialog(MazeCFrame,"Choose difficulty level"
+                        ,"Add User",JOptionPane.PLAIN_MESSAGE,null,new String[]{"Kids","Easy", "Medium", "Hard"},"Easy");
+                if (s != null){
+                    switch (s) {
+                        case "Kids" -> {
+                                x_size = 10;
+                                y_size = 10;
+                            }
+                        case "Easy" -> {
+                            x_size = 20;
+                            y_size = 20;
+                        }
+                        case "Medium" -> {
+                            x_size = 30;
+                            y_size = 30;
+                        }
+                        case "Hard" -> {
+                            x_size = 40;
+                            y_size = 40;
+                        }
+                    }
+                    MainGUI.openMazeEdit(x_size, y_size);
+                }
             }
         });
 
@@ -104,7 +130,7 @@ class MazeCLandingWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainGUI.closeMazeC();
-                MainGUI.openMazeEdit();
+                //MainGUI.openMazeEdit();
             }
         });
 

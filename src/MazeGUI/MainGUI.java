@@ -17,7 +17,7 @@ public class MainGUI extends JFrame implements Runnable {
     static AdminWindow mainAdminWindow = new AdminWindow();
     static PublisherWindow mainPublisherWindow = new PublisherWindow();
     static MazeCLandingWindow mainMazeCLandingWindow = new MazeCLandingWindow();
-    static MazeEditorWindow mainMazeEditorWindow = new MazeEditorWindow(6,6);
+    static MazeJFrame mainMazeEditorWindow;
     static final HashMap<String, String> currentUser = new HashMap<>();
 
 
@@ -69,13 +69,8 @@ public class MainGUI extends JFrame implements Runnable {
         mainMazeCLandingWindow.MazeCFrame.dispose();
     }
 
-    static void openMazeEdit(){
-        mainMazeEditorWindow.mazeFrame.repaint();
-        mainMazeEditorWindow.mazeFrame.setVisible(true);
-    }
-    public static void closeMazeEdit(){
-        mainMazeEditorWindow.mazeFrame.setVisible(false);
-        mainMazeEditorWindow.mazeFrame.dispose();
+    static void openMazeEdit(int X_MazeSize, int Y_MazeSize){
+        mainMazeEditorWindow = new MazeJFrame(X_MazeSize, Y_MazeSize);
     }
 
 
