@@ -4,18 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/Main.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/Maze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/Maze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCreatorComponents/JCell$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCreatorComponents/JCell$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCreatorComponents/JCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCreatorComponents/JCell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeJFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeJFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/mazeJFrame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Cell.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Maze.java" beforeDir="false" />
-    </list>
+    <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
