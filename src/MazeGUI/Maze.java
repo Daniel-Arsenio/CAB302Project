@@ -18,7 +18,7 @@ public class Maze {
     /**
      * Variable Declaration
      */
-    public Cell[][] cells;
+    private Cell[][] cells;
     //private MazeJFrame mazeFrame;
     private int cellsGenerated_counter = 0;
     ArrayList<String> TraceBack_List = new ArrayList<String>();
@@ -563,5 +563,26 @@ public class Maze {
                 cells[x][y].getjcell().setVisible(false);
             }
         }
+    }
+
+    /**
+     * Saves maze to database
+     *
+     * @param mazeframe frame displaying from
+     * @param mazeName name of maze being saved
+     */
+    public void saveMaze(MazeJFrame mazeframe, String mazeName){
+        MainGUI.database.addMaze(asStringList(cells, mazeframe.ControllerPanel), mazeName, X_Size, Y_Size);
+    }
+
+    public void loadMaze(int mazeid, MazeJFrame frame) {
+        cells = MainGUI.database.getMazeCells(mazeid, X_Size, Y_Size);
+        for (int i = 0; i < Y_Size; i++ ){
+            for(int j=0; j < X_Size; j++){
+                frame.MazePanel.add(cells[i][j].getjcell());
+            }
+        }
+        frame.MazePanel.setVisible(true);
+        frame.MazePanel.repaint();
     }
 }

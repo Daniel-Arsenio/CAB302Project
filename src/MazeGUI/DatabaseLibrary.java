@@ -35,7 +35,7 @@ class DatabaseLibrary {
     }
     // User data functions
 
-    boolean addUser(HashMap<String, String> user){
+    public boolean addUser(HashMap<String, String> user){
         try{
             ResultSet rs = st.executeQuery("Select * FROM userdata;");
             int oldid = 0;
@@ -62,7 +62,7 @@ class DatabaseLibrary {
         return true;
     }
 
-    void removeUser(HashMap<String, String> user){
+    public void removeUser(HashMap<String, String> user){
         try {
             removeUser.clearParameters();
             removeUser.setInt(1, Integer.parseInt(user.get("ID")));
@@ -93,7 +93,7 @@ class DatabaseLibrary {
         return null;
     }
 
-    void alterUser(HashMap<String, String> user, HashMap<String, String> newUser){
+    public void alterUser(HashMap<String, String> user, HashMap<String, String> newUser){
         try{
             alterUser.clearParameters();
             alterUser.setString(1, newUser.get("Username"));
@@ -131,7 +131,7 @@ class DatabaseLibrary {
 
 
     // Maze data functions
-    void addMaze(String[][] maze, String mazeName, int xSize, int ySize){
+    public void addMaze(String[][] maze, String mazeName, int xSize, int ySize){
         try{
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDateTime date = LocalDateTime.now();
@@ -175,7 +175,7 @@ class DatabaseLibrary {
         } catch(SQLException e){ e.printStackTrace();}
     }
 
-    Cell[][] getMazeCells(int mazeid, int Xsize, int Ysize){
+    public Cell[][] getMazeCells(int mazeid, int Xsize, int Ysize){
         try {
             int EdgeSize = 0;
             if(Xsize>=40 && Ysize>=40){

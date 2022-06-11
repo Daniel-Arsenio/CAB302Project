@@ -23,6 +23,8 @@ class MazeCLandingWindow extends JFrame{
     private final JButton viewMazeSolution = new JButton();
     private final JButton logoutButton = new JButton();
     private int selectedMaze;
+    private int x_size=0;
+    private int y_size=0;
 
     public MazeCLandingWindow(){
         MazeCFrame.setSize(1400, 1000);
@@ -90,26 +92,9 @@ class MazeCLandingWindow extends JFrame{
                 if (selected_user == -1){
                     JOptionPane.showMessageDialog(MazeCFrame,"Please select a maze.", "Maze Viewer Error", JOptionPane.ERROR_MESSAGE);
                 }
-                else if (1 == 2){//MainGUI.database.getMazeData().get(selected_user)[0].equals("1")''') {
-                    ImageIcon Maze = new ImageIcon("Maze1.JPG");
-                    Image image = Maze.getImage();
-                    Image newimg = image.getScaledInstance(980, 530,  Image.SCALE_SMOOTH); // scale it the smooth way
-                    Maze = new ImageIcon(newimg);
-                    lbl.setIcon(Maze);
-                }
-                else if (1 == 1){//MainGUI.database.getMazeData().get(selected_user)[0].equals("2")) {
-                    ImageIcon Maze = new ImageIcon("Maze2.JPG");
-                    Image image = Maze.getImage();
-                    Image newimg = image.getScaledInstance(980, 530,  Image.SCALE_SMOOTH); // scale it the smooth way
-                    Maze = new ImageIcon(newimg);
-                    lbl.setIcon(Maze);
-                }
-                else if (selected_user == 1){//MainGUI.database.getMazeData().get(selected_user)[0].equals("3")) {
-                    ImageIcon Maze = new ImageIcon("Maze3.JPG");
-                    Image image = Maze.getImage();
-                    Image newimg = image.getScaledInstance(980, 530,  Image.SCALE_SMOOTH); // scale it the smooth way
-                    Maze = new ImageIcon(newimg);
-                    lbl.setIcon(Maze);
+                else {
+                    int maze_id =  (int) mazeListTable.getValueAt(selected_user, 0);
+                    MazeJFrame mazeFrame = new MazeJFrame(30,  30, maze_id);
                 }
             }
         });
@@ -118,8 +103,6 @@ class MazeCLandingWindow extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 MainGUI.closeMazeC();
-                int x_size=0;
-                int y_size=0;
 
                 String s  = (String)JOptionPane.showInputDialog(MazeCFrame,"Choose difficulty level"
                         ,"Add User",JOptionPane.PLAIN_MESSAGE,null,new String[]{"Kids","Easy", "Medium", "Hard"},"Easy");
