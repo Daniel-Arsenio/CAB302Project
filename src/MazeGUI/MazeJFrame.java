@@ -26,8 +26,8 @@ public class MazeJFrame extends JFrame {
     public JButton btnLeft,btnRight,btnTop,btnBottom,btnClose,btnGenerateMaze,btnGenerateSolution,btnAddImage, btnSave, btnLoad,btnExportMaze, btnBack, btnSaveMaze;
     public JLabel lblFocused_X,lblFocused_Y,lblImageSize;
     public JTextField tfImageSize;
-    private int X_MazeSize;
-    private int Y_MazeSize;
+    int X_MazeSize;
+    int Y_MazeSize;
     private int EdgeSize = 20;
     private Maze maze;
     private boolean solution = false;
@@ -210,7 +210,7 @@ public class MazeJFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 int choice = JOptionPane.showOptionDialog(MazePanel,new Object[]{"Insert Maze Name:",mazeName},"Save Maze"
                         ,JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
-                MainGUI.database.addMaze(maze.asStringList(maze.cells, ControllerPanel), mazeName.getText());
+                MainGUI.database.addMaze(maze.asStringList(maze.cells, ControllerPanel), mazeName.getText(), X_MazeSize, Y_MazeSize);
                 mazeName.setText("");
             }
         });
@@ -244,6 +244,24 @@ public class MazeJFrame extends JFrame {
         btnAddImage.setVisible(true);
         btnExportMaze.setVisible(true);
         //btnSave.setVisible(true);
+        tfImageSize.setVisible(true);
+        lblImageSize.setVisible(true);
+        this.repaint();
+    }
+    void reGenerateMaze(int mazeid){
+        this.MazePanel.removeAll();
+        this.repaint();
+        maze = new Maze(X_MazeSize,Y_MazeSize);
+        Cell[][] cells = MainGUI.database.getMazeCells(mazeid, this.X_MazeSize, this.Y_MazeSize);
+        for (int i = 0; i < Y_MazeSize; i++ ){
+            for(int j=0; j < X_MazeSize; j++){
+                this.MazePanel.add(cells[i][j].getjcell());
+            }
+        }
+        btnGenerateSolution.setVisible(true);
+        btnLoad.setVisible(true);
+        btnAddImage.setVisible(true);
+        btnExportMaze.setVisible(true);
         tfImageSize.setVisible(true);
         lblImageSize.setVisible(true);
         this.repaint();

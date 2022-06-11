@@ -1,5 +1,7 @@
 package src.MazeGUI;
 
+import com.sun.tools.javac.Main;
+
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
@@ -20,6 +22,7 @@ class MazeCLandingWindow extends JFrame{
     private final JButton viewMaze = new JButton();
     private final JButton viewMazeSolution = new JButton();
     private final JButton logoutButton = new JButton();
+    private int selectedMaze;
 
     public MazeCLandingWindow(){
         MazeCFrame.setSize(1400, 1000);
@@ -27,6 +30,16 @@ class MazeCLandingWindow extends JFrame{
         mazeDisplayPanel.setPreferredSize(new Dimension(1000,550));
         mazeListScrollPane.setPreferredSize(new Dimension(1000,200));
         mazeListTable.setAutoCreateRowSorter(true);
+        mazeListTable.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                selectedMaze = mazeListTable.getSelectedRow();
+            }
+        });
 
         Border blackline = BorderFactory.createLineBorder(Color.black);
         mazeDisplayPanel.setBackground(Color.WHITE);
@@ -45,6 +58,14 @@ class MazeCLandingWindow extends JFrame{
 
         mazeEditButton.setText("Edit Selected Maze");
         mazeEditButton.setPreferredSize(new Dimension(200,40));
+        mazeEditButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                MainGUI.closeMazeC();
+                MainGUI.openMazeEdit(MainGUI.mainMazeEditorWindow.X_MazeSize, MainGUI.mainMazeEditorWindow.Y_MazeSize);
+                MainGUI.mainMazeEditorWindow.reGenerateMaze((int) mazeListTable.getValueAt(selectedMaze, 0));
+            }
+        });
 
         logoutButton.setText("Logout");
         logoutButton.setPreferredSize(new Dimension(200,40));

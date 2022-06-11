@@ -16,7 +16,7 @@ class DatabaseLibrary {
     private final PreparedStatement removeUser = connect.prepareStatement("DELETE FROM userdata WHERE userid = ?;");
     private final PreparedStatement checkUser = connect.prepareStatement("SELECT * FROM userdata WHERE username = ? AND password = ?;");
     private final PreparedStatement alterUser = connect.prepareStatement("UPDATE userdata SET username = ?, password = ?, permission = ? WHERE userid = ?;");
-    private final PreparedStatement addMaze = connect.prepareStatement("INSERT INTO mazedata VALUES(?, ?, ?, ?, ?, ?)");
+    private final PreparedStatement addMaze = connect.prepareStatement("INSERT INTO mazedata VALUES(?, ?, ?, ?, ?, ?, ?)");
     private final Statement getData = connect.createStatement();
     private final LinkedList<Integer> userIdsAvailable = new LinkedList<>();
     private final LinkedList<Integer> mazeIdsAvailable = new LinkedList<>();
@@ -29,7 +29,7 @@ class DatabaseLibrary {
         st.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
         st.execute("USE mazeco;");
         st.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT NOT NULL PRIMARY KEY, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
-        st.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, mazename VARCHAR(100), creatorname VARCHAR(100), creatorid INT NOT NULL, date VARCHAR(20), difficulty VARCHAR(20), FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
+        st.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, mazename VARCHAR(100), creatorname VARCHAR(100), creatorid INT NOT NULL, date VARCHAR(20), difficulty VARCHAR(20), size VARCHAR(20), FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
         st.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
         connect.commit();
     }
@@ -131,13 +131,14 @@ class DatabaseLibrary {
 
 
     // Maze data functions
-    void addMaze(String[][] maze, String mazeName){
+    void addMaze(String[][] maze, String mazeName, int xSize, int ySize){
         try{
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDateTime date = LocalDateTime.now();
             ResultSet user = userExists(MainGUI.currentUser.get("Username"), MainGUI.currentUser.get("Password"));
             addMaze.setString(5, dtf.format(date));
             addMaze.setString(6, "Not Implemented");
+            addMaze.setString(7,xSize + "x" + ySize);
             int id;
             user.next();
             addMaze.setInt(4, user.getInt("userid"));
@@ -176,15 +177,38 @@ class DatabaseLibrary {
 
     Cell[][] getMazeCells(int mazeid, int Xsize, int Ysize){
         try {
+            int EdgeSize = 0;
+            if(Xsize>=40 && Ysize>=40){
+                EdgeSize = 15;
+            }
+
+            if(Xsize>=60 && Ysize>=60){
+                EdgeSize = 12;
+            }
+
+            if(Xsize>=80 && Ysize>=80){
+                EdgeSize = 7;
+            }
             ResultSet rs = st.executeQuery("SELECT * FROM m" + mazeid + ";");
             String[][] mazestr = new String[Ysize][Xsize];
             for (int i = 0; i < Ysize; i++){
                 rs.next();
                 for (int j = 0; j < Xsize; j++){
-                    mazestr[i][j] = rs.getString(j);
+                    mazestr[i][j] = rs.getString(j+1);
                 }
             }
             Cell[][] resultCells = new Cell[Ysize][Xsize];
+            for (int i = 0; i<resultCells.length; i++){
+                for(int j = 0; j<resultCells[0].length; j++){
+                    resultCells[i][j] = new Cell(i, j, EdgeSize, EdgeSize, EdgeSize,
+                            Integer.parseInt(String.valueOf(mazestr[i][j].toCharArray()[2])),
+                            Integer.parseInt(String.valueOf(mazestr[i][j].toCharArray()[1])),
+                            Integer.parseInt(String.valueOf(mazestr[i][j].toCharArray()[3])),
+                            Integer.parseInt(String.valueOf(mazestr[i][j].toCharArray()[0])),
+                            MainGUI.mainMazeEditorWindow);
+                }
+            }
+            return resultCells;
         }catch(SQLException e){e.printStackTrace();}
         return null;
     }
@@ -204,11 +228,12 @@ class DatabaseLibrary {
         tm.addColumn("creatorid");
         tm.addColumn("date");
         tm.addColumn("difficulty");
+        tm.addColumn("size");
         tm.setRowCount(0);
         try {
             rs = getData.executeQuery("SELECT * FROM mazedata;");
             while(rs.next()){
-                Object[] o = {rs.getInt("mazeid"), rs.getString("mazename"), rs.getString("creatorname"), rs.getInt("creatorid"), rs.getString("date"), rs.getString("difficulty")};
+                Object[] o = {rs.getInt("mazeid"), rs.getString("mazename"), rs.getString("creatorname"), rs.getInt("creatorid"), rs.getString("date"), rs.getString("difficulty"),rs.getString("size")};
                 tm.addRow(o);
             }
         }
