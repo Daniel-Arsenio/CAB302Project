@@ -94,6 +94,7 @@ class PublisherWindow extends JFrame{
                     mazeFrame.lblFocused_X.setVisible(false);
                     mazeFrame.lblFocused_Y.setVisible(false);
                     mazeFrame.btnExportMaze.setVisible(true);
+                    mazeFrame.btnGenerateSolution.setVisible(true);
                 }
             }
         });

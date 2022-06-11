@@ -6,56 +6,10 @@
   <component name="ChangeListManager">
     <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/Cell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/Cell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MainGUI.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MainGUI.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/Maze.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/Maze.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCLandingWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCreatorComponents/JCell$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCreatorComponents/JCell$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCreatorComponents/JCell.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeCreatorComponents/JCell.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeEditorWindow.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$10.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$10.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$11.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$11.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$12.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$12.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$13.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$13.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$14.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$14.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$15.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$15.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$16.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$16.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$17.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$17.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$18.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$18.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$19.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$19.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$20.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$20.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$8.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$8.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$9.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame$9.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/MazeJFrame.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/PublisherWindow$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/PublisherWindow$3.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/PublisherWindow$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/PublisherWindow$7.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/PublisherWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/CAB302Project/src/MazeGUI/PublisherWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/AdminWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/Cell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/GUIFunc.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/Maze.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeCLandingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeCLandingWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeCreatorComponents/JCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeCreatorComponents/JCell.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeCreatorComponents/JComponentLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeCreatorComponents/JComponentLibrary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeEditorWindow.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeJFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/mazeJFrame.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/PublisherWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/PublisherWindow.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
