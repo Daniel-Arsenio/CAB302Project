@@ -87,6 +87,18 @@ public final class JComponentLibrary {
         return jbutton;
     }
 
+    /**
+     * This method will return a general JTextField with given parameters
+     *
+     * @param panel The JPanel this button will be added to
+     * @param X_Position X Position of the button
+     * @param Y_Position Y Position of the button
+     * @param Width Width of the button
+     * @param Height Height of button
+     * @param text text displayed on the button
+     * @param Visible visibility of the button
+     * @return
+     */
     public static JTextField CreateTextField(JPanel panel, int X_Position, int Y_Position, int Width, int Height, String text, Boolean Visible){
         JTextField jTextField = new JTextField(text);
         jTextField.setBounds(X_Position, Y_Position, Width, Height);

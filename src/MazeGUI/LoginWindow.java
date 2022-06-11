@@ -6,9 +6,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.HashMap;
 
-import static src.MazeGUI.GUIFunc.addToPanel;
-
-
 class LoginWindow extends JFrame {
     final JFrame LoginWindowFrame = new JFrame("Maze Creator");
     private final JPanel loginWindow = new JPanel();
@@ -69,5 +66,30 @@ class LoginWindow extends JFrame {
         addToPanel(loginWindow, passwordLabel, constraints,1,1, 0,1,5,5,5,5);
         addToPanel(loginWindow, passwordField, constraints,1 ,1, 1,1,5,5,5,5);
         addToPanel(loginWindow, loginButton, constraints,2,1, 0,2,10,10,10,10);
+    }
+
+    /**
+     *Add ui components to panel
+     *
+     * @param jp frame for componenents to be added to
+     * @param c component being added
+     * @param constraints constraints of component
+     * @param width width of component
+     * @param height height of component
+     * @param x x position of component
+     * @param y y position of component
+     * @param top top padding of component
+     * @param bot bottom padding of component
+     * @param right right padding of component
+     * @param left left padding of component
+     */
+    public static void addToPanel(JPanel jp, Component c, GridBagConstraints
+            constraints, int width, int height, int x, int y, int top, int bot, int right, int left) {
+        constraints.gridx = x;
+        constraints.gridy = y;
+        constraints.gridwidth = width;
+        constraints.gridheight = height;
+        constraints.insets = new Insets(top,left,bot,right);
+        jp.add(c, constraints);
     }
 }

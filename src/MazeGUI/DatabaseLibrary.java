@@ -36,6 +36,12 @@ class DatabaseLibrary {
     }
     // User data functions
 
+    /**
+     * Add a user to the database
+     *
+     * @param user Hashmap string representation of user object
+     * @return true of successfully added user to database
+     */
     public boolean addUser(HashMap<String, String> user){
         try{
             ResultSet rs = st.executeQuery("Select * FROM userdata;");
@@ -63,6 +69,11 @@ class DatabaseLibrary {
         return true;
     }
 
+    /**
+     * Removes a user from database
+     *
+     * @param user Hashmap string representation of user object
+     */
     public void removeUser(HashMap<String, String> user){
         try {
             removeUser.clearParameters();
@@ -71,6 +82,13 @@ class DatabaseLibrary {
         }catch(SQLException e){ e.printStackTrace();}
     }
 
+    /**
+     * Accesses and checks permission of a user
+     *
+     * @param username username of user
+     * @param password password of user
+     * @return null
+     */
     String getPermission(String username, String password){
         try{
             checkUser.clearParameters();
@@ -83,6 +101,13 @@ class DatabaseLibrary {
         return null;
     }
 
+    /**
+     * Checks if a user exists in the database
+     *
+     * @param username username of user
+     * @param password password of user
+     * @return null
+     */
     ResultSet userExists(String username, String password) {
         try{
             checkUser.clearParameters();
@@ -93,6 +118,12 @@ class DatabaseLibrary {
         return null;
     }
 
+    /**
+     * Alter a user's information
+     *
+     * @param user Hashmap string representation of current version of user object
+     * @param newUser Hashmap string representation of new version of user object
+     */
     public void alterUser(HashMap<String, String> user, HashMap<String, String> newUser){
         try{
             alterUser.clearParameters();
@@ -129,7 +160,14 @@ class DatabaseLibrary {
         return tm;
     }
 
-
+    /**
+     * Add maze to database
+     *
+     * @param maze string representation of walls of each cell of maze
+     * @param mazeName name of maze
+     * @param xSize x size of maze
+     * @param ySize y size of maze
+     */
     // Maze data functions
     public void addMaze(String[][] maze, String mazeName, int xSize, int ySize){
         try{
@@ -183,6 +221,14 @@ class DatabaseLibrary {
         } catch(SQLException e){ e.printStackTrace();}
     }
 
+    /**
+     * Recreate maze from database as maze object
+     *
+     * @param mazeid ID of maze being pulled
+     * @param Xsize x size of maze
+     * @param Ysize y size of maze
+     * @return
+     */
     public String[][] getMazeCells(int mazeid, int Xsize, int Ysize){
         try {
             int EdgeSize = 0;
@@ -210,6 +256,12 @@ class DatabaseLibrary {
         return null;
     }
 
+    /**
+     * Edit a selected maze
+     *
+     * @param newMaze string representation of walls of each cell of maze
+     * @param mazeId ID of maze being edited
+     */
     void editMaze(String[][] newMaze, int mazeId){
         try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");

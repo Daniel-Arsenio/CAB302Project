@@ -5,14 +5,12 @@
  */
 package src.MazeGUI.MazeCreatorComponents;
 
-import src.MazeGUI.MazeJFrame;
+import src.MazeGUI.mazeJFrame;
 import src.MazeGUI.Cell;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
 import java.awt.*;
-import java.awt.event.FocusEvent;
-import java.awt.event.FocusListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.EventListener;
@@ -34,7 +32,7 @@ public class JCell extends JPanel implements EventListener {
      * @param bottom     bottom edge of the cell
      * @param right      right edge of the cell
      */
-    public JCell(int X_position, int Y_position, int Width, int Height, int top, int left, int bottom, int right, MazeJFrame mazeFrame, Cell cell) {
+    public JCell(int X_position, int Y_position, int Width, int Height, int top, int left, int bottom, int right, mazeJFrame mazeFrame, Cell cell) {
         this.setLayout(null);
         this.setBounds(X_position+2, Y_position+2, Width, Height);
         this.setBorder(new MatteBorder(top, left, bottom, right, Color.BLACK));

@@ -11,7 +11,6 @@ class PublisherWindow extends JFrame{
 
     private int selectedMaze;
     final JFrame PublisherFrame = new JFrame("User Creation");
-    private final JPanel MazeDisplayPanel = new JPanel();
     static final JTable MazeListTable = new JTable(MainGUI.database.getMazeTableModel());
     private final JScrollPane MazeListScrollPane = new JScrollPane(MazeListTable);
     private final JButton export_maze_button = new JButton();
@@ -64,25 +63,28 @@ class PublisherWindow extends JFrame{
         view_maze_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                selectedMaze = MazeListTable.getSelectedRow();
                 if (selectedMaze == -1){
                     JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze Viewer Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else {
                     int maze_id =  (int) MazeListTable.getValueAt(selectedMaze, 0);
-                    if (MazeListTable.getValueAt(selectedMaze, 5) == "Easy") {
-                        x_size = 20;
-                        y_size = 20;
-                    }
-                    else if (MazeListTable.getValueAt(selectedMaze, 5) == "Medium") {
-                        x_size = 30;
-                        y_size = 30;
-                    }
-                    else if (MazeListTable.getValueAt(selectedMaze, 5) == "Hard") {
-                        x_size = 40;
-                        y_size = 40;
+                    switch ((String) MazeListTable.getValueAt(selectedMaze, 5)) {
+                        case "Easy" -> {
+                            x_size = 20;
+                            y_size = 20;
+                        }
+                        case "Medium" -> {
+                            x_size = 30;
+                            y_size = 30;
+                        }
+                        case "Hard" -> {
+                            x_size = 40;
+                            y_size = 40;
+                        }
                     }
                     selectedMaze = -1;
-                    MazeJFrame mazeFrame = new MazeJFrame(x_size,  y_size, maze_id);
+                    mazeJFrame mazeFrame = new mazeJFrame(x_size,  y_size, maze_id);
                     mazeFrame.btnGenerateMaze.setVisible(false);
                     mazeFrame.btnSaveMaze.setVisible(false);
                     mazeFrame.btnLeft.setVisible(false);
@@ -147,7 +149,9 @@ class PublisherWindow extends JFrame{
 
     }
 
-
+    /**
+     * Set layout of Creator landing window
+     */
     private void setPublisherLayout() {
         DefaultTableModel tableModel = new DefaultTableModel(){//MainGUI.database.getMazeDataAsArray(),MainGUI.database.getMazeColumnNames()) {
 
@@ -172,16 +176,22 @@ class PublisherWindow extends JFrame{
         addToFrame(PublisherFrame, logoutPublisherButton, constraints, 1, 1, 1,7,5,5,5,5);
 
     }
-    private void addToPanel(JPanel jp,Component c, GridBagConstraints
-            constraints, int width, int height, int x, int y,int top, int bot,int right,int left) {
-        constraints.gridx = x;
-        constraints.gridy = y;
-        constraints.gridwidth = width;
-        constraints.gridheight = height;
-        constraints.insets = new Insets(top,left,bot,right);
-        jp.add(c, constraints);
-    }
 
+    /**
+     * Add a component to frame of landing window
+     *
+     * @param jf frame for componenents to be added to
+     * @param c component being added
+     * @param constraints constraints of component
+     * @param width width of component
+     * @param height height of component
+     * @param x x position of component
+     * @param y y position of component
+     * @param top top padding of component
+     * @param bot bottom padding of component
+     * @param right right padding of component
+     * @param left left padding of component
+     */
     private void addToFrame(JFrame jf,Component c, GridBagConstraints
             constraints, int width, int height, int x, int y,int top, int bot,int right,int left) {
         constraints.gridx = x;

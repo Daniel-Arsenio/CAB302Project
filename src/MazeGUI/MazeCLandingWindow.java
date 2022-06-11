@@ -1,13 +1,10 @@
 package src.MazeGUI;
 
-import com.sun.tools.javac.Main;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.HashMap;
 
 class MazeCLandingWindow extends JFrame{
 
@@ -86,7 +83,7 @@ class MazeCLandingWindow extends JFrame{
                         }
                     }
                     selected_user = -1;
-                    MazeJFrame mazeFrame = new MazeJFrame(x_size,  y_size, maze_id);
+                    mazeJFrame mazeFrame = new mazeJFrame(x_size,  y_size, maze_id);
                     mazeFrame.btnGenerateMaze.setVisible(false);
                     mazeFrame.btnSaveMaze.setVisible(false);
                     mazeFrame.btnLeft.setVisible(false);
@@ -153,7 +150,7 @@ class MazeCLandingWindow extends JFrame{
                             }
                         }
                         selected_user = -1;
-                        MazeJFrame mazeFrame = new MazeJFrame(x_size,  y_size, maze_id);
+                        mazeJFrame mazeFrame = new mazeJFrame(x_size,  y_size, maze_id);
                         mazeFrame.btnGenerateMaze.setVisible(false);
                         mazeFrame.btnAddImage.setVisible(true);
                         mazeFrame.lblImageSize.setVisible(true);
@@ -183,7 +180,9 @@ class MazeCLandingWindow extends JFrame{
 
     }
 
-
+    /**
+     * Set layout of Creator landing window
+     */
     private void setMazeCLayout() {
         DefaultTableModel tableModel = new DefaultTableModel(){//MainGUI.database.getMazeDataAsArray(),MainGUI.database.getMazeColumnNames()) {
 
@@ -209,6 +208,21 @@ class MazeCLandingWindow extends JFrame{
 
     }
 
+    /**
+     * Add a component to frame of landing window
+     *
+     * @param jf frame for componenents to be added to
+     * @param c component being added
+     * @param constraints constraints of component
+     * @param width width of component
+     * @param height height of component
+     * @param x x position of component
+     * @param y y position of component
+     * @param top top padding of component
+     * @param bot bottom padding of component
+     * @param right right padding of component
+     * @param left left padding of component
+     */
     private void addToFrame(JFrame jf,Component c, GridBagConstraints
             constraints, int width, int height, int x, int y,int top, int bot,int right,int left) {
         constraints.gridx = x;

@@ -1,7 +1,5 @@
 package src.MazeGUI;
 
-import com.sun.tools.javac.Main;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -86,11 +84,11 @@ public class Maze {
      *
      * @param mazeFrame The mazeFrame that this Maze will be displayed to
      */
-    public void GenerateMaze(MazeJFrame mazeFrame) {
+    public void GenerateMaze(mazeJFrame mazeFrame) {
         for (int x = 0; x < X_Size; x++) {
             for (int y = 0; y < Y_Size; y++) {
                 cells[x][y] = new Cell(x, y, EdgeSize, EdgeSize,EdgeSize, 0, 0, 0, 0 , mazeFrame);
-                mazeFrame.MazePanel.add(cells[x][y].getjcell());
+                mazeFrame.mazePanel.add(cells[x][y].getjcell());
             }
         }
         mazeFrame.repaint();
@@ -315,7 +313,7 @@ public class Maze {
      *
      * @param mazeFrame The frame that this Maze will be displayed on
      */
-    public void GenerateSolution(MazeJFrame mazeFrame) {
+    public void GenerateSolution(mazeJFrame mazeFrame) {
         setAllCells_unVisited();
         X_currentLocation=0;Y_currentLocation=0;
         TraceBack_List = new ArrayList<String>();
@@ -573,11 +571,19 @@ public class Maze {
      * @param mazeframe frame displaying from
      * @param mazeName name of maze being saved
      */
-    public void saveMaze(MazeJFrame mazeframe, String mazeName){
-        MainGUI.database.addMaze(asStringList(cells, mazeframe.ControllerPanel), mazeName, X_Size, Y_Size);
+    public void saveMaze(mazeJFrame mazeframe, String mazeName){
+        MainGUI.database.addMaze(asStringList(cells, mazeframe.controllerPanel), mazeName, X_Size, Y_Size);
     }
 
-    public void loadMaze(int mazeid, MazeJFrame frame, int xsize, int ysize) {
+    /**
+     * Load a selected maze from the database
+     *
+     * @param mazeid ID of maze being loaded
+     * @param frame frame on which to load maze
+     * @param xsize x size of frame on which to load maze
+     * @param ysize y size of rame on which to load maze
+     */
+    public void loadMaze(int mazeid, mazeJFrame frame, int xsize, int ysize) {
         String[][] mazestr = MainGUI.database.getMazeCells(mazeid, xsize, ysize);
         for (int y = 0; y< Y_Size; y++){
             for(int x = 0; x< X_Size; x++){
@@ -591,14 +597,20 @@ public class Maze {
         }
         for (int i = 0; i < Y_Size; i++ ){
             for(int j=0; j < X_Size; j++){
-                frame.MazePanel.add(cells[i][j].getjcell());
+                frame.mazePanel.add(cells[i][j].getjcell());
             }
         }
-        frame.MazePanel.setVisible(true);
-        frame.MazePanel.repaint();
+        frame.mazePanel.setVisible(true);
+        frame.mazePanel.repaint();
     }
 
-    public void saveEdit(MazeJFrame mazeframe, int mazeId) {
-        MainGUI.database.editMaze(asStringList(cells, mazeframe.ControllerPanel), mazeId);
+    /**
+     * Save the edited changes of a maze
+     *
+     * @param mazeframe frame of maze being edited
+     * @param mazeId ID of maze being edited
+     */
+    public void saveEdit(mazeJFrame mazeframe, int mazeId) {
+        MainGUI.database.editMaze(asStringList(cells, mazeframe.controllerPanel), mazeId);
     }
 }

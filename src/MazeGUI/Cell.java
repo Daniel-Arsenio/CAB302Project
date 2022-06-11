@@ -6,7 +6,6 @@ package src.MazeGUI;
 import src.MazeGUI.MazeCreatorComponents.JCell;
 
 
-import javax.swing.border.MatteBorder;
 import java.awt.*;
 
 public class Cell {
@@ -20,7 +19,7 @@ public class Cell {
 
      public boolean Visited=false;
 
-     public Cell(int X_position, int Y_position, int Width, int Height, int EdgeSize ,int top, int left, int bottom, int right, MazeJFrame mazeJFrame)
+     public Cell(int X_position, int Y_position, int Width, int Height, int EdgeSize ,int top, int left, int bottom, int right, mazeJFrame mazeJFrame)
      {
           jCell = new JCell(X_position*EdgeSize, Y_position*EdgeSize, Width, Height, top, left, bottom, right , mazeJFrame , this);
           X_pos = X_position;
@@ -57,26 +56,41 @@ public class Cell {
           return jCell.CheckWall(target);
      }
 
+     /**
+      * Mark traced back
+      */
      public void markTracedBack(){
           jCell.setBackground(null);
           jCell.repaint();
      }
 
+     /**
+      * Mark cell that "miner" has been to
+      */
      public void markTraveled(){
           jCell.setBackground(Color.GREEN);
           jCell.repaint();
      }
 
+     /**
+      * Remove mark that "miner" placed
+      */
      public void removeMark(){
           jCell.setBackground(null);
           jCell.repaint();
      }
 
+     /**
+      * Drop focus on currently selected cell
+      */
      public void dropCellFocus(){
           jCell.setBackground(null);
           jCell.repaint();
      }
 
+     /**
+      *  Focus on selected cell
+      */
      public void gainCellFocus(){
           jCell.setBackground(Color.GREEN);
           jCell.repaint();
