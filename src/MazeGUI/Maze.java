@@ -1,5 +1,7 @@
 package src.MazeGUI;
 
+import com.sun.tools.javac.Main;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -594,5 +596,9 @@ public class Maze {
         }
         frame.MazePanel.setVisible(true);
         frame.MazePanel.repaint();
+    }
+
+    public void saveEdit(MazeJFrame mazeframe, int mazeId) {
+        MainGUI.database.editMaze(asStringList(cells, mazeframe.ControllerPanel), mazeId);
     }
 }

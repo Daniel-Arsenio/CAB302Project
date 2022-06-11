@@ -17,6 +17,7 @@ class DatabaseLibrary {
     private final PreparedStatement checkUser = connect.prepareStatement("SELECT * FROM userdata WHERE username = ? AND password = ?;");
     private final PreparedStatement alterUser = connect.prepareStatement("UPDATE userdata SET username = ?, password = ?, permission = ? WHERE userid = ?;");
     private final PreparedStatement addMaze = connect.prepareStatement("INSERT INTO mazedata VALUES(?, ?, ?, ?, ?, ?, ?)");
+    private final PreparedStatement editDate = connect.prepareStatement("UPDATE mazedata SET lastedited = ? WHERE mazeid = ?;");
     private final Statement getData = connect.createStatement();
     private final LinkedList<Integer> userIdsAvailable = new LinkedList<>();
     private final LinkedList<Integer> mazeIdsAvailable = new LinkedList<>();
@@ -29,7 +30,7 @@ class DatabaseLibrary {
         st.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
         st.execute("USE mazeco;");
         st.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT NOT NULL PRIMARY KEY, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
-        st.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, mazename VARCHAR(100), creatorname VARCHAR(100), creatorid INT NOT NULL, date VARCHAR(20), difficulty VARCHAR(20), size VARCHAR(20), FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
+        st.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, mazename VARCHAR(100), creatorname VARCHAR(100), creatorid INT NOT NULL, date VARCHAR(20), difficulty VARCHAR(20), lastedited VARCHAR(20), FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
         st.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
         connect.commit();
     }
@@ -136,8 +137,16 @@ class DatabaseLibrary {
             LocalDateTime date = LocalDateTime.now();
             ResultSet user = userExists(MainGUI.currentUser.get("Username"), MainGUI.currentUser.get("Password"));
             addMaze.setString(5, dtf.format(date));
-            addMaze.setString(6, "Not Implemented");
-            addMaze.setString(7,xSize + "x" + ySize);
+            addMaze.setString(7, dtf.format(date));
+            if (xSize == 20 && ySize == 20) {
+                addMaze.setString(6, "Easy");
+            }
+            else if (xSize == 30 && ySize == 30){
+                addMaze.setString(6, "Medium");
+            }
+            else {
+                addMaze.setString(6, "Hard");
+            }
             int id;
             user.next();
             addMaze.setInt(4, user.getInt("userid"));
@@ -201,6 +210,31 @@ class DatabaseLibrary {
         return null;
     }
 
+    void editMaze(String[][] newMaze, int mazeId){
+        try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+            LocalDateTime date = LocalDateTime.now();
+            st.execute("DROP TABLE m"+mazeId+";");
+
+            PreparedStatement editedMaze = connect.prepareStatement("CREATE TABLE IF NOT EXISTS m"+ mazeId +"(c0 VARCHAR(5))");
+            editedMaze.execute();
+            for (int i = 1; i < newMaze[0].length; i++) st.execute("ALTER TABLE m"+ mazeId +" ADD COLUMN(c"+ i +" VARCHAR(5));");
+            for (String[] strings : newMaze) {
+                String currentLine = "";
+                for (int j = 0; j < newMaze[0].length; j++) {
+                    if (j == newMaze[0].length - 1) currentLine += "'" + strings[j] + "'";
+                    else currentLine += "'" + strings[j] + "', ";
+                }
+                st.execute("INSERT INTO m" + mazeId + " VALUES(" + currentLine + ");");
+            }
+
+            editDate.setString(1, dtf.format(date));
+            editDate.setInt(2, mazeId);
+            editDate.execute();
+        }catch(SQLException e){e.printStackTrace();}
+
+    }
+
     DefaultTableModel getMazeTableModel(){
         ResultSet rs;
         DefaultTableModel tm = new DefaultTableModel(){
@@ -216,12 +250,12 @@ class DatabaseLibrary {
         tm.addColumn("creatorid");
         tm.addColumn("date");
         tm.addColumn("difficulty");
-        tm.addColumn("size");
+        tm.addColumn("last edited");
         tm.setRowCount(0);
         try {
             rs = getData.executeQuery("SELECT * FROM mazedata;");
             while(rs.next()){
-                Object[] o = {rs.getInt("mazeid"), rs.getString("mazename"), rs.getString("creatorname"), rs.getInt("creatorid"), rs.getString("date"), rs.getString("difficulty"),rs.getString("size")};
+                Object[] o = {rs.getInt("mazeid"), rs.getString("mazename"), rs.getString("creatorname"), rs.getInt("creatorid"), rs.getString("date"), rs.getString("difficulty"), rs.getString("lastedited")};
                 tm.addRow(o);
             }
         }

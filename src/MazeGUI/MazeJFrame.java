@@ -6,16 +6,12 @@ package src.MazeGUI;
 import src.MazeGUI.MazeCreatorComponents.JComponentLibrary;
 
 
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
 public class MazeJFrame extends JFrame {
 
@@ -26,8 +22,8 @@ public class MazeJFrame extends JFrame {
     public JButton btnLeft,btnRight,btnTop,btnBottom,btnClose,btnGenerateMaze,btnGenerateSolution,btnAddImage, btnSave, btnLoad,btnExportMaze, btnBack, btnSaveMaze;
     public JLabel lblFocused_X,lblFocused_Y,lblImageSize;
     public JTextField tfImageSize;
-    int X_MazeSize;
-    int Y_MazeSize;
+    int xMazeSize;
+    int yMazeSize;
     private int EdgeSize = 20;
     private Maze maze;
     private boolean solution = false;
@@ -52,8 +48,8 @@ public class MazeJFrame extends JFrame {
         if(X_MazeSize>=80 && Y_MazeSize>=80){
             EdgeSize = 7;
         }
-        this.X_MazeSize=X_MazeSize;
-        this.Y_MazeSize=Y_MazeSize;
+        this.xMazeSize =X_MazeSize;
+        this.yMazeSize =Y_MazeSize;
         this.setVisible(true);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -73,7 +69,7 @@ public class MazeJFrame extends JFrame {
         btnBack = JComponentLibrary.CreateButton(ControllerPanel, 0, ControllerPanel.getHeight()-50,200,50,"Back",true);
         btnGenerateMaze = JComponentLibrary.CreateButton(ControllerPanel,0,250,200,50,"Generate Maze",true);
         btnGenerateSolution = JComponentLibrary.CreateButton(ControllerPanel,0,300,200,50,"Generate Solution",false);
-        btnSaveMaze = JComponentLibrary.CreateButton(ControllerPanel,0,430,200,50,"Save Maze",true);
+        btnSaveMaze = JComponentLibrary.CreateButton(ControllerPanel,0,430,200,50,"Save Maze",false);
         tfImageSize=JComponentLibrary.CreateTextField(ControllerPanel,100,400,100,25,null,false);
 
         btnExportMaze = JComponentLibrary.CreateButton(ControllerPanel,0,530,200,50,"Export Maze to image",false);
@@ -248,8 +244,8 @@ public class MazeJFrame extends JFrame {
         if(X_MazeSize>=80 && Y_MazeSize>=80){
             EdgeSize = 7;
         }
-        this.X_MazeSize=X_MazeSize;
-        this.Y_MazeSize=Y_MazeSize;
+        this.xMazeSize =X_MazeSize;
+        this.yMazeSize =Y_MazeSize;
         this.setVisible(true);
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
         this.setResizable(false);
@@ -269,7 +265,7 @@ public class MazeJFrame extends JFrame {
         btnBack = JComponentLibrary.CreateButton(ControllerPanel, 0, ControllerPanel.getHeight()-50,200,50,"Back",true);
         btnGenerateMaze = JComponentLibrary.CreateButton(ControllerPanel,0,250,200,50,"Generate Maze",true);
         btnGenerateSolution = JComponentLibrary.CreateButton(ControllerPanel,0,300,200,50,"Generate Solution",false);
-        btnSaveMaze = JComponentLibrary.CreateButton(ControllerPanel,0,430,200,50,"Save Maze",true);
+        btnSaveMaze = JComponentLibrary.CreateButton(ControllerPanel,0,430,200,50,"Save Maze",false);
         tfImageSize=JComponentLibrary.CreateTextField(ControllerPanel,100,400,100,25,null,false);
 
         btnExportMaze = JComponentLibrary.CreateButton(ControllerPanel,0,530,200,50,"Export Maze to image",false);
@@ -404,9 +400,7 @@ public class MazeJFrame extends JFrame {
         btnSaveMaze.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                int choice = JOptionPane.showOptionDialog(MazePanel,new Object[]{"Insert Maze Name:",mazeName},"Save Maze"
-                        ,JOptionPane.OK_CANCEL_OPTION,JOptionPane.QUESTION_MESSAGE,null,null,null);
-                saveMaze();
+                editMaze(mazeID);
             }
         });
 
@@ -433,28 +427,15 @@ public class MazeJFrame extends JFrame {
     private void GenerateNewMaze() {
         this.MazePanel.removeAll();
         this.repaint();
-        maze = new Maze(X_MazeSize,Y_MazeSize);
+        maze = new Maze(xMazeSize, yMazeSize);
         maze.GenerateMaze(this);
         btnGenerateSolution.setVisible(true);
         btnLoad.setVisible(true);
         btnAddImage.setVisible(true);
         btnExportMaze.setVisible(true);
-        //btnSave.setVisible(true);
         tfImageSize.setVisible(true);
         lblImageSize.setVisible(true);
-        this.repaint();
-    }
-
-    void reGenerateMaze(int mazeid){
-        this.MazePanel.removeAll();
-        this.repaint();
-
-        btnGenerateSolution.setVisible(true);
-        btnLoad.setVisible(true);
-        btnAddImage.setVisible(true);
-        btnExportMaze.setVisible(true);
-        tfImageSize.setVisible(true);
-        lblImageSize.setVisible(true);
+        btnSaveMaze.setVisible(true);
         this.repaint();
     }
 
@@ -487,5 +468,10 @@ public class MazeJFrame extends JFrame {
     private void loadMaze(int mazeID, int xsize, int ysize) {
         maze = new Maze(xsize, ysize);
         maze.loadMaze(mazeID, this, xsize,ysize);
+    }
+
+
+    private void editMaze(int mazeId) {
+        maze.saveEdit(this, mazeId);
     }
 }
