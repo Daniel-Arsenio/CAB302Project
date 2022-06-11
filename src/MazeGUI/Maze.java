@@ -576,7 +576,17 @@ public class Maze {
     }
 
     public void loadMaze(int mazeid, MazeJFrame frame) {
-        cells = MainGUI.database.getMazeCells(mazeid, X_Size, Y_Size);
+        String[][] mazestr = MainGUI.database.getMazeCells(mazeid, X_Size, Y_Size);
+        for (int y = 0; y< Y_Size; y++){
+            for(int x = 0; x< X_Size; x++){
+                cells[x][y] = new Cell(x, y, EdgeSize, EdgeSize, EdgeSize,
+                        Integer.parseInt(String.valueOf(mazestr[y][x].toCharArray()[2])),
+                        Integer.parseInt(String.valueOf(mazestr[y][x].toCharArray()[1])),
+                        Integer.parseInt(String.valueOf(mazestr[y][x].toCharArray()[3])),
+                        Integer.parseInt(String.valueOf(mazestr[y][x].toCharArray()[0])),
+                        frame);
+            }
+        }
         for (int i = 0; i < Y_Size; i++ ){
             for(int j=0; j < X_Size; j++){
                 frame.MazePanel.add(cells[i][j].getjcell());

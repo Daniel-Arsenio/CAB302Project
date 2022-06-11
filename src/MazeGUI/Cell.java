@@ -10,7 +10,6 @@ import javax.swing.border.MatteBorder;
 import java.awt.*;
 
 public class Cell {
-     private int CellId = 0;
      private int X_pos;
      private int Y_pos;
      private JCell jCell;

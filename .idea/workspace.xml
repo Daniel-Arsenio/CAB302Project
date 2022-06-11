@@ -7,6 +7,7 @@
     <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/db.props" beforeDir="false" afterPath="$PROJECT_DIR$/db.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/Cell.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/DatabaseLibrary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/Maze.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeCLandingWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeCLandingWindow.java" afterDir="false" />
@@ -57,6 +58,7 @@
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="advanced.settings" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">

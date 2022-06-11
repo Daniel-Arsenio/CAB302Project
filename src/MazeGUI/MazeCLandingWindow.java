@@ -88,12 +88,11 @@ class MazeCLandingWindow extends JFrame{
         viewMaze.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                selected_user = mazeListTable.getSelectedRow();
-                if (selected_user == -1){
+                if (selectedMaze == -1){
                     JOptionPane.showMessageDialog(MazeCFrame,"Please select a maze.", "Maze Viewer Error", JOptionPane.ERROR_MESSAGE);
                 }
                 else {
-                    int maze_id =  (int) mazeListTable.getValueAt(selected_user, 0);
+                    int maze_id =  (int) mazeListTable.getValueAt(selectedMaze, 0);
                     MazeJFrame mazeFrame = new MazeJFrame(30,  30, maze_id);
                 }
             }

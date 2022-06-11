@@ -444,9 +444,11 @@ public class MazeJFrame extends JFrame {
         lblImageSize.setVisible(true);
         this.repaint();
     }
+
     void reGenerateMaze(int mazeid){
         this.MazePanel.removeAll();
         this.repaint();
+
         btnGenerateSolution.setVisible(true);
         btnLoad.setVisible(true);
         btnAddImage.setVisible(true);

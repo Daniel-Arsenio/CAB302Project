@@ -175,7 +175,7 @@ class DatabaseLibrary {
         } catch(SQLException e){ e.printStackTrace();}
     }
 
-    public Cell[][] getMazeCells(int mazeid, int Xsize, int Ysize){
+    public String[][] getMazeCells(int mazeid, int Xsize, int Ysize){
         try {
             int EdgeSize = 0;
             if(Xsize>=40 && Ysize>=40){
@@ -197,18 +197,7 @@ class DatabaseLibrary {
                     mazestr[i][j] = rs.getString(j+1);
                 }
             }
-            Cell[][] resultCells = new Cell[Ysize][Xsize];
-            for (int i = 0; i<resultCells.length; i++){
-                for(int j = 0; j<resultCells[0].length; j++){
-                    resultCells[i][j] = new Cell(i, j, EdgeSize, EdgeSize, EdgeSize,
-                            Integer.parseInt(String.valueOf(mazestr[i][j].toCharArray()[2])),
-                            Integer.parseInt(String.valueOf(mazestr[i][j].toCharArray()[1])),
-                            Integer.parseInt(String.valueOf(mazestr[i][j].toCharArray()[3])),
-                            Integer.parseInt(String.valueOf(mazestr[i][j].toCharArray()[0])),
-                            MainGUI.mainMazeEditorWindow);
-                }
-            }
-            return resultCells;
+            return mazestr;
         }catch(SQLException e){e.printStackTrace();}
         return null;
     }
