@@ -33,11 +33,11 @@ class CellTest {
 
     @Test
     void getY_pos() {
-        assertEquals(2,cell[3][2].getX_pos());
-        assertEquals(3,cell[1][3].getX_pos());
-        assertEquals(4,cell[2][4].getX_pos());
-        assertEquals(0,cell[4][0].getX_pos());
-        assertNotEquals(2,cell[2][4].getX_pos());
+        assertEquals(2,cell[3][2].getY_pos());
+        assertEquals(3,cell[1][3].getY_pos());
+        assertEquals(4,cell[2][4].getY_pos());
+        assertEquals(0,cell[4][0].getY_pos());
+        assertNotEquals(2,cell[2][4].getY_pos());
     }
 
     @Test
@@ -50,6 +50,7 @@ class CellTest {
     @Test
     void addCellWall() {
         cell[3][3].AddCellWall("left");
+        cell[2][3].AddCellWall("right");
         assertEquals(2,cell[3][3].getLeftEdge());
         assertEquals(2,cell[2][3].getRightEdge());
     }
