@@ -1,11 +1,11 @@
 package src.Model.Interfaces;
 
+import org.junit.jupiter.api.function.Executable;
 import src.MazeGUI.MazeJFrame;
 
 import javax.swing.*;
 
 public interface IMaze {
-
         void GenerateMaze(MazeJFrame mazeFrame);
 
         void createImage(JPanel panel, int Width, int Height, String pathname);

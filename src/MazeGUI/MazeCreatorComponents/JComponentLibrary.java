@@ -97,7 +97,7 @@ public final class JComponentLibrary {
      * @param Height Height of button
      * @param text text displayed on the button
      * @param Visible visibility of the button
-     * @return
+     * @return Generic JTextfield
      */
     public static JTextField CreateTextField(JPanel panel, int X_Position, int Y_Position, int Width, int Height, String text, Boolean Visible){
         JTextField jTextField = new JTextField(text);

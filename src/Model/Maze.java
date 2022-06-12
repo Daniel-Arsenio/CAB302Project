@@ -1,8 +1,8 @@
 package src.Model;
 
+import org.junit.jupiter.api.function.Executable;
 import src.MazeGUI.MainGUI;
 import src.MazeGUI.MazeJFrame;
-import src.Model.Cell;
 import src.Model.Interfaces.IMaze;
 
 import javax.imageio.ImageIO;
@@ -22,9 +22,6 @@ public class Maze implements IMaze {
     //private MazeJFrame mazeFrame;
     private int cellsGenerated_counter = 0;
     ArrayList<String> TraceBack_List = new ArrayList<String>();
-
-    private long delay = 0;
-
     //Starting position always 0 , 0
     private int X_currentLocation = 0;
     private int Y_currentLocation = 0;
@@ -33,7 +30,6 @@ public class Maze implements IMaze {
     private int Y_Size;
 
     private int EdgeSize = 20;
-
 
     /**
      * Constructor
@@ -56,8 +52,17 @@ public class Maze implements IMaze {
         if(X_Size>=80 && Y_Size>=80){
             EdgeSize = 7;
         }
-        //mazeFrame.setVisible(true);
-        //GenerateMaze();
+    }
+
+    /**
+     * Return the specific cell
+     *
+     * @param x X position of the cell
+     * @param y Y position of the cell
+     * @return
+     */
+    public Cell getCell(int x,int y){
+        return cells[x][y];
     }
 
     /**
@@ -83,6 +88,7 @@ public class Maze implements IMaze {
      * Generate the Maze
      *
      * @param mazeFrame The mazeFrame that this Maze will be displayed to
+     * @return
      */
     public void GenerateMaze(MazeJFrame mazeFrame) {
         for (int x = 0; x < X_Size; x++) {
