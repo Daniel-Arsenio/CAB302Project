@@ -13,8 +13,6 @@ class PublisherWindow extends JFrame{
     final JFrame PublisherFrame = new JFrame("User Creation");
     static final JTable MazeListTable = new JTable(MainGUI.database.getMazeTableModel());
     private final JScrollPane MazeListScrollPane = new JScrollPane(MazeListTable);
-    private final JButton export_maze_button = new JButton();
-    private final JButton export_solution_button = new JButton();
     private final JButton view_maze_button = new JButton();
     private final JButton logoutPublisherButton = new JButton();
     private int x_size=0;
@@ -42,12 +40,6 @@ class PublisherWindow extends JFrame{
 
         view_maze_button.setText("View Maze");
         view_maze_button.setPreferredSize(new Dimension(200,40));
-
-        export_maze_button.setText("Export Maze Design(s)");
-        export_maze_button.setPreferredSize(new Dimension(200,40));
-
-        export_solution_button.setText("Export Maze Solution(s)");
-        export_solution_button.setPreferredSize(new Dimension(200,40));
 
         logoutPublisherButton.setText("Logout");
         logoutPublisherButton.setPreferredSize(new Dimension(200,40));
@@ -99,42 +91,6 @@ class PublisherWindow extends JFrame{
             }
         });
 
-        export_maze_button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                //selected_user = MazeListTable.getSelectedRow();
-                //if (selected_user == -1){
-                //JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze export error", JOptionPane.ERROR_MESSAGE);
-                // }
-                // else {
-                JFileChooser fileChooser = new JFileChooser();
-                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
-                int response = fileChooser.showOpenDialog(PublisherFrame);
-                if(response == JFileChooser.APPROVE_OPTION){
-                    String fileName = fileChooser.getSelectedFile().toString();
-                    JOptionPane.showMessageDialog(PublisherFrame,fileName, "Maze Export Notification", JOptionPane.ERROR_MESSAGE);
-
-                }else{
-                    JOptionPane.showMessageDialog(PublisherFrame,"Folder open operation was cancelled", "Maze export error", JOptionPane.ERROR_MESSAGE);
-                }
-                JOptionPane.showMessageDialog(null, "Maze export successful");
-                // }
-            }
-        });
-
-        export_solution_button.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                selectedMaze = MazeListTable.getSelectedRow();
-                if (selectedMaze == -1){
-                    JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze export error", JOptionPane.ERROR_MESSAGE);
-                }
-                else {
-                    JOptionPane.showMessageDialog(null, "Solution export successful");
-                }
-            }
-        });
-
         logoutPublisherButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -171,8 +127,6 @@ class PublisherWindow extends JFrame{
         constraints.anchor = GridBagConstraints.NORTHEAST;
 
         addToFrame(PublisherFrame, MazeListScrollPane, constraints, 1, 5, 0,1,5,5,5,5);
-        addToFrame(PublisherFrame, export_maze_button, constraints, 1, 1, 1,2,5,5,5,5);
-        addToFrame(PublisherFrame, export_solution_button, constraints, 1, 1, 1,3,5,5,5,5);
         addToFrame(PublisherFrame, view_maze_button, constraints, 1, 1, 1,1,5,5,5,5);
         addToFrame(PublisherFrame, logoutPublisherButton, constraints, 1, 1, 1,7,5,5,5,5);
 

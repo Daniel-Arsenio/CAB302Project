@@ -5,7 +5,6 @@ import src.MazeGUI.MazeJFrame;
 import javax.swing.*;
 
 public interface IMaze {
-
         void GenerateMaze(MazeJFrame mazeFrame);
 
         void createImage(JPanel panel, int Width, int Height, String pathname);

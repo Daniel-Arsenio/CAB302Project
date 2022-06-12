@@ -387,7 +387,6 @@ public class MazeJFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 MazeCLandingWindow.mazeListTable.setModel(MainGUI.database.getMazeTableModel());
                 closeFrame();
-                MainGUI.openMazeC();
             }
         });
 

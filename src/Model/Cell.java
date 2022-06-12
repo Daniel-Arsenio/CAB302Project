@@ -8,6 +8,7 @@ import src.MazeGUI.MazeJFrame;
 import src.Model.Interfaces.ICell;
 
 
+import javax.swing.border.MatteBorder;
 import java.awt.*;
 
 public class Cell implements ICell {
@@ -47,6 +48,40 @@ public class Cell implements ICell {
      }
 
      /**
+      * Get top edge
+      * @return topEdge
+      */
+     public int getTopEdge(){
+          return topEdge;
+     }
+
+     /**
+      * Get left edge
+      * @return leftEdge
+      */
+     public int getLeftEdge(){
+          return leftEdge;
+     }
+
+     /**
+      * get right edge
+      *
+      * @return rightEdge
+      */
+     public int getRightEdge(){
+          return rightEdge;
+     }
+
+     /**
+      * get bottom edge
+      *
+      * @return bottomEdge
+      */
+     public int getBottomEdgeEdge(){
+          return bottomEdge;
+     }
+
+     /**
       * Return the jcell component
       *
       * @return Jcell
@@ -79,6 +114,27 @@ public class Cell implements ICell {
       * @param target
       */
      public void BreakCellWall(String target){
+          //Adding handler at the object
+          if (target == "top")
+          {
+               topEdge=0;
+
+          }
+          if (target == "left")
+          {
+               leftEdge=0;
+
+          }
+          if (target == "bottom")
+          {
+               bottomEdge=0;
+
+          }
+          if (target == "right") {
+               rightEdge = 0;
+          }
+
+
           jCell.BreakWall(target);
           jCell.repaint();
      }
@@ -86,13 +142,39 @@ public class Cell implements ICell {
      /**
       * Add the selected cell wall
       *
-      * @param target
+      * @param target wall
       */
      public void AddCellWall(String target){
+          //Adding handler at the object
+          if (target == "top")
+          {
+               topEdge=2;
+
+          }
+          if (target == "left")
+          {
+               leftEdge=2;
+
+          }
+          if (target == "bottom")
+          {
+               bottomEdge=2;
+
+          }
+          if (target == "right") {
+               rightEdge = 2;
+          }
+
           jCell.AddWall(target);
           jCell.repaint();
      }
 
+     /**
+      * Check if the cell is reachable
+      *
+      * @param target target direction
+      * @return true/false
+      */
      public boolean IsReachable(String target){
           return jCell.CheckWall(target);
      }
