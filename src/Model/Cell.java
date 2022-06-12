@@ -114,6 +114,26 @@ public class Cell implements ICell {
       * @param target
       */
      public void BreakCellWall(String target){
+          //Adding handler at the object
+          if (target == "top")
+          {
+               topEdge=0;
+
+          }
+          if (target == "left")
+          {
+               leftEdge=0;
+
+          }
+          if (target == "bottom")
+          {
+               bottomEdge=0;
+
+          }
+          if (target == "right") {
+               rightEdge = 0;
+          }
+
 
           jCell.BreakWall(target);
           jCell.repaint();
@@ -125,6 +145,26 @@ public class Cell implements ICell {
       * @param target wall
       */
      public void AddCellWall(String target){
+          //Adding handler at the object
+          if (target == "top")
+          {
+               topEdge=2;
+
+          }
+          if (target == "left")
+          {
+               leftEdge=2;
+
+          }
+          if (target == "bottom")
+          {
+               bottomEdge=2;
+
+          }
+          if (target == "right") {
+               rightEdge = 2;
+          }
+
           jCell.AddWall(target);
           jCell.repaint();
      }
