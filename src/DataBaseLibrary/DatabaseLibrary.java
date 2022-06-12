@@ -24,12 +24,13 @@ public class DatabaseLibrary {
 
     public DatabaseLibrary() throws SQLException {
         //init database
-        st.execute("DROP DATABASE IF EXISTS mazeco;");
         st.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
         st.execute("USE mazeco;");
         st.execute("CREATE TABLE IF NOT EXISTS userdata (userid INT NOT NULL PRIMARY KEY, username VARCHAR(100), password VARCHAR(32), permission VARCHAR(9));");
         st.execute("CREATE TABLE IF NOT EXISTS mazedata (mazeid INT, mazename VARCHAR(100), creatorname VARCHAR(100), creatorid INT NOT NULL, date VARCHAR(20), difficulty VARCHAR(20), lastedited VARCHAR(20), FOREIGN KEY (creatorid) REFERENCES userdata(userid))");
-        st.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
+        if (!userExists("root", "root").next()){
+            st.execute("INSERT INTO userdata VALUES(0, 'root', 'root', 'Admin');");
+        }
         connect.commit();
     }
     // User data functions
