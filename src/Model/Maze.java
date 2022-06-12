@@ -3,6 +3,7 @@ package src.Model;
 import src.MazeGUI.MainGUI;
 import src.MazeGUI.MazeJFrame;
 import src.Model.Cell;
+import src.Model.Interfaces.IMaze;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -13,7 +14,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class Maze {
+public class Maze implements IMaze {
     /**
      * Variable Declaration
      */

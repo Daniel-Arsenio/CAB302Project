@@ -5,11 +5,12 @@ package src.Model;
 
 import src.MazeGUI.MazeCreatorComponents.JCell;
 import src.MazeGUI.MazeJFrame;
+import src.Model.Interfaces.ICell;
 
 
 import java.awt.*;
 
-public class Cell {
+public class Cell implements ICell {
      private int X_pos;
      private int Y_pos;
      private JCell jCell;

@@ -1,7 +1,7 @@
 package src.DataBaseLibrary;
 
-import com.sun.tools.javac.Main;
 import src.MazeGUI.MainGUI;
+import src.Model.Interfaces.*;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
