@@ -80,6 +80,7 @@ public class DatabaseLibrary {
             removeUser.clearParameters();
             removeUser.setInt(1, Integer.parseInt(user.get("ID")));
             removeUser.execute();
+            this.userCount--;
         }catch(SQLException e){ e.printStackTrace();}
     }
 
