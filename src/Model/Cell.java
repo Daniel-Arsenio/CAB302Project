@@ -77,7 +77,7 @@ public class Cell implements ICell {
       *
       * @return bottomEdge
       */
-     public int getBottomEdgeEdge(){
+     public int getBottomEdge(){
           return bottomEdge;
      }
 
