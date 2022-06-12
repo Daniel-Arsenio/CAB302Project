@@ -1,46 +1,47 @@
-package MazeGUI;
+package src.MazeGUI;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
+import javax.swing.JFileChooser;
 
 class PublisherWindow extends JFrame{
 
-    private int selected_user;
+    private int selectedMaze;
     final JFrame PublisherFrame = new JFrame("User Creation");
-    private final JLabel MazeViewerLabel = new JLabel();
-    private final JPanel MazeDisplayPanel = new JPanel();
-    private final JTable MazeListTable = new JTable();
+    static final JTable MazeListTable = new JTable(MainGUI.database.getMazeTableModel());
     private final JScrollPane MazeListScrollPane = new JScrollPane(MazeListTable);
     private final JButton export_maze_button = new JButton();
     private final JButton export_solution_button = new JButton();
     private final JButton view_maze_button = new JButton();
-    private final JButton view_solution_button = new JButton();
     private final JButton logoutPublisherButton = new JButton();
-    private final JButton publishButton = new JButton();
+    private int x_size=0;
+    private int y_size=0;
 
     public PublisherWindow(){
         PublisherFrame.setSize(1400, 1000);
         PublisherFrame.setResizable(false);
-        MazeDisplayPanel.setPreferredSize(new Dimension(1000,550));
-        MazeListScrollPane.setPreferredSize(new Dimension(1000,200));
+        MazeListScrollPane.setPreferredSize(new Dimension(1000,750));
+        MazeListTable.setAutoCreateRowSorter(true);
+        MazeListTable.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                selectedMaze = MazeListTable.getSelectedRow();
+            }
+        });
 
         Border blackline = BorderFactory.createLineBorder(Color.black);
-        MazeDisplayPanel.setBackground(Color.WHITE);
-        MazeDisplayPanel.setBorder(blackline);
         MazeListScrollPane.setBackground(Color.WHITE);
         MazeListScrollPane.setBorder(blackline);
 
         view_maze_button.setText("View Maze");
         view_maze_button.setPreferredSize(new Dimension(200,40));
-
-        view_solution_button.setText("View Solution");
-        view_solution_button.setPreferredSize(new Dimension(200,40));
-
-        publishButton.setText("Publish Maze");
-        publishButton.setPreferredSize(new Dimension(200,40));
 
         export_maze_button.setText("Export Maze Design(s)");
         export_maze_button.setPreferredSize(new Dimension(200,40));
@@ -58,39 +59,42 @@ class PublisherWindow extends JFrame{
             }
         });
 
-        MazeViewerLabel.setText("Maze Preview");
-        MazeViewerLabel.setFont(new Font("Times New Roman", Font.ITALIC, 50));
-
-        JLabel lbl = new JLabel();
-        MazeDisplayPanel.add(lbl);
 
         view_maze_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                selected_user = MazeListTable.getSelectedRow();
-                if (selected_user == -1){
+                selectedMaze = MazeListTable.getSelectedRow();
+                if (selectedMaze == -1){
                     JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze Viewer Error", JOptionPane.ERROR_MESSAGE);
                 }
-                else if (MainGUI.DataBase.getMazeData().get(selected_user)[0].equals("1")) {
-                    ImageIcon Maze = new ImageIcon("Maze1.JPG");
-                    Image image = Maze.getImage();
-                    Image newimg = image.getScaledInstance(980, 530,  Image.SCALE_SMOOTH); // scale it the smooth way
-                    Maze = new ImageIcon(newimg);
-                    lbl.setIcon(Maze);
-                }
-                else if (MainGUI.DataBase.getMazeData().get(selected_user)[0].equals("2")) {
-                    ImageIcon Maze = new ImageIcon("Maze2.JPG");
-                    Image image = Maze.getImage();
-                    Image newimg = image.getScaledInstance(980, 530,  Image.SCALE_SMOOTH); // scale it the smooth way
-                    Maze = new ImageIcon(newimg);
-                    lbl.setIcon(Maze);
-                }
-                else if (MainGUI.DataBase.getMazeData().get(selected_user)[0].equals("3")) {
-                    ImageIcon Maze = new ImageIcon("Maze3.JPG");
-                    Image image = Maze.getImage();
-                    Image newimg = image.getScaledInstance(980, 530,  Image.SCALE_SMOOTH); // scale it the smooth way
-                    Maze = new ImageIcon(newimg);
-                    lbl.setIcon(Maze);
+                else {
+                    int maze_id =  (int) MazeListTable.getValueAt(selectedMaze, 0);
+                    switch ((String) MazeListTable.getValueAt(selectedMaze, 5)) {
+                        case "Easy" -> {
+                            x_size = 20;
+                            y_size = 20;
+                        }
+                        case "Medium" -> {
+                            x_size = 30;
+                            y_size = 30;
+                        }
+                        case "Hard" -> {
+                            x_size = 40;
+                            y_size = 40;
+                        }
+                    }
+                    selectedMaze = -1;
+                    MazeJFrame mazeFrame = new MazeJFrame(x_size,  y_size, maze_id);
+                    mazeFrame.btnGenerateMaze.setVisible(false);
+                    mazeFrame.btnSaveMaze.setVisible(false);
+                    mazeFrame.btnLeft.setVisible(false);
+                    mazeFrame.btnRight.setVisible(false);
+                    mazeFrame.btnTop.setVisible(false);
+                    mazeFrame.btnBottom.setVisible(false);
+                    mazeFrame.lblFocused_X.setVisible(false);
+                    mazeFrame.lblFocused_Y.setVisible(false);
+                    mazeFrame.btnExportMaze.setVisible(true);
+                    mazeFrame.btnGenerateSolution.setVisible(true);
                 }
             }
         });
@@ -98,25 +102,35 @@ class PublisherWindow extends JFrame{
         export_maze_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                selected_user = MazeListTable.getSelectedRow();
-                if (selected_user == -1){
-                    JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze Export Error", JOptionPane.ERROR_MESSAGE);
+                //selected_user = MazeListTable.getSelectedRow();
+                //if (selected_user == -1){
+                //JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze export error", JOptionPane.ERROR_MESSAGE);
+                // }
+                // else {
+                JFileChooser fileChooser = new JFileChooser();
+                fileChooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                int response = fileChooser.showOpenDialog(PublisherFrame);
+                if(response == JFileChooser.APPROVE_OPTION){
+                    String fileName = fileChooser.getSelectedFile().toString();
+                    JOptionPane.showMessageDialog(PublisherFrame,fileName, "Maze Export Notification", JOptionPane.ERROR_MESSAGE);
+
+                }else{
+                    JOptionPane.showMessageDialog(PublisherFrame,"Folder open operation was cancelled", "Maze export error", JOptionPane.ERROR_MESSAGE);
                 }
-                else {
-                    JOptionPane.showMessageDialog(null, "Maze Export Successful");
-                }
+                JOptionPane.showMessageDialog(null, "Maze export successful");
+                // }
             }
         });
 
         export_solution_button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                selected_user = MazeListTable.getSelectedRow();
-                if (selected_user == -1){
-                    JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze Export Error", JOptionPane.ERROR_MESSAGE);
+                selectedMaze = MazeListTable.getSelectedRow();
+                if (selectedMaze == -1){
+                    JOptionPane.showMessageDialog(PublisherFrame,"Please select a maze.", "Maze export error", JOptionPane.ERROR_MESSAGE);
                 }
                 else {
-                    JOptionPane.showMessageDialog(null, "Solution Export Successful");
+                    JOptionPane.showMessageDialog(null, "Solution export successful");
                 }
             }
         });
@@ -136,9 +150,11 @@ class PublisherWindow extends JFrame{
 
     }
 
-
+    /**
+     * Set layout of Creator landing window
+     */
     private void setPublisherLayout() {
-        DefaultTableModel tableModel = new DefaultTableModel(MainGUI.DataBase.getMazeDataAsArray(),MainGUI.DataBase.getMazeColumnNames()) {
+        DefaultTableModel tableModel = new DefaultTableModel(){//MainGUI.database.getMazeDataAsArray(),MainGUI.database.getMazeColumnNames()) {
 
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -154,27 +170,29 @@ class PublisherWindow extends JFrame{
         constraints.fill = GridBagConstraints.NONE;
         constraints.anchor = GridBagConstraints.NORTHEAST;
 
-        addToFrame(PublisherFrame, MazeDisplayPanel, constraints, 1, 2, 0,1,5,50,5,5);
-        addToFrame(PublisherFrame, MazeListScrollPane, constraints, 1, 5, 0,3,5,5,5,5);
-        addToFrame(PublisherFrame, view_solution_button, constraints, 1, 1, 1,1,5,5,5,5);
-        addToFrame(PublisherFrame, publishButton, constraints, 1, 1, 1,2,5,5,5,5);
-        addToFrame(PublisherFrame, export_maze_button, constraints, 1, 1, 1,4,5,5,5,5);
-        addToFrame(PublisherFrame, export_solution_button, constraints, 1, 1, 1,5,5,5,5,5);
-        addToFrame(PublisherFrame, view_maze_button, constraints, 1, 1, 1,6,5,5,5,5);
+        addToFrame(PublisherFrame, MazeListScrollPane, constraints, 1, 5, 0,1,5,5,5,5);
+        addToFrame(PublisherFrame, export_maze_button, constraints, 1, 1, 1,2,5,5,5,5);
+        addToFrame(PublisherFrame, export_solution_button, constraints, 1, 1, 1,3,5,5,5,5);
+        addToFrame(PublisherFrame, view_maze_button, constraints, 1, 1, 1,1,5,5,5,5);
         addToFrame(PublisherFrame, logoutPublisherButton, constraints, 1, 1, 1,7,5,5,5,5);
-        addToFrame(PublisherFrame, MazeViewerLabel, constraints, 1, 1, 0,0,5,5,5,5);
 
     }
-    private void addToPanel(JPanel jp,Component c, GridBagConstraints
-            constraints, int width, int height, int x, int y,int top, int bot,int right,int left) {
-        constraints.gridx = x;
-        constraints.gridy = y;
-        constraints.gridwidth = width;
-        constraints.gridheight = height;
-        constraints.insets = new Insets(top,left,bot,right);
-        jp.add(c, constraints);
-    }
 
+    /**
+     * Add a component to frame of landing window
+     *
+     * @param jf frame for componenents to be added to
+     * @param c component being added
+     * @param constraints constraints of component
+     * @param width width of component
+     * @param height height of component
+     * @param x x position of component
+     * @param y y position of component
+     * @param top top padding of component
+     * @param bot bottom padding of component
+     * @param right right padding of component
+     * @param left left padding of component
+     */
     private void addToFrame(JFrame jf,Component c, GridBagConstraints
             constraints, int width, int height, int x, int y,int top, int bot,int right,int left) {
         constraints.gridx = x;

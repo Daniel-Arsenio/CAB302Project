@@ -1,9 +1,10 @@
-package MazeGUI;
+package src.MazeGUI;
+
+import com.sun.tools.javac.Main;
 
 import javax.swing.*;
 import java.awt.*;
-import static MazeGUI.GUIFunc.addToPanel;
-
+import java.util.HashMap;
 
 class LoginWindow extends JFrame {
     final JFrame LoginWindowFrame = new JFrame("Maze Creator");
@@ -25,19 +26,29 @@ class LoginWindow extends JFrame {
         passwordField.setEchoChar('*');
         loginButton.setText("Login");
         loginButton.addActionListener(e -> {
-            if (MainGUI.DataBase.checkUser(usernameField.getText(), String.valueOf(passwordField.getPassword()), "Admin")) {
+            if (MainGUI.database.getPermission(usernameField.getText(), String.valueOf(passwordField.getPassword())) == null)
+                JOptionPane.showMessageDialog(loginWindow,"Username or password are incorrect, please try again.", "Login error", JOptionPane.ERROR_MESSAGE);
+
+            else if (MainGUI.database.getPermission(usernameField.getText(), String.valueOf(passwordField.getPassword())).equals("Admin")) {
+                MainGUI.currentUser.put("Username", usernameField.getText());
+                MainGUI.currentUser.put("Password", String.valueOf(passwordField.getPassword()));
                 MainGUI.closeLogin();
                 MainGUI.openAdmin();
             }
-            else if (MainGUI.DataBase.checkUser(usernameField.getText(), String.valueOf(passwordField.getPassword()), "Publisher")){
-                MainGUI.closeLogin();
-                MainGUI.openPublish();
-            }
-            else if(MainGUI.DataBase.checkUser(usernameField.getText(), String.valueOf(passwordField.getPassword()), "Creator")){
+
+            else if (MainGUI.database.getPermission(usernameField.getText(), String.valueOf(passwordField.getPassword())).equals("Creator")){
+                MainGUI.currentUser.put("Username", usernameField.getText());
+                MainGUI.currentUser.put("Password", String.valueOf(passwordField.getPassword()));
                 MainGUI.closeLogin();
                 MainGUI.openMazeC();
             }
-            else JOptionPane.showMessageDialog(loginWindow,"Username or Password are Incorrect, please try again.", "Login Error", JOptionPane.ERROR_MESSAGE);
+
+            else if(MainGUI.database.getPermission(usernameField.getText(), String.valueOf(passwordField.getPassword())).equals("Publisher")){
+                MainGUI.currentUser.put("Username", usernameField.getText());
+                MainGUI.currentUser.put("Password", String.valueOf(passwordField.getPassword()));
+                MainGUI.closeLogin();
+                MainGUI.openPublish();
+            }
         });
         loginComponentsLayout();
         LoginWindowFrame.add(loginWindow);
@@ -55,5 +66,30 @@ class LoginWindow extends JFrame {
         addToPanel(loginWindow, passwordLabel, constraints,1,1, 0,1,5,5,5,5);
         addToPanel(loginWindow, passwordField, constraints,1 ,1, 1,1,5,5,5,5);
         addToPanel(loginWindow, loginButton, constraints,2,1, 0,2,10,10,10,10);
+    }
+
+    /**
+     *Add ui components to panel
+     *
+     * @param jp frame for componenents to be added to
+     * @param c component being added
+     * @param constraints constraints of component
+     * @param width width of component
+     * @param height height of component
+     * @param x x position of component
+     * @param y y position of component
+     * @param top top padding of component
+     * @param bot bottom padding of component
+     * @param right right padding of component
+     * @param left left padding of component
+     */
+    public static void addToPanel(JPanel jp, Component c, GridBagConstraints
+            constraints, int width, int height, int x, int y, int top, int bot, int right, int left) {
+        constraints.gridx = x;
+        constraints.gridy = y;
+        constraints.gridwidth = width;
+        constraints.gridheight = height;
+        constraints.insets = new Insets(top,left,bot,right);
+        jp.add(c, constraints);
     }
 }
