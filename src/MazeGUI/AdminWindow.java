@@ -86,6 +86,7 @@ class AdminWindow extends JFrame{
                         newUsername.setText("");
                     }
                 }
+                admin_selected_user = -1;
                 user.clear();
             }
         });
@@ -132,6 +133,7 @@ class AdminWindow extends JFrame{
                 else {MainGUI.database.removeUser(user);}
             }
             adminUserDisplay.setModel(MainGUI.database.getUserTableModel());
+            admin_selected_user = -1;
             user.clear();
         });
 
