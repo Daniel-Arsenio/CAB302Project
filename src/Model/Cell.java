@@ -1,9 +1,10 @@
 /**
  * Author: Marcus Nguyen
  */
-package src.MazeGUI;
+package src.Model;
 
 import src.MazeGUI.MazeCreatorComponents.JCell;
+import src.MazeGUI.MazeJFrame;
 
 
 import java.awt.*;

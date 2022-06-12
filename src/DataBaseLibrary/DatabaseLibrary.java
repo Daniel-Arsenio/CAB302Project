@@ -1,6 +1,7 @@
-package src.MazeGUI;
+package src.DataBaseLibrary;
 
 import com.sun.tools.javac.Main;
+import src.MazeGUI.MainGUI;
 
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
@@ -8,7 +9,7 @@ import java.util.*;
 import java.time.format.DateTimeFormatter;
 import java.time.LocalDateTime;
 
-class DatabaseLibrary {
+public class DatabaseLibrary {
 
     private final Connection connect = DBConnection.getInstance();
     private final Statement st = connect.createStatement();
@@ -24,7 +25,7 @@ class DatabaseLibrary {
     private int userCount = 1;
     private int mazeCount = 0;
 
-    DatabaseLibrary() throws SQLException {
+    public DatabaseLibrary() throws SQLException {
         //init database
         st.execute("DROP DATABASE IF EXISTS mazeco;");
         st.execute("CREATE DATABASE IF NOT EXISTS mazeco;");
@@ -89,7 +90,7 @@ class DatabaseLibrary {
      * @param password password of user
      * @return null
      */
-    String getPermission(String username, String password){
+    public String getPermission(String username, String password){
         try{
             checkUser.clearParameters();
             checkUser.setString(1, username);
@@ -135,7 +136,7 @@ class DatabaseLibrary {
         }catch(SQLException e){e.printStackTrace();}
     }
 
-    DefaultTableModel getUserTableModel(){
+    public DefaultTableModel getUserTableModel(){
         ResultSet rs;
         DefaultTableModel tm = new DefaultTableModel(){
             @Override
@@ -262,7 +263,7 @@ class DatabaseLibrary {
      * @param newMaze string representation of walls of each cell of maze
      * @param mazeId ID of maze being edited
      */
-    void editMaze(String[][] newMaze, int mazeId){
+    public void editMaze(String[][] newMaze, int mazeId){
         try {
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDateTime date = LocalDateTime.now();
@@ -287,7 +288,7 @@ class DatabaseLibrary {
 
     }
 
-    DefaultTableModel getMazeTableModel(){
+    public DefaultTableModel getMazeTableModel(){
         ResultSet rs;
         DefaultTableModel tm = new DefaultTableModel(){
             @Override

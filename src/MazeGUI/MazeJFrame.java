@@ -4,6 +4,8 @@
 package src.MazeGUI;
 
 import src.MazeGUI.MazeCreatorComponents.JComponentLibrary;
+import src.Model.Maze;
+import src.Model.Cell;
 
 
 import javax.swing.*;

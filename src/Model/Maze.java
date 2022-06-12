@@ -1,4 +1,8 @@
-package src.MazeGUI;
+package src.Model;
+
+import src.MazeGUI.MainGUI;
+import src.MazeGUI.MazeJFrame;
+import src.Model.Cell;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;

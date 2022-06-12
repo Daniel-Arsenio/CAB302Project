@@ -6,7 +6,7 @@
 package src.MazeGUI.MazeCreatorComponents;
 
 import src.MazeGUI.MazeJFrame;
-import src.MazeGUI.Cell;
+import src.Model.Cell;
 
 import javax.swing.*;
 import javax.swing.border.MatteBorder;
