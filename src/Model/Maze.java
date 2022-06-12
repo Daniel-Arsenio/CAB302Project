@@ -67,7 +67,7 @@ public class Maze implements IMaze {
     /**
      * Return the maze as an array of strings.
      *
-     * @return Returns a list of strings representing cells in the form "0101", where 0 is no wall, and 1 is wall. In the form
+     * @return Returns a list of strings representing cells in the form "0202", where 0 is no wall, and 2 is wall. In the form
      * "Right Left Top Bottom"
      * */
     public String[][] asStringList(Cell[][] cells, JPanel mazeFrame){
