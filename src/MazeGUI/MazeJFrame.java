@@ -13,7 +13,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class mazeJFrame extends JFrame {
+public class MazeJFrame extends JFrame {
 
     /**
      * Variable Declaration
@@ -37,7 +37,7 @@ public class mazeJFrame extends JFrame {
      * @param X_MazeSize  The X_MazeSize of the frame
      * @param Y_MazeSize The Y_MazeSize of the frame
      */
-    public mazeJFrame(int X_MazeSize, int Y_MazeSize) {
+    public MazeJFrame(int X_MazeSize, int Y_MazeSize) {
         if(X_MazeSize>=40 && Y_MazeSize>=40){
             edgeSize = 15;
         }
@@ -232,7 +232,7 @@ public class mazeJFrame extends JFrame {
      * @param Y_MazeSize frame size y
      * @param mazeID ID of maze
      */
-    public mazeJFrame(int X_MazeSize, int Y_MazeSize, int mazeID) {
+    public MazeJFrame(int X_MazeSize, int Y_MazeSize, int mazeID) {
         if(X_MazeSize>=40 && Y_MazeSize>=40){
             edgeSize = 15;
         }

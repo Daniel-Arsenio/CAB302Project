@@ -83,7 +83,7 @@ class MazeCLandingWindow extends JFrame{
                         }
                     }
                     selected_user = -1;
-                    mazeJFrame mazeFrame = new mazeJFrame(x_size,  y_size, maze_id);
+                    MazeJFrame mazeFrame = new MazeJFrame(x_size,  y_size, maze_id);
                     mazeFrame.btnGenerateMaze.setVisible(false);
                     mazeFrame.btnSaveMaze.setVisible(false);
                     mazeFrame.btnLeft.setVisible(false);
@@ -150,7 +150,7 @@ class MazeCLandingWindow extends JFrame{
                             }
                         }
                         selected_user = -1;
-                        mazeJFrame mazeFrame = new mazeJFrame(x_size,  y_size, maze_id);
+                        MazeJFrame mazeFrame = new MazeJFrame(x_size,  y_size, maze_id);
                         mazeFrame.btnGenerateMaze.setVisible(false);
                         mazeFrame.btnAddImage.setVisible(true);
                         mazeFrame.lblImageSize.setVisible(true);

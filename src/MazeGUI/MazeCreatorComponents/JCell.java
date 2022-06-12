@@ -5,10 +5,7 @@
  */
 package src.MazeGUI.MazeCreatorComponents;
 
-import src.MazeGUI.mazeJFrame;
-import src.MazeGUI.Cell;
-
-import src.MazeGUI.mazeJFrame;
+import src.MazeGUI.MazeJFrame;
 import src.MazeGUI.Cell;
 
 import javax.swing.*;
@@ -35,7 +32,13 @@ public class JCell extends JPanel implements EventListener {
      * @param bottom     bottom edge of the cell
      * @param right      right edge of the cell
      */
-    public JCell(int X_position, int Y_position, int Width, int Height, int top, int left, int bottom, int right, mazeJFrame mazeFrame, Cell cell) {
+    public JCell(int X_position, int Y_position, int Width, int Height, int top, int left, int bottom, int right, MazeJFrame mazeFrame, Cell cell) {
+
+        topEdge=top;
+        leftEdge=left;
+        rightEdge=right;
+        bottomEdge=bottom;
+
         this.setLayout(null);
         this.setBounds(X_position+2, Y_position+2, Width, Height);
         this.setBorder(new MatteBorder(top, left, bottom, right, Color.BLACK));
@@ -103,6 +106,11 @@ public class JCell extends JPanel implements EventListener {
         }
     }
 
+    /**
+     *
+     *
+     * @param target
+     */
     public void AddWall(String target){
         if (target == "top")
         {

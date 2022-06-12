@@ -84,7 +84,7 @@ class PublisherWindow extends JFrame{
                         }
                     }
                     selectedMaze = -1;
-                    mazeJFrame mazeFrame = new mazeJFrame(x_size,  y_size, maze_id);
+                    MazeJFrame mazeFrame = new MazeJFrame(x_size,  y_size, maze_id);
                     mazeFrame.btnGenerateMaze.setVisible(false);
                     mazeFrame.btnSaveMaze.setVisible(false);
                     mazeFrame.btnLeft.setVisible(false);
