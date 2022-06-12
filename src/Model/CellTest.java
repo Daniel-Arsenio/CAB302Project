@@ -1,11 +1,8 @@
 package src.Model;
 
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import src.MazeGUI.MazeCreatorComponents.JCell;
 import src.MazeGUI.MazeJFrame;
-import src.MazeGUI.MazeCreatorComponents.JCell;
 
 import static org.junit.jupiter.api.Assertions.*;
 

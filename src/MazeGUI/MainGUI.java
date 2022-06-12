@@ -20,7 +20,7 @@ public class MainGUI extends JFrame implements Runnable {
     static PublisherWindow mainPublisherWindow = new PublisherWindow();
     static MazeCLandingWindow mainMazeCLandingWindow = new MazeCLandingWindow();
     static MazeJFrame mainMazeEditorWindow;
-    public static final HashMap<String, String> currentUser = new HashMap<>();
+    public static HashMap<String, String> currentUser = new HashMap<>();
 
 
     public MainGUI(String args) throws SQLException {

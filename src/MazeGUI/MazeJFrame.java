@@ -1,6 +1,3 @@
-/**
- * Author: Marcus Nguyen
- */
 package src.MazeGUI;
 
 import src.MazeGUI.MazeCreatorComponents.JComponentLibrary;

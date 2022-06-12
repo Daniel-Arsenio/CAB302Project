@@ -1,8 +1,5 @@
 package src.DataBaseLibrary;
 
-import src.MazeGUI.MainGUI;
-import src.Model.Interfaces.*;
-
 import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.*;
@@ -12,7 +9,7 @@ import java.time.LocalDateTime;
 public class DatabaseLibrary {
 
     private final Connection connect = DBConnection.getInstance();
-    private final Statement st = connect.createStatement();
+    final Statement st = connect.createStatement();
     private final PreparedStatement addUser = connect.prepareStatement("INSERT INTO userdata VALUES( ?, ?, ?, ?);");
     private final PreparedStatement removeUser = connect.prepareStatement("DELETE FROM userdata WHERE userid = ?;");
     private final PreparedStatement checkUser = connect.prepareStatement("SELECT * FROM userdata WHERE username = ? AND password = ?;");
@@ -171,11 +168,11 @@ public class DatabaseLibrary {
      * @param ySize y size of maze
      */
     // Maze data functions
-    public void addMaze(String[][] maze, String mazeName, int xSize, int ySize){
+    public void addMaze(String[][] maze, String mazeName, int xSize, int ySize, HashMap<String, String> currentUser){
         try{
             DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd");
             LocalDateTime date = LocalDateTime.now();
-            ResultSet user = userExists(MainGUI.currentUser.get("Username"), MainGUI.currentUser.get("Password"));
+            ResultSet user = userExists(currentUser.get("Username"), currentUser.get("Password"));
             addMaze.setString(5, dtf.format(date));
             addMaze.setString(7, dtf.format(date));
             if (xSize == 20 && ySize == 20) {

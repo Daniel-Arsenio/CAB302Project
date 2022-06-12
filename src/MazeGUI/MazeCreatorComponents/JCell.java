@@ -1,8 +1,3 @@
-/**
- * Author: Marcus Nguyen
- * Developed for CAB 302 project
- * QUT student 2022
- */
 package src.MazeGUI.MazeCreatorComponents;
 
 import src.MazeGUI.MazeJFrame;

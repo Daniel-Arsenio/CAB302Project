@@ -1,8 +1,3 @@
-/**
- * @author Marcus Nguyen
- * Developed for CAB302 project
- * QUT student 2022
- */
 package src.MazeGUI.MazeCreatorComponents;
 
 import javax.swing.*;

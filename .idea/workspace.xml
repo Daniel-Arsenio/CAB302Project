@@ -5,8 +5,20 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="96ec56d7-88ed-4ffe-9072-9cff6c694728" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/DataBaseLibrary/DatabaseTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/CAB302Project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/CAB302Project.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/db.props" beforeDir="false" afterPath="$PROJECT_DIR$/db.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataBaseLibrary/DBConnection.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataBaseLibrary/DBConnection.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/DataBaseLibrary/DatabaseLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/DataBaseLibrary/DatabaseLibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/LoginWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MainGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeCreatorComponents/JCell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeCreatorComponents/JCell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeCreatorComponents/JComponentLibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeCreatorComponents/JComponentLibrary.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/MazeGUI/MazeJFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/MazeGUI/MazeJFrame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Cell.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Cell.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/CellTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/CellTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Model/Maze.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Model/Maze.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +57,10 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="true" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
@@ -65,7 +81,7 @@
       <recent name="C:\Users\danie\OneDrive\Documentos\GitHub\CAB302Project" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.MainGUI">
+  <component name="RunManager" selected="JUnit.DatabaseTest">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Main" />
       <module name="CAB302Project" />
@@ -99,12 +115,28 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="DatabaseTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="CAB302Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="src.DataBaseLibrary.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="src.DataBaseLibrary" />
+      <option name="MAIN_CLASS_NAME" value="src.DataBaseLibrary.DatabaseTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="mariadb-java-client-3.0.4.jar" type="JarApplication" temporary="true">
       <option name="JAR_PATH" value="$PROJECT_DIR$/mariadb-java-client-3.0.4.jar" />
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.DatabaseTest" />
         <item itemvalue="Application.MainGUI" />
         <item itemvalue="Application.Main" />
         <item itemvalue="JAR Application.mariadb-java-client-3.0.4.jar" />

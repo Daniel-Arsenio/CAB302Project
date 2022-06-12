@@ -1,6 +1,3 @@
-/**
- * Author: Marcus Nguyen
- */
 package src.Model;
 
 import src.MazeGUI.MazeCreatorComponents.JCell;

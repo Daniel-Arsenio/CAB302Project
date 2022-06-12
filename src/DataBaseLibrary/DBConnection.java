@@ -1,3 +1,9 @@
+/**
+ *
+ * All credit for this function is given to the faculty of CAB302, this is not our original code
+ * Taken from the Week 6 practical file.
+ *
+ * */
 package src.DataBaseLibrary;
 
 import java.io.FileInputStream;

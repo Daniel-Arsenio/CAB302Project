@@ -574,7 +574,7 @@ public class Maze implements IMaze {
      * @param mazeName name of maze being saved
      */
     public void saveMaze(MazeJFrame mazeframe, String mazeName){
-        MainGUI.database.addMaze(asStringList(cells, mazeframe.controllerPanel), mazeName, X_Size, Y_Size);
+        MainGUI.database.addMaze(asStringList(cells, mazeframe.controllerPanel), mazeName, X_Size, Y_Size, MainGUI.currentUser);
     }
 
     /**

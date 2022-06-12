@@ -1,10 +1,7 @@
 package src.MazeGUI;
 
-import com.sun.tools.javac.Main;
-
 import javax.swing.*;
 import java.awt.*;
-import java.util.HashMap;
 
 class LoginWindow extends JFrame {
     final JFrame LoginWindowFrame = new JFrame("Maze Creator");
