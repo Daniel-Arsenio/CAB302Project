@@ -100,8 +100,6 @@ class MazeCLandingWindow extends JFrame{
         newMazeButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                MainGUI.closeMazeC();
-
                 String s  = (String)JOptionPane.showInputDialog(MazeCFrame,"Choose difficulty level"
                         ,"Choose Difficulty",JOptionPane.PLAIN_MESSAGE,null,new String[]{"Easy", "Medium", "Hard"},"Easy");
                 if (s != null){
@@ -119,6 +117,7 @@ class MazeCLandingWindow extends JFrame{
                             y_size = 40;
                         }
                     }
+                    MainGUI.closeMazeC();
                     MainGUI.openMazeEdit(x_size, y_size);
                 }
             }
