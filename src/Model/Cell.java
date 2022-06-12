@@ -114,7 +114,7 @@ public class Cell implements ICell {
       * @param target
       */
      public void BreakCellWall(String target){
-          
+
           jCell.BreakWall(target);
           jCell.repaint();
      }

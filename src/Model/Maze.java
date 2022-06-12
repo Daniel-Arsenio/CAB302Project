@@ -1,6 +1,5 @@
 package src.Model;
 
-import org.junit.jupiter.api.function.Executable;
 import src.MazeGUI.MainGUI;
 import src.MazeGUI.MazeJFrame;
 import src.Model.Interfaces.IMaze;
