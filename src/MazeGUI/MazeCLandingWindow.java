@@ -92,6 +92,7 @@ class MazeCLandingWindow extends JFrame{
                     mazeFrame.btnBottom.setVisible(false);
                     mazeFrame.lblFocused_X.setVisible(false);
                     mazeFrame.lblFocused_Y.setVisible(false);
+                    mazeFrame.btnGenerateSolution.setVisible(true);
                 }
             }
         });

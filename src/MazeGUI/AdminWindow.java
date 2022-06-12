@@ -29,6 +29,16 @@ class AdminWindow extends JFrame{
         AdminFrame.setSize(600,800);
         adminPanel.setSize(600,800);
         adminPanel.setBackground(Color.LIGHT_GRAY);
+        adminUserDisplay.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+            }
+
+            @Override
+            public void focusLost(FocusEvent e) {
+                admin_selected_user = adminUserDisplay.getSelectedRow();
+            }
+        });
 
         adminEditButton.setText("Edit User");
         adminEditButton.setPreferredSize(new Dimension(100,35));
@@ -109,12 +119,18 @@ class AdminWindow extends JFrame{
         adminRemoveButton.setText("Remove User");
         adminRemoveButton.setPreferredSize(new Dimension(150,35));
         adminRemoveButton.addActionListener(e -> {
-            user.put("ID", String.valueOf(adminUserDisplay.getValueAt(admin_selected_user, 0)));
-            if (String.valueOf(adminUserDisplay.getValueAt(admin_selected_user, 0)).equals("0")){
-                JOptionPane.showMessageDialog(AdminFrame,"Cannot delete root user.", "Root error", JOptionPane.ERROR_MESSAGE);
-
+            if (admin_selected_user == -1)
+            {
+                JOptionPane.showMessageDialog(AdminFrame,"Please select a User.", "Edit error", JOptionPane.ERROR_MESSAGE);
             }
-            else{MainGUI.database.removeUser(user);}
+            else {
+                user.put("ID", String.valueOf(adminUserDisplay.getValueAt(admin_selected_user, 0)));
+                if (String.valueOf(adminUserDisplay.getValueAt(admin_selected_user, 0)).equals("0"))
+                {
+                    JOptionPane.showMessageDialog(AdminFrame,"Cannot delete root user.", "Root error", JOptionPane.ERROR_MESSAGE);
+                }
+                else {MainGUI.database.removeUser(user);}
+            }
             adminUserDisplay.setModel(MainGUI.database.getUserTableModel());
             user.clear();
         });
